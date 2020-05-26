@@ -2,38 +2,106 @@ body{
     background-color: #6699ff;
     font-family: Arial;
 }
+header{
+    background-color: #6699ff;
+    font-family: Arial;
+}
+nav{
+    background-color: #6699ff;
+    font-family: Arial;
+}
+footer{
+    background-color: #6699ff;
+    font-family: Arial;
+    color: whitesmoke;
+}
 
 .title{
     font-family: "Bauhaus 93";
     color: black;
     font-size: 96px;
-    text-align: center;
+    display: inline-block;
 }
 
 .about{
     color: whitesmoke;
     font-size: 24px;
-    text-align: center;
+    display: inline-block;
+}
+.titlesmall{
+    color: whitesmoke;
+    font-size: 36px;
+    display: inline-block;
 }
 
 .flex {
     display: flex;
     justify-content: center;
+    flex-wrap: nowrap;
+    text-align: center;
 }
 
 .flex-item + .flex-item {
-    margin-left: 10px;
+    margin-left: 20px;
 }
 
-.button {
-    margin-top: 15px;
-    background-color: black;
-    border: none;
-    color: white;
-    padding: 10px 20px;
+table, td, th{
+    background-color: whitesmoke;
+    border: 1px solid #6699ff;
+    text-align: left;
+}
+table{
+    border-collapse: collapse;
+    width: 95%;
+}
+td, th{
+    padding: 15px;
+}
+
+a:link, a:visited{
+    background-color: whitesmoke;
+    color: black;
+    border: 3px solid black;
+    width: 100px;
+    border-radius: 2px;
+    padding: 16px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
     cursor: pointer;
+}
+
+a:hover, a:active{
+    background-color: black;
+    color: whitesmoke;
+}
+
+/***********************************/
+.button {
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    width: 150px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.buttonblack {
+    background-color: whitesmoke;
+    color: black;
+    border: 3px solid black;
+    border-radius: 2px;
+}
+
+.buttonblack:hover {
+    background-color: black;
+    color: whitesmoke;
 }

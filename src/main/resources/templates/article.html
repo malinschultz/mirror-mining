@@ -5,16 +5,40 @@
     <title>base.camp: mirror mining</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
+<header>
+    <p class="titlesmall">Artikelanalyse</p>
+    <div align="right"><a href="index.html">zurück</a></div>
+</header>
 <body>
-<p th:text="'Hello, ' + ${name} + '!'" />
-<table border="1" style="width:300px">
+<div class="flex">
+    <p>Hier kann nicht Ihre Werbung stehen.</p>
+<!-- <p class="about" th:text="'Hello, ' + ${name} + '!'" /> -->
+</div>
+<div class="flex">
+<table>
     <tr>
-        <td>Test Name</td>
+        <th>ID</th>
+        <th>Titel</th>
+        <th>Tone</th>
+        <th>Keywords</th>
+        <th>NLU Sentiment</th>
+        <th>Link</th>
     </tr>
-    <tr th:text="${name}">
-        <td th:text="${name}">
-        </td>
+    <tr>
+        <td th:text="${name}">text</td>
+    </tr>
+    <tr>
+        <td>insert</td>
+        <td>results</td>
+        <td>here</td>
+    </tr>
+    <tr>
+        <td>hier</td>
+        <td>ist Platz</td>
+        <td>für noch mehr</td>
+        <td>Ergebnisse</td>
     </tr>
 </table>
+</div>
 </body>
 </html>
