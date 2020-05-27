@@ -1,17 +1,21 @@
 body{
-    background-color: #6699ff;
+    /*background-color: #6699ff;*/
+    background-color: #88a4dd;
     font-family: Arial;
 }
 header{
-    background-color: #6699ff;
+    /*background-color: #6699ff;*/
+    background-color: #88a4dd;
     font-family: Arial;
 }
 nav{
-    background-color: #6699ff;
+    /*background-color: #6699ff;*/
+    background-color: #88a4dd;
     font-family: Arial;
 }
 footer{
-    background-color: #6699ff;
+    /*background-color: #6699ff;*/
+    background-color: #88a4dd;
     font-family: Arial;
     color: whitesmoke;
 }
@@ -47,7 +51,8 @@ footer{
 
 table, td, th{
     background-color: whitesmoke;
-    border: 1px solid #6699ff;
+    /*border: 1px solid #6699ff;*/
+    border: 1px solid #88a4dd;
     text-align: left;
 }
 table{
