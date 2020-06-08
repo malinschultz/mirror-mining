@@ -1,3 +1,5 @@
+<!--Das ist die Seite, die die Artikel anzeigt.
+ Malin Schultz-->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -6,39 +8,28 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <header>
-    <p class="titlesmall">Artikelanalyse</p>
-    <div align="right"><a href="index.html">zurück</a></div>
+    <p class="titlesmall">Artikelanalyse zu <p th:text="${KatForm.katName}"></p>
+    <div align="right"><a class="btn" href="/chooseKat">zurück</a></div>
 </header>
+
 <body>
 <div class="flex">
-    <p>Hier kann nicht Ihre Werbung stehen.</p>
-<!-- <p class="about" th:text="'Hello, ' + ${name} + '!'" /> -->
-</div>
-<div class="flex">
-<table>
+    <table>
     <tr>
         <th>ID</th>
         <th>Titel</th>
         <th>Tone</th>
-        <th>Keywords</th>
-        <th>NLU Sentiment</th>
         <th>Link</th>
     </tr>
-    <tr>
-        <td th:text="${name}">text</td>
-    </tr>
-    <tr>
-        <td>insert</td>
-        <td>results</td>
-        <td>here</td>
-    </tr>
-    <tr>
-        <td>hier</td>
-        <td>ist Platz</td>
-        <td>für noch mehr</td>
-        <td>Ergebnisse</td>
-    </tr>
-</table>
+        <!--
+        <tr th:each="Article : ${articles}">
+            <td th:utext="${Article}">id</td>
+            <td th:utext="${Article}">title</td>
+            <td th:utext="${Article}">tone</td>
+            <td th:utext="${Article}">link</td>
+        </tr>
+-->
+    </table>
 </div>
 </body>
 </html>

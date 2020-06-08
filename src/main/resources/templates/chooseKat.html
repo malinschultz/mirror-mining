@@ -1,0 +1,39 @@
+<!--Hier können Kategorien ausgewählt werden.
+ Malin Schultz-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="./style.css" rel="stylesheet" type="text/css">
+    <title>base.camp: mirror mining</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<header>
+    <p class="titlesmall">Artikelanalyse</p>
+    <p class="about">wähle eine Kategorie aus</p>
+    <div align="right"><a class="btn" href="index.html">zurück</a></div>
+</header>
+<body>
+
+<form name='f' th:object="${KatForm}" method='POST'>
+    <table>
+        <tr>
+            <td>Auswahl</td>
+            <td>
+                <select th:field="*{katName}">
+                    <option value=""> -- </option>
+                    <option th:each="Kategorie : ${kategorien}"
+                            th:value="${Kategorie.katName}"
+                            th:utext="${Kategorie.katName}"/>
+                </select>
+
+            </td>
+        </tr>
+
+        <tr>
+            <td><input name="submit" type="submit" value="submit" /></td>
+        </tr>
+    </table>
+</form>
+
+</body>
+</html>
