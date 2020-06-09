@@ -1,11 +1,15 @@
 package com.example.servingwebcontent.controller;
 
+import com.example.servingwebcontent.Article;
+import com.example.servingwebcontent.KatForm;
 import com.example.servingwebcontent.Kategorie;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.List;
 
 /*Diese Klasse setzt die html Artikel Seite.
 *
@@ -14,8 +18,23 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class ArticleController {
 
-    @PostMapping("/chooseKat")
-    public String submissionResult(@ModelAttribute("KatForm") Kategorie kategorie) {
-        return "article";
+   @RequestMapping("/chooseKat")
+    public String submissionResult(@ModelAttribute("Kat") Kategorie kategorie, Model model) {
+
+       return "article";
     }
+
+
+    /*@PostMapping(value = "/katID")
+    public String showTab(@RequestParam Kategorie kat, Model model){
+        model.addAttribute("Kat", kat);
+        return "article";
+    }*/
+
+    /*@PostMapping(value="/add")
+    public String addTable(@Valid final Kategorie kategorie, Model model){
+        model.addAttribute("Kat", kategorie);
+        return "article";
+    }*/
+
 }

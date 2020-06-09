@@ -49,6 +49,8 @@ footer{
     margin-left: 20px;
 }
 
+/*** Tabellen *************/
+
 table, td, th{
     background-color: whitesmoke;
     /*border: 1px solid #6699ff;*/
@@ -63,6 +65,16 @@ td, th{
     padding: 15px;
 }
 
+/** Select Menues **/
+select{
+    padding: 16px 32px;
+    border: 3px solid black;
+    color: black;
+    background-color: whitesmoke;
+    border-radius: 2px;
+}
+
+/***** Links die aussehen, wie Buttons ***/
 
 a.btn:link, a.btn:visited{
     background-color: whitesmoke;
@@ -85,7 +97,7 @@ a.btn:hover, a.btn:active{
     color: whitesmoke;
 }
 
-/***********************************/
+/******* Buttons ****************************/
 .button {
     border: none;
     color: whitesmoke;
@@ -112,7 +124,7 @@ a.btn:hover, a.btn:active{
     color: whitesmoke;
 }
 
-/*******************************/
+/**** für Dropdown Menues mit Link, bsp in ArticleStart.html **********/
 
 .navbar {
     overflow: hidden;

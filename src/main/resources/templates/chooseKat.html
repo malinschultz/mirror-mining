@@ -14,25 +14,15 @@
 </header>
 <body>
 
-<form name='f' th:object="${KatForm}" method='POST'>
-    <table>
-        <tr>
-            <td>Auswahl</td>
-            <td>
-                <select th:field="*{katName}">
-                    <option value=""> -- </option>
-                    <option th:each="Kategorie : ${kategorien}"
-                            th:value="${Kategorie.katName}"
-                            th:utext="${Kategorie.katName}"/>
+<form name='katID' th:object="${KatForm}" method='POST'>
+                 <select th:field="*{katName}">
+                    <option value="">Kategorie</option>
+                    <option th:each="kategorie : ${kategorien}"
+                            th:value="${kategorie.katName}"
+                            th:utext="${kategorie.katName}"/>
                 </select>
-
-            </td>
-        </tr>
-
-        <tr>
-            <td><input name="submit" type="submit" value="submit" /></td>
-        </tr>
-    </table>
+    <br><br>
+            <input class="button buttonblack" name="submit" type="submit" value="submit" />
 </form>
 
 </body>

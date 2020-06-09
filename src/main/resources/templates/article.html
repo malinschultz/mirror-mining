@@ -8,7 +8,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <header>
-    <p class="titlesmall">Artikelanalyse zu <p th:text="${KatForm.katName}"></p>
+    <p class="titlesmall">Artikelanalyse zu <p th:text="${Kat.getKatName()}"></p>
+    <p th:text="${Kat.getKatArt()}"></p>
     <div align="right"><a class="btn" href="/chooseKat">zurück</a></div>
 </header>
 
@@ -21,14 +22,12 @@
         <th>Tone</th>
         <th>Link</th>
     </tr>
-        <!--
-        <tr th:each="Article : ${articles}">
-            <td th:utext="${Article}">id</td>
-            <td th:utext="${Article}">title</td>
-            <td th:utext="${Article}">tone</td>
-            <td th:utext="${Article}">link</td>
+       <tr th:each="Article : ${Kat.getKatArt()}">
+            <td th:text="${Article.getId()}"></td>
+            <td th:text="${Article.getTitle()}"></td>
+            <td th:text="${Article.getTone()}"></td>
+            <td th:text="${Article.getLink()}"></td>
         </tr>
--->
     </table>
 </div>
 </body>

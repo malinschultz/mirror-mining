@@ -29,6 +29,10 @@ public class KategorieDAO {
 
         List<Article> kat1 = new ArrayList<Article>();
         List<Article> kat2 = new ArrayList<Article>();
+        kat1.add(eins);
+        kat1.add(zwei);
+        kat2.add(drei);
+        kat2.add(vier);
 
         Kategorie langweilig = new Kategorie(kat1, "langweilig");
         Kategorie spannend = new Kategorie(kat2, "spannend");
