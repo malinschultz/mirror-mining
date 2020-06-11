@@ -1,20 +1,16 @@
 package com.example.servingwebcontent.controller;
 
-import com.example.servingwebcontent.KatForm;
 import com.example.servingwebcontent.Kategorie;
 import com.example.servingwebcontent.KategorieDAO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
 public class ChooseKatController {
-    @RequestMapping(value = { "/chooseKat" }, method = RequestMethod.GET)
+    /*@RequestMapping(value = { "/chooseKat" }, method = RequestMethod.GET)
     public String selectOptionExample1Page(Model model) {
 
         KatForm form = new KatForm();
@@ -24,7 +20,13 @@ public class ChooseKatController {
         model.addAttribute("kategorien", list);
 
         return "chooseKat";
-    }
+    }*/
 
+    @GetMapping("/chooseKat")
+    public String chooseKat(Model model){
+        List<Kategorie> katList = KategorieDAO.getKat();
+        model.addAttribute("katList", katList);
+        return "chooseKat";
+    }
 
 }

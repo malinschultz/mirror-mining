@@ -1,14 +1,12 @@
 package com.example.servingwebcontent.controller;
 
 import com.example.servingwebcontent.Article;
-import com.example.servingwebcontent.KatForm;
 import com.example.servingwebcontent.Kategorie;
+import com.sun.xml.internal.bind.v2.TODO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 /*Diese Klasse setzt die html Artikel Seite.
@@ -18,10 +16,20 @@ import java.util.List;
 @Controller
 public class ArticleController {
 
-   @RequestMapping("/chooseKat")
+   /*@RequestMapping("/chooseKat")
     public String submissionResult(@ModelAttribute("Kat") Kategorie kategorie, Model model) {
 
        return "article";
+    }*/
+
+    @GetMapping(value = "/chooseKatSel")
+    /*TODO Übergabe funktioniert noch nicht */
+    public String article(Kategorie chooseKatSel, Model model){
+       String katName = chooseKatSel.getKatName();
+        List<Article> katArt = chooseKatSel.getKatArt();
+        model.addAttribute("katName", katName);
+        model.addAttribute("katArt", katArt);
+        return "/article";
     }
 
 
