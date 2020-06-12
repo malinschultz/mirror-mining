@@ -16,6 +16,8 @@ import java.util.List;
 public class KategorieDAO {
 
     private static final List<Kategorie> kat=new ArrayList<Kategorie>();
+    private static final Kategorie kat0 = new Kategorie(null, "zero");
+
 
     static {
         initData();
@@ -29,6 +31,7 @@ public class KategorieDAO {
 
         List<Article> kat1 = new ArrayList<Article>();
         List<Article> kat2 = new ArrayList<Article>();
+
         kat1.add(eins);
         kat1.add(zwei);
         kat2.add(drei);
@@ -46,4 +49,16 @@ public class KategorieDAO {
     public static List<Kategorie> getKat() {
         return kat;
     }
+
+    public static Kategorie getKatByName(String name){
+        for (Kategorie k: kat) {
+            if (k.getKatName().equals(name)){
+                int i = kat.indexOf(k);
+                return kat.get(i);
+            }
+        }
+        return kat0;
+    }
+
+
 }

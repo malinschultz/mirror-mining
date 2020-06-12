@@ -15,10 +15,9 @@
 <body>
 <form action="/chooseKatSel">
     <select name="chooseKatSel">
-        <!-- TODO Übergabe der Kategorie funktioniert noch nicht -->
         <option value="">Kategorie</option>
         <option th:each="chooseKatSel : ${katList}"
-                th:value="${chooseKatSel}"
+                th:value="${chooseKatSel.katName}"
                 th:utext="${chooseKatSel.katName}"/>
     </select>
     <br><br>

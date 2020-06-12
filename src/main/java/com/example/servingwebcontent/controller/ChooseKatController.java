@@ -10,17 +10,6 @@ import java.util.List;
 
 @Controller
 public class ChooseKatController {
-    /*@RequestMapping(value = { "/chooseKat" }, method = RequestMethod.GET)
-    public String selectOptionExample1Page(Model model) {
-
-        KatForm form = new KatForm();
-        model.addAttribute("KatForm", form);
-
-        List<Kategorie> list = KategorieDAO.getKat();
-        model.addAttribute("kategorien", list);
-
-        return "chooseKat";
-    }*/
 
     @GetMapping("/chooseKat")
     public String chooseKat(Model model){
