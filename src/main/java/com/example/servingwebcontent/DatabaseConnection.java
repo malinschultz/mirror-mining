@@ -25,9 +25,9 @@ public class DatabaseConnection {
         String dbuser = prop.getProperty("dbuser");
         String dbpassword = prop.getProperty("dbpassword");
         String url = "jdbc:postgresql://localhost:" + lport + "/webcrawl";
-        String driver="org.postgresql.Driver";
+        String driver = "org.postgresql.Driver";
         Connection conn = null;
-        Session session= null;
+        Session session = null;
 
         try{
             java.util.Properties config = new java.util.Properties();
