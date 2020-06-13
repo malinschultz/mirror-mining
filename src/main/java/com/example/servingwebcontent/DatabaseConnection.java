@@ -11,7 +11,7 @@ import com.jcraft.jsch.Session;
 import java.sql.*;
 
 public class DatabaseConnection {
-    public static void main(String[] args) throws SQLException, JSchException, IOException {
+    public static void main(String[] args) throws IOException, JSchException, SQLException {
         InputStream input = DatabaseConnection.class.getClassLoader().getResourceAsStream("database.properties");
         Properties prop = new Properties();
         prop.load(input);
@@ -28,6 +28,7 @@ public class DatabaseConnection {
         String driver="org.postgresql.Driver";
         Connection conn = null;
         Session session= null;
+
         try{
             java.util.Properties config = new java.util.Properties();
             config.put("StrictHostKeyChecking", "no");
