@@ -3,7 +3,6 @@ package com.example.servingwebcontent.controller;
 import com.example.servingwebcontent.Article;
 import com.example.servingwebcontent.Kategorie;
 import com.example.servingwebcontent.KategorieDAO;
-import com.sun.xml.internal.bind.v2.TODO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
