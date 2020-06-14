@@ -13,18 +13,21 @@ import java.sql.*;
 public class DatabaseConnection {
     public static void main(String[] args) throws JSchException, SQLException, IOException {
         DatabaseConnection db = new DatabaseConnection();
-        List<Map<String, Object>> userData = db.getData();
+        List<Map<String, Object>> data = db.getData("documents");
 
         // Print returned data.
-        for (Map<String, Object> row:userData) {
+        for (Map<String, Object> row:data) {
             for (Map.Entry<String, Object> rowEntry : row.entrySet()) {
                 System.out.print(rowEntry.getKey() + " = " + rowEntry.getValue() + ", ");
             }
+            System.out.print("\n");
         }
     }
-    public List<Map<String, Object>> getData() throws IOException, JSchException, SQLException {
-        List<Map<String, Object>> usrs = new ArrayList<>();
+    public List<Map<String, Object>> getData(String table) throws IOException, JSchException, SQLException {
+        // Initialize a list for table data as ArrayList.
+        List<Map<String, Object>> dataList = new ArrayList<>();
 
+        // Load properties for SSH and DB access.
         InputStream input = DatabaseConnection.class.getClassLoader().getResourceAsStream("database.properties");
         Properties prop = new Properties();
         prop.load(input);
@@ -41,11 +44,15 @@ public class DatabaseConnection {
         String driver = "org.postgresql.Driver";
 
         Session session = null;
-        Connection conn = null;
+        Connection connection = null;
 
-        try{
+        try {
+            // Config for SSH tunnel.
             java.util.Properties config = new java.util.Properties();
             config.put("StrictHostKeyChecking", "no");
+            config.put("PreferredAuthentications", "publickey,keyboard-interactive,password");
+
+            // Connect SSH with port forwarding.
             JSch jsch = new JSch();
             session=jsch.getSession(user, lhost, 22);
             session.setPassword(password);
@@ -54,36 +61,36 @@ public class DatabaseConnection {
             session.setPortForwardingL(lport, rhost, rport);
 
             Class.forName(driver).newInstance();
-            conn = DriverManager.getConnection(url, dbuser, dbpassword);
+            connection = DriverManager.getConnection(url, dbuser, dbpassword);
 
-            // Simple SQL query example
-            String query = "select * from a_users";
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(query);
+            // Get specified table, save objects in ArrayList and return.
+            String query = "select * from a_" + table;
+            Statement st = connection.createStatement();
+            ResultSet rs = st.executeQuery(query);
             ResultSetMetaData md = rs.getMetaData();
-            int columns = md.getColumnCount();
+            int cols = md.getColumnCount();
 
             while(rs.next()) {
-                Map<String, Object> usr = new HashMap<>(columns);
-                for(int i = 1; i <= columns; ++i){
-                    usr.put(md.getColumnName(i), rs.getObject(i));
+                Map<String, Object> data = new HashMap<>(cols);
+                for(int i = 1; i <= cols; i++) {
+                    data.put(md.getColumnName(i), rs.getObject(i));
                 }
-                usrs.add(usr);
+                dataList.add(data);
             }
             rs.close();
-            stmt.close();
-            return usrs;
-        } catch(Exception e){
+            st.close();
+            return dataList;
+        } catch(Exception e) {
             e.printStackTrace();
-        } finally{
-            if(conn != null && !conn.isClosed()){
-                conn.close();
+        } finally {
+            if(connection != null && !connection.isClosed()){
+                connection.close();
             }
             if(session != null && session.isConnected()){
                 session.delPortForwardingL(lport);
                 session.disconnect();
             }
         }
-        return usrs;
+        return dataList;
     }
 }
