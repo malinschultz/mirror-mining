@@ -1,6 +1,5 @@
 package com.example.servingwebcontent;
 
-import com.google.gson.JsonObject;
 import com.jcraft.jsch.JSchException;
 import org.springframework.stereotype.Repository;
 
@@ -9,7 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import org.postgresql.util.PGobject;
 
 
 /*Eine Kategorie ist eine Liste von Artikeln.
