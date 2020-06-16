@@ -17,7 +17,7 @@ import java.util.Map;
 * Malin Schultz*/
 
 @Repository
-public class KategorieDAO {
+public class KategorieService {
 
     private static final List<Kategorie> kat= new ArrayList<>();
     private static final Kategorie kat0 = new Kategorie(null, "zero");
