@@ -58,8 +58,6 @@ public class KategorieService {
 
         kat.add(langweilig);
         kat.add(spannend);
-
-
     }
 
     public static List<Kategorie> getKat() {
@@ -75,6 +73,4 @@ public class KategorieService {
         }
         return kat0;
     }
-
-
 }
