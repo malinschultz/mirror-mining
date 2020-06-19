@@ -25,15 +25,17 @@
     <table>
     <tr>
         <th>ID</th>
-        <th>Titel</th>
-        <th>Tone</th>
+        <th>Title</th>
+        <th>Comment Tone</th>
+        <th>Answer Tone</th>
         <th>Link</th>
     </tr>
        <tr th:each="Article : ${katArt}">
             <td th:text="${Article.getId()}"></td>
             <td th:text="${Article.getTitle()}"></td>
-            <td th:text="${Article.getTone()}"></td>
-            <td th:text="${Article.getLink()}"></td>
+            <td th:text="${Article.getCTone()}"></td>
+            <td th:text="${Article.getATone()}"></td>
+            <td th:text="${Article.getUrl()}"></td>
         </tr>
     </table>
 </div>
