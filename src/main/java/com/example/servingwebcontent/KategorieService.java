@@ -18,10 +18,7 @@ import java.util.Map;
 
 @Repository
 public class KategorieService {
-
     private static final List<Kategorie> kat= new ArrayList<>();
-    private static final Kategorie kat0 = new Kategorie(null, "zero");
-
 
     static {
         try {
@@ -68,6 +65,6 @@ public class KategorieService {
                 return kat.get(i);
             }
         }
-        return kat0;
+        return null;
     }
 }

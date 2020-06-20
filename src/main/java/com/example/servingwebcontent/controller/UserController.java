@@ -11,7 +11,7 @@ import java.util.List;
 public class UserController {
     @GetMapping("/user")
     public String user(Model model){
-        List<String> user = new ArrayList<String>();
+        List<String> user = new ArrayList<>();
         user.add("Toma Te");
         user.add("Sell Erie");
         user.add("Peter Silie");
