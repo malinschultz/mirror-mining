@@ -24,6 +24,4 @@ public class ArticleController {
         model.addAttribute("katArt", katArt);
         return "article";
     }
-
-
 }

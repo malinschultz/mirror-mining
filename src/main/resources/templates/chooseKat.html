@@ -13,12 +13,13 @@
     <div align="right"><a class="btn" href="index.html">zurück</a></div>
 </header>
 <body>
-<form action="/chooseKatSel">
+<form action="chooseKatSel">
     <select name="chooseKatSel">
         <option value="">Kategorie</option>
         <option th:each="chooseKatSel : ${katList}"
                 th:value="${chooseKatSel.katName}"
-                th:utext="${chooseKatSel.katName}"/>
+                th:utext="${chooseKatSel.katName}">
+        </option>
     </select>
     <br><br>
     <input class="button buttonblack" name="submit" type="submit" value="submit" />

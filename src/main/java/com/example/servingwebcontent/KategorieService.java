@@ -18,10 +18,7 @@ import java.util.Map;
 
 @Repository
 public class KategorieService {
-
     private static final List<Kategorie> kat= new ArrayList<>();
-    private static final Kategorie kat0 = new Kategorie(null, "zero");
-
 
     static {
         try {
@@ -32,34 +29,29 @@ public class KategorieService {
     }
 
     private static void initData() throws JSchException, SQLException, IOException {
-        // Get articles from the DB.
+        // Get categories and documents from the DB.
         DatabaseConnection db = new DatabaseConnection();
+        List<Map<String, Object>> categories = db.getData("categories");
         List<Map<String, Object>> documents = db.getData("documents");
 
-        Article eins = new Article((Integer) documents.get(0).get("id"), documents.get(0).get("title").toString(),
-                documents.get(0).get("comment_tone"), documents.get(0).get("url").toString());
-        Article zwei = new Article((Integer) documents.get(1).get("id"), documents.get(1).get("title").toString(),
-                documents.get(1).get("comment_tone"), documents.get(1).get("url").toString());
-        Article drei = new Article((Integer) documents.get(2).get("id"), documents.get(2).get("title").toString(),
-                documents.get(2).get("comment_tone"), documents.get(2).get("url").toString());
-        Article vier = new Article((Integer) documents.get(3).get("id"), documents.get(3).get("title").toString(),
-                documents.get(3).get("comment_tone"), documents.get(3).get("url").toString());
+        List<Article> articleList = new ArrayList<>();
+        for (Map<String, Object> document : documents) {
+            Article doc = new Article((Integer) document.get("id"), document.get("url").toString(),
+                    document.get("title").toString(), document.get("category").toString(),
+                    document.get("comment_tone"), document.get("answer_tone"));
+            articleList.add(doc);
+        }
 
-        List<Article> kat1 = new ArrayList<>();
-        List<Article> kat2 = new ArrayList<>();
-
-        kat1.add(eins);
-        kat1.add(zwei);
-        kat2.add(drei);
-        kat2.add(vier);
-
-        Kategorie langweilig = new Kategorie(kat1, "langweilig");
-        Kategorie spannend = new Kategorie(kat2, "spannend");
-
-        kat.add(langweilig);
-        kat.add(spannend);
-
-
+        for (Map<String, Object> category : categories) {
+            List<Article> cat = new ArrayList<>();
+            for (Article doc : articleList) {
+                if (doc.getCategory().equals(category.get("name").toString())) {
+                    cat.add(doc);
+                }
+            }
+            Kategorie c = new Kategorie(cat, category.get("name").toString());
+            kat.add(c);
+        }
     }
 
     public static List<Kategorie> getKat() {
@@ -73,8 +65,6 @@ public class KategorieService {
                 return kat.get(i);
             }
         }
-        return kat0;
+        return null;
     }
-
-
 }

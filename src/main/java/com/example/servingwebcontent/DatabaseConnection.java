@@ -60,7 +60,7 @@ public class DatabaseConnection {
             session.connect();
             session.setPortForwardingL(lport, rhost, rport);
 
-            Class.forName(driver).newInstance();
+            Class.forName(driver).getDeclaredConstructor().newInstance();
             connection = DriverManager.getConnection(url, dbuser, dbpassword);
 
             // Get specified table, save objects in ArrayList and return.
