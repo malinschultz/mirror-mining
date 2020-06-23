@@ -89,7 +89,7 @@
 
 	<packaging>war</packaging>
 	<build>
-		<finalName>malin-serving-web-content</finalName>
+		<finalName>base-camp-mirror-mining</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

@@ -74,6 +74,9 @@ select{
     border-radius: 2px;
 }
 
+canvas{
+    background-color: whitesmoke;
+}
 /***** Links die aussehen, wie Buttons ***/
 
 a.btn:link, a.btn:visited{

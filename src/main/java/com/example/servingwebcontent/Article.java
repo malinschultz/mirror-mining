@@ -4,18 +4,21 @@ package com.example.servingwebcontent;
 *
 * Malin Schultz*/
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 public class Article {
 
     private int id;
-    private String url;
+    private URL url;
     private String title;
     private String category;
     private Object comment_tone;
     private Object answer_tone;
 
-    public Article(int id, String url, String title, String category, Object ctone, Object atone) {
+    public Article(int id, String url, String title, String category, Object ctone, Object atone) throws MalformedURLException {
         this.id=id;
-        this.url=url;
+        this.url= new URL(url);
         this.title=title;
         this.category=category;
         this.comment_tone=ctone;
@@ -26,7 +29,7 @@ public class Article {
         return id;
     }
 
-    public String getUrl() { return url; }
+    public URL getUrl() { return url; }
 
     public String getTitle() {
         return title;

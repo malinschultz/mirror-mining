@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URL;
 import java.util.List;
 
 /*Diese Klasse setzt die html Artikel Seite.
@@ -20,6 +21,7 @@ public class ArticleController {
     public String article(@RequestParam(name = "chooseKatSel") String katName, Model model){
         Kategorie kat = KategorieService.getKatByName(katName);
         List<Article> katArt = kat.getKatArt();
+
         model.addAttribute("katName", katName);
         model.addAttribute("katArt", katArt);
         return "article";

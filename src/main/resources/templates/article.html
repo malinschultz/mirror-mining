@@ -8,7 +8,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <header>
-    <p class="titlesmall">Artikelanalyse zu <p th:text="${katName}"></p>
+    <p class="titlesmall">Artikelanalyse zu</p><br><p class="about" th:text="${katName}"></p>
     <div align="right"><a class="btn" href="./chooseKat">zurück</a></div>
 </header>
 
@@ -21,6 +21,7 @@
             src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
    <script src="article-chart.js"></script>
 </center>
+<br><br>
 <div class="flex">
     <table>
     <tr>
@@ -35,7 +36,8 @@
             <td th:text="${Article.getTitle()}"></td>
             <td th:text="${Article.getCTone()}"></td>
             <td th:text="${Article.getATone()}"></td>
-            <td th:text="${Article.getUrl()}"></td>
+            <td><a th:href="@{${Article.getUrl()}}"><p th:utext="${Article.getUrl()}"></p></a></td>
+            <!--<td><a th:href=""></a></td>-->
         </tr>
     </table>
 </div>
