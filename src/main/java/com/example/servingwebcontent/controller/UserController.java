@@ -24,9 +24,8 @@ public class UserController {
         }
         Collections.sort(userList);
 
-        List<String> usernames = new ArrayList<String>();
-        for (int i: userList
-             ) {
+        List<String> usernames = new ArrayList<>();
+        for (int i: userList) {
             usernames.add(String.valueOf(i));
         }
 
