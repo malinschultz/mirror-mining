@@ -19,9 +19,11 @@
 </div>
 <div class="flex">
     <table>
-        <tr th:each="username : ${userlist}">
+        <tr
+                th:each="username : ${userlist}">
             <td th:text="${username}"></td>
         </tr>
+
     </table>
 </div>
     <form>
