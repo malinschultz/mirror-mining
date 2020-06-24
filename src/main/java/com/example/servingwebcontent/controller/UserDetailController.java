@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class UserDetailController {
-    @GetMapping("/userDetail")
-    public String userDetail(@RequestParam(name = "username", required = false, defaultValue = "Username")String name, Model model){
+    @GetMapping(value = "/userDetail")
+    public String userDetail(@RequestParam(name = "userDetail", required = false, defaultValue = "Username")String name, Model model){
         model.addAttribute("username", name);
         return "userDetail";
     }
