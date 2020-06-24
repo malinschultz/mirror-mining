@@ -23,7 +23,14 @@ public class UserController {
             userList.add(id);
         }
         Collections.sort(userList);
-        model.addAttribute("userlist", userList);
+
+        List<String> usernames = new ArrayList<String>();
+        for (int i: userList
+             ) {
+            usernames.add(String.valueOf(i));
+        }
+
+        model.addAttribute("userlist", usernames);
         return "user";
     }
 }

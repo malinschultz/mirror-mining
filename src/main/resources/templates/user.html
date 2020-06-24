@@ -19,11 +19,15 @@
 </div>
 <div class="flex">
     <table>
-        <tr
-                th:each="username : ${userlist}">
-            <td th:text="${username}"></td>
+        <tr>
+            <th>PersonenID</th>
+           <!--<th></th>-->
         </tr>
-
+        <tr th:each="username : ${userlist}">
+            <!--<td th:text="${username}"></td>-->
+            <!--<td><a th:href="'./userDetail'+'?'+'userDetail='${username}"></a><p>Info</p></td>-->
+            <td><a th:href="@{./userDetail(userDetail=${username})}"><p th:text="${username}"></p></a></td>
+        </tr>
     </table>
 </div>
     <form>
