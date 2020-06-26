@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 
+
 /*Eine Kategorie ist eine Liste von Artikeln.
 *
 *Diese Klasse stellt eine Liste mit Artikeln zur Verfügung.
