@@ -33,7 +33,7 @@ public class UserController {
         model.addAttribute("userlist", usernames);
 
         List<Double> data = new ArrayList<Double>();
-        data.add(0.781239);
+        data.add(0.781239); // Analyi
         data.add(1.0);
         data.add(0.702673);
         data.add(0.583166);
