@@ -21,6 +21,7 @@
     <table>
         <tr>
             <th>PersonenID</th>
+           <!--<th></th>-->
         </tr>
         <tr th:each="username : ${userlist}">
             <!--<td th:text="${username}"></td>-->
@@ -29,5 +30,8 @@
         </tr>
     </table>
 </div>
+    <form>
+        <div align="right"><a class="btn" href="./userDetail">Details</a></div>
+    </form>
 </body>
 </html>

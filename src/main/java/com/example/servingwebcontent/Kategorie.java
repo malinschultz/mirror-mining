@@ -33,4 +33,5 @@ public class Kategorie {
     public void setKatArt(List<Article> katArt) {
         this.katArt = katArt;
     }
+
 }
