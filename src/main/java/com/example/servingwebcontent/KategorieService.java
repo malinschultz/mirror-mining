@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.*;
 
 
+
 /*Eine Kategorie ist eine Liste von Artikeln.
 *
 *Diese Klasse stellt eine Liste mit Artikeln zur Verfügung.
