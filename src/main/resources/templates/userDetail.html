@@ -7,39 +7,75 @@
 </head>
 
 <header>
-    <p class="titlesmall">Personenanalyse zu</p>
-    <p th:text="${username}"></p>
+    <p class="titlesmall">Personenanalyse zu</p><br><br>
+    <p class="about" th:text="${username}"></p>
     <div align="right"><a class="btn" href="./user">zurück</a></div>
 </header>
 <body>
-<center>
-    <div style="display: inline-block; width:30%;">
+<div class="flex">
+    <div class="flex-item" style="display: inline-block; width:30%;">
     <b> comment_tone  </b>
     </div>
 
-    <div style="display: inline-block; width:30%;">
+    <div class="flex-item" style="display: inline-block; width:30%;">
     <b> personality insights </b>
-
     </div>
-</center>
-
-
-
-<center>  <div style="display: inline-block; width:30%;">
-        <canvas id="myChart" width="300" height="300"></canvas>
 </div>
+
+<div class="flex">
+    <div class="flex-item" style="width:30%;">
+        <canvas id="myChart" width="300" height="300"></canvas>
+    </div>
     <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
-    <script src="user-comment-chart.js"></script>
-    <div style="display: inline-block; width:30%;">
+            src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js">
+    </script>
+    <script>
+        var htmldata = [[${data}]];
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'horizontalBar',
+            data: {
+                labels: ["Analytical", "Anger", "Confident", "Fear", "Joy", "Sadness", "Tentative"],
+                datasets: [{
+                    label: "comment_tone",
+                    data: Object.keys(htmldata).map(function(key) {return htmldata[key];}),
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+
+    <div class="flex-item" style="display: inline-block; width:30%;">
         <canvas id="piChart" width="300" height="300"></canvas>
     </div>
     <script
             src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
     <script src="user-pi-chart.js"></script>
-
-
-</center>
-
+</div>
 </body>
 </html>

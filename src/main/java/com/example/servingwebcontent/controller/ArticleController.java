@@ -8,9 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 /*Diese Klasse setzt die html Artikel Seite.
 *
@@ -29,6 +27,7 @@ public class ArticleController {
 
         model.addAttribute("katName", katName);
         model.addAttribute("katArt", katArt);
+
         return "article";
     }
 
