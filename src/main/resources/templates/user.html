@@ -21,6 +21,7 @@
             src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js">
     </script>
 <script>
+    var htmldata = [[${data}]];
     var ctx = document.getElementById('myChart').getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'horizontalBar',
@@ -28,7 +29,7 @@
             labels: ["Analytical", "Anger", "Confident", "Fear", "Joy", "Sadness", "Tentative"],
             datasets: [{
                 label: "comment_tone",
-                data: [0.781239 , 1, 0.702673, 0.583166, 0.587752, 0.581369, 0.760855],
+                data: Object.keys(htmldata).map(function(key) {return htmldata[key];}),
                 backgroundColor: [
                     'rgba(255, 99, 132, 1)',
                     'rgba(54, 162, 235, 1)',
