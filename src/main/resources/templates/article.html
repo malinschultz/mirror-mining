@@ -9,10 +9,23 @@
 </head>
 <header>
     <p class="titlesmall">Artikelanalyse zu</p><br><p class="about" th:text="${katName}"></p>
-    <div align="right"><a class="btn" href="./chooseKat">zurück</a></div>
+    <div align="right"><a class="btn" href="./index.html">zurück</a></div>
 </header>
 
 <body>
+
+<form action="chooseKatSel">
+    <select name="chooseKatSel">
+        <option value="">Kategorie</option>
+        <option th:each="chooseKatSel : ${katList}"
+                th:value="${chooseKatSel.katName}"
+                th:utext="${chooseKatSel.katName}">
+        </option>
+    </select>
+    <br><br><br><br>
+    <input class="button buttonblack" name="submit" type="submit" value="auswählen" />
+</form>
+
 <center>
     <b> Grafische Anzeige zum durchschnittlichen comment_tone zur Kategorie </b>  <br><p class="about" th:text="${katName}"></p>
 </center>
@@ -33,15 +46,12 @@
         <th>Title</th>
         <th>Comment Tone</th>
         <th>Answer Tone</th>
-        <th>Link</th>
     </tr>
        <tr th:each="Article : ${katArt}">
             <td th:text="${Article.getId()}"></td>
-            <td th:text="${Article.getTitle()}"></td>
-            <td th:text="${Article.getCTone()}"></td>
-            <td th:text="${Article.getATone()}"></td>
-            <td><a th:href="@{${Article.getUrl()}}"><p th:utext="${Article.getUrl()}"></p></a></td>
-            <!--<td><a th:href=""></a></td>-->
+            <td><a th:href="@{${Article.getUrl()}}" target="_blank"><p th:text="${Article.getTitle()}"></p></a></td>
+            <td th:utext="${Article.getCTone()}"></td>
+            <td th:utext="${Article.getATone()}"></td>
         </tr>
     </table>
 </div>
