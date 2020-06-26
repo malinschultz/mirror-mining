@@ -11,7 +11,7 @@ import java.util.Map;
 
 /*der UserService zieht die Daten aus der DB*/
 public class UserService {
-    private static final List<String> usernames= new ArrayList<String>();
+    private static final List<String> usernames = new ArrayList<>();
 
     static {
         try {
@@ -36,7 +36,6 @@ public class UserService {
             usernames.add(String.valueOf(i));
         }
     }
-
     public static List<String> getUsernames() {
         return usernames;
     }

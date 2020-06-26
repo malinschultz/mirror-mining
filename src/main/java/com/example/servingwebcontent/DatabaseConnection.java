@@ -13,10 +13,10 @@ import java.sql.*;
 public class DatabaseConnection {
     public static void main(String[] args) throws JSchException, SQLException, IOException {
         DatabaseConnection db = new DatabaseConnection();
-        List<Map<String, Object>> data = db.getData("documents");
+        List<Map<String, Object>> data = db.getData("categories");
 
         // Print returned data.
-        for (Map<String, Object> row:data) {
+        for (Map<String, Object> row : data) {
             for (Map.Entry<String, Object> rowEntry : row.entrySet()) {
                 System.out.print(rowEntry.getKey() + " = " + rowEntry.getValue() + ", ");
             }

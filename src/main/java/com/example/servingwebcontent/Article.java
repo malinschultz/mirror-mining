@@ -16,10 +16,9 @@ public class Article {
     private Object comment_tone;
     private Object answer_tone;
 
-    public Article(){
+    public Article() {
 
     }
-
 
     public Article(int id, String url, String title, String category, Object ctone, Object atone) throws MalformedURLException {
         this.id=id;
