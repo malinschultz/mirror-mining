@@ -14,6 +14,10 @@ public class UserDetailController {
     public String userDetail(@RequestParam(name = "userDetail", required = false, defaultValue = "Username")String name, Model model){
         model.addAttribute("username", name);
 
+        /*
+        * Im Folgenden sollen die Daten aus der Datenbank gezogen werden.
+        * Diese werden schon erfolgreich in die richtige Chart implementiert.
+        * Dies sind die User Comment Tones zu dem ausgewählten User. */
         List<Double> user_c = new ArrayList<Double>();
         user_c.add(0.781239); // Analytical
         user_c.add(1.0);      // Anger
@@ -25,6 +29,7 @@ public class UserDetailController {
 
         model.addAttribute("user_c", user_c);
 
+        /* Dies sind die Average User Comment Tones.*/
         List<Double> user_c_av = new ArrayList<Double>();
         user_c_av.add(0.53495);  // Analytical
         user_c_av.add(0.89323);  // Anger
@@ -36,6 +41,7 @@ public class UserDetailController {
 
         model.addAttribute("user_c_av", user_c_av);
 
+        /* Dies sind die Personality Insights zu dem ausgewählten User.*/
         List<Double> user_pi = new ArrayList<Double>();
         user_pi.add(0.54245); // Openness
         user_pi.add(0.0);     // Conscientiousness
@@ -45,6 +51,7 @@ public class UserDetailController {
 
         model.addAttribute("user_pi", user_pi);
 
+        /* Dies sind die Average User Personality Insights.*/
         List<Double> user_pi_av = new ArrayList<Double>();
         user_pi_av.add(0.79823); // Openness
         user_pi_av.add(0.21345); // Conscientiousness
