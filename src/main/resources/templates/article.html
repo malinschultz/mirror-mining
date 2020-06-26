@@ -29,13 +29,47 @@
     <b> Grafische Anzeige zum durchschnittlichen comment_tone zur Kategorie </b>  <br><p class="about" th:text="${katName}"></p>
 </center>
 
-<center> <div style="width:30%;">
-    <canvas id="myChart" width="300" height="300"></canvas>
+<center> <div style="display: inline-block; width:30%;">
+    <canvas id="av_ct_Chart" width="300" height="300"></canvas>
 </div>
-
     <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
-   <script src="article-chart.js"></script>
+            src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js">
+    </script>
+    <script>
+        var ctx = document.getElementById('av_ct_Chart').getContext('2d');
+        var av_com_tone = [[${av_com_tone}]];
+        var com_tone = [[${com_tone}]];
+        var av_ct_Chart = new Chart(ctx, {
+            type: 'horizontalBar',
+            data: {
+                labels: ["Analytical", "Anger", "Confident", "Fear", "Joy", "Sadness", "Tentative"],
+                datasets: [{
+                    label: "comment_tone",
+                    data: Object.keys(com_tone).map(function(key) {
+                        return com_tone[key];}),
+                    backgroundColor: 'rgba(255,0,0,1)',
+                    borderColor: 'rgba(255,0,0,1)',
+                    borderWidth: 1
+                }, {
+                    label: "average comment_tone",
+                    data: Object.keys(av_com_tone).map(function (key) {
+                        return av_com_tone[key];}),
+                    backgroundColor: 'rgba(32,189,57,1)',
+                    borderColor: 'rgba(32,189,57,1)',
+                    borderWidth: 1,
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
 </center>
 
 <br><br>
