@@ -14,53 +14,6 @@
 </header>
 
 <body>
-<center> <div style="width:30%;">
-    <canvas id="myChart" width="300" height="300"></canvas>
-</div>
-    <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js">
-    </script>
-<script>
-    var htmldata = [[${data}]];
-    var ctx = document.getElementById('myChart').getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'horizontalBar',
-        data: {
-            labels: ["Analytical", "Anger", "Confident", "Fear", "Joy", "Sadness", "Tentative"],
-            datasets: [{
-                label: "comment_tone",
-                data: Object.keys(htmldata).map(function(key) {return htmldata[key];}),
-                backgroundColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
-    });
-</script>
-</center>
 <div class="flex">
     <p class="about">Wähle hier eine Person aus, um ihr Diskussionsverhalten zu untersuchen:</p>
 </div>
@@ -68,7 +21,6 @@
     <table>
         <tr>
             <th>PersonenID</th>
-           <!--<th></th>-->
         </tr>
         <tr th:each="username : ${userlist}">
             <!--<td th:text="${username}"></td>-->
@@ -77,8 +29,5 @@
         </tr>
     </table>
 </div>
-    <form>
-        <div align="right"><a class="btn" href="./userDetail">Details</a></div>
-    </form>
 </body>
 </html>
