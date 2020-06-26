@@ -2,6 +2,8 @@ package com.example.servingwebcontent.controller;
 
 import com.example.servingwebcontent.DatabaseConnection;
 import com.jcraft.jsch.JSchException;
+import com.example.servingwebcontent.User;
+import com.example.servingwebcontent.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +16,7 @@ import java.util.*;
 public class UserController {
     @GetMapping("/user")
     public String user(Model model) throws JSchException, SQLException, IOException {
+        //List<String> usernames = UserService.getUsernames();
         // Get users from the DB.
         DatabaseConnection db = new DatabaseConnection();
         List<Map<String, Object>> users = db.getData("users");
