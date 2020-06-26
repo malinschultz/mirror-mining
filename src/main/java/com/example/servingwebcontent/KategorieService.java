@@ -5,9 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 /*Eine Kategorie ist eine Liste von Artikeln.
@@ -41,6 +39,7 @@ public class KategorieService {
                     document.get("comment_tone"), document.get("answer_tone"));
             articleList.add(doc);
         }
+        articleList.sort(Comparator.comparing(Article::getId));
 
         for (Map<String, Object> category : categories) {
             List<Article> cat = new ArrayList<>();

@@ -44,16 +44,16 @@
     <tr>
         <th>ID</th>
         <th>Title</th>
-        <th>Comment Tone</th>
-        <th>Answer Tone</th>
+        <!--<th>Comment Tone</th>
+        <th>Answer Tone</th>-->
     </tr>
        <tr th:each="Article : ${katArt}">
             <td th:text="${Article.getId()}"></td>
             <td><a th:href="@{${Article.getUrl()}}" target="_blank"><p th:text="${Article.getTitle()}"></p></a></td>
-            <td th:utext="${Article.getCTone()}"></td>
-            <td th:utext="${Article.getATone()}"></td>
-        </tr>
-    </table>
+           <!--<td th:utext="${Article.getCTone()}"></td>
+           <td th:utext="${Article.getATone()}"></td>-->
+       </tr>
+   </table>
 </div>
 </body>
 </html>

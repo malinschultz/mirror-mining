@@ -30,21 +30,15 @@ public class Article {
         this.answer_tone=atone;
     }
 
-    public int getId() {
-        return id;
-    }
+    public int getId() { return id; }
 
     public URL getUrl() { return url; }
 
-    public String getTitle() {
-        return title;
-    }
+    public String getTitle() { return title; }
 
     public String getCategory() { return category; }
 
     public Object getCTone() { return comment_tone; }
 
-    public Object getATone() {
-        return answer_tone;
-    }
+    public Object getATone() { return answer_tone; }
 }
