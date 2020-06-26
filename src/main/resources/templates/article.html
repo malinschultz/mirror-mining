@@ -9,23 +9,22 @@
 </head>
 <header>
     <p class="titlesmall">Artikelanalyse zu</p><br><p class="about" th:text="${katName}"></p>
-    <div align="right"><a class="btn" href="./index.html">zurück</a></div>
 </header>
 
 <body>
-
-<form action="chooseKatSel">
-    <select name="chooseKatSel">
-        <option value="">Kategorie</option>
-        <option th:each="chooseKatSel : ${katList}"
-                th:value="${chooseKatSel.katName}"
-                th:utext="${chooseKatSel.katName}">
-        </option>
-    </select>
-    <br><br><br><br>
-    <input class="button buttonblack" name="submit" type="submit" value="auswählen" />
-</form>
-
+<div class="navbar">
+    <div class="dropdown">
+        <button class="dropbtn">Kategorie
+        <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+            <a th:each="chooseKatSel : ${katList}"
+               th:value="${chooseKatSel.katName}"
+               th:utext="${chooseKatSel.katName}" th:href="@{./chooseKatSel(chooseKatSel=${chooseKatSel.katName})}"></a>
+        </div>
+    </div>
+    <a style="float: right;" class="btn" href="./index.html">zurück</a>
+</div>
 <center>
     <b> Grafische Anzeige zum durchschnittlichen comment_tone zur Kategorie </b>  <br><p class="about" th:text="${katName}"></p>
 </center>
