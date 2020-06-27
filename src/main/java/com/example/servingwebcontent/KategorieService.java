@@ -30,8 +30,8 @@ public class KategorieService {
     private static void initData() throws JSchException, SQLException, IOException {
         // Get categories and documents from the DB.
         DatabaseConnection db = new DatabaseConnection();
-        List<Map<String, Object>> categories = db.getData("categories");
-        List<Map<String, Object>> documents = db.getData("documents");
+        List<Map<String, Object>> categories = db.executeQuery("select * from a_categories");
+        List<Map<String, Object>> documents = db.executeQuery("select * from a_documents");
 
         List<Article> articleList = new ArrayList<>();
         for (Map<String, Object> document : documents) {

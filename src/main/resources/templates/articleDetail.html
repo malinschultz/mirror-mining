@@ -6,8 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <header>
-    <p class="titlesmall">Details zum Artikel</p><br><br>
-    <!--<p class="about" th:text="${articleName}"> </p>-->
+    <p class="titlesmall">Details zum Artikel </p><br><br>
     <p class="about" th:text="${articleTitle}"></p>
     <div align="right"><a class="btn" th:href="@{./chooseKatSel(chooseKatSel=${articleCategory})}">zurück</a></div>
 </header>
@@ -25,12 +24,10 @@
     <!--TODO Hier können Kommentare angezeigt werden.-->
     <table>
         <tr>
-            <th>Kommentare zum Artikel</th>
-            <th>Person</th>
+            <th>Kommentare</th>
         </tr>
         <tr th:each="comment : ${articleComments}">
             <td th:text="${comment}"></td>
-            <td><a th:href="@{./userDetail(userDetail=${topUser})}"><p th:text="${topUser}"></p></a></td>
         </tr>
     </table>
 </div>

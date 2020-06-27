@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -21,27 +22,20 @@ import java.util.Map;
 public class ArticleDetailController {
     @GetMapping("/articleDetail")
     public String articleDetail(@RequestParam(name = "articleDetail") String id, Model model) throws JSchException, SQLException, IOException {
-        model.addAttribute("articleid", id);
+        model.addAttribute("articleId", id);
 
-        // Get documents and comments from the DB.
+        // Get doc title, doc category and doc comments from the DB.
         DatabaseConnection db = new DatabaseConnection();
-        List<Map<String, Object>> documents = db.getData("documents");
-        List<Map<String, Object>> comments = db.getData("comments");
+        List<Map<String, Object>> articleTitle = db.executeQuery("select title from a_documents where id = " + id);
+        model.addAttribute("articleTitle", articleTitle.get(0).get("title").toString());
 
-        for (Map<String, Object> document : documents) {
-            if (document.get("id").toString().equals(id)) {
-                String articleTitle = document.get("title").toString();
-                String articleCategory = document.get("category").toString();
-                model.addAttribute("articleTitle", articleTitle);
-                model.addAttribute("articleCategory", articleCategory);
-            }
-        }
+        List<Map<String, Object>> articleCategory = db.executeQuery("select category from a_documents where id = " + id);
+        model.addAttribute("articleCategory", articleCategory.get(0).get("category").toString());
 
+        List<Map<String, Object>> comments = db.executeQuery("select id, user_id, text from a_comments where doc_id = " + id + "order by id asc");
         List<String> commentList = new ArrayList<>();
         for (Map<String, Object> comment : comments) {
-            if (comment.get("doc_id").toString().equals(id)) {
-                commentList.add(comment.get("text").toString());
-            }
+            commentList.add(comment.get("text").toString());
         }
         model.addAttribute("articleComments", commentList);
         return "articleDetail";

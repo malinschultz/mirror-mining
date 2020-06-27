@@ -23,34 +23,30 @@ public class UserDetailController {
 
         // Get user from the DB and create lists from JSON columns.
         DatabaseConnection db = new DatabaseConnection();
-        List<Map<String, Object>> users = db.getData("users");
-        for (Map<String, Object> user : users) {
-            if (user.get("id").toString().equals(id)) {
-                List<Double> ctoneList = new ArrayList<>();
-                JsonObject ctone = new Gson().fromJson(user.get("comment_tone").toString(), JsonObject.class);
-                ctone.keySet().forEach(key -> {
-                    Double value = Double.parseDouble(ctone.get(key).toString());
-                    ctoneList.add(value);
-                });
+        List<Map<String, Object>> user = db.executeQuery("select * from a_users where id = " + id);
+        List<Double> ctoneList = new ArrayList<>();
+        JsonObject ctone = new Gson().fromJson(user.get(0).get("comment_tone").toString(), JsonObject.class);
+        ctone.keySet().forEach(key -> {
+            Double value = Double.parseDouble(ctone.get(key).toString());
+            ctoneList.add(value);
+        });
+        model.addAttribute("user_c", ctoneList);
 
-                List<Double> atoneList = new ArrayList<>();
-                JsonObject atone = new Gson().fromJson(user.get("answer_tone").toString(), JsonObject.class);
-                atone.keySet().forEach(key -> {
-                    Double value = Double.parseDouble(atone.get(key).toString());
-                    atoneList.add(value);
-                });
+        List<Double> atoneList = new ArrayList<>();
+        JsonObject atone = new Gson().fromJson(user.get(0).get("answer_tone").toString(), JsonObject.class);
+        atone.keySet().forEach(key -> {
+            Double value = Double.parseDouble(atone.get(key).toString());
+            atoneList.add(value);
+        });
+        model.addAttribute("user_a", atoneList);
 
-                List<Double> persList = new ArrayList<>();
-                JsonObject pers = new Gson().fromJson(user.get("personality").toString(), JsonObject.class);
-                pers.keySet().forEach(key -> {
-                    Double value = Double.parseDouble(pers.get(key).toString());
-                    persList.add(value);
-                });
-                model.addAttribute("user_c", ctoneList);
-                model.addAttribute("user_a", atoneList);
-                model.addAttribute("user_pi", persList);
-            }
-        }
+        List<Double> persList = new ArrayList<>();
+        JsonObject pers = new Gson().fromJson(user.get(0).get("personality").toString(), JsonObject.class);
+        pers.keySet().forEach(key -> {
+            Double value = Double.parseDouble(pers.get(key).toString());
+            persList.add(value);
+        });
+        model.addAttribute("user_pi", persList);
         return "userDetail";
     }
 }

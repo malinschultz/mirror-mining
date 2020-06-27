@@ -24,15 +24,14 @@ public class UserService {
     private static void initData() throws JSchException, SQLException, IOException {
         // Get users from the DB.
         DatabaseConnection db = new DatabaseConnection();
-        List<Map<String, Object>> users = db.getData("users");
+        List<Map<String, Object>> users = db.executeQuery("select id from a_users");
         List<Integer> userList = new ArrayList<>();
         for (Map<String, Object> user : users) {
-            int id = (Integer) user.get("id");
-            userList.add(id);
+            userList.add((Integer) user.get("id"));
         }
         Collections.sort(userList);
-        for (int i : userList
-        ) {
+
+        for (int i : userList) {
             usernames.add(String.valueOf(i));
         }
     }

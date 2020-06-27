@@ -35,26 +35,22 @@ public class ArticleController {
 
         // Get category from the DB and create lists from JSON columns.
         DatabaseConnection db = new DatabaseConnection();
-        List<Map<String, Object>> categories = db.getData("categories");
-        for (Map<String, Object> cat : categories) {
-            if (cat.get("name").toString().equals(katName)) {
-                List<Double> ctoneList = new ArrayList<>();
-                JsonObject ctone = new Gson().fromJson(cat.get("comment_tone").toString(), JsonObject.class);
-                ctone.keySet().forEach(key -> {
-                    Double value = Double.parseDouble(ctone.get(key).toString());
-                    ctoneList.add(value);
-                });
+        List<Map<String, Object>> category = db.executeQuery("select comment_tone, answer_tone from a_categories c where c.name = " + "'" + katName + "'");
+        List<Double> ctoneList = new ArrayList<>();
+        JsonObject ctone = new Gson().fromJson(category.get(0).get("comment_tone").toString(), JsonObject.class);
+        ctone.keySet().forEach(key -> {
+            Double value = Double.parseDouble(ctone.get(key).toString());
+            ctoneList.add(value);
+        });
+        model.addAttribute("av_ctone", ctoneList);
 
-                List<Double> atoneList = new ArrayList<>();
-                JsonObject atone = new Gson().fromJson(cat.get("answer_tone").toString(), JsonObject.class);
-                atone.keySet().forEach(key -> {
-                    Double value = Double.parseDouble(atone.get(key).toString());
-                    atoneList.add(value);
-                });
-                model.addAttribute("av_ctone", ctoneList);
-                model.addAttribute("av_atone", atoneList);
-            }
-        }
+        List<Double> atoneList = new ArrayList<>();
+        JsonObject atone = new Gson().fromJson(category.get(0).get("answer_tone").toString(), JsonObject.class);
+        atone.keySet().forEach(key -> {
+            Double value = Double.parseDouble(atone.get(key).toString());
+            atoneList.add(value);
+        });
+        model.addAttribute("av_atone", atoneList);
         return "article";
     }
 

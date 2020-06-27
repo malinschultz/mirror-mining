@@ -13,7 +13,7 @@ import java.sql.*;
 public class DatabaseConnection {
     public static void main(String[] args) throws JSchException, SQLException, IOException {
         DatabaseConnection db = new DatabaseConnection();
-        List<Map<String, Object>> data = db.getData("categories");
+        List<Map<String, Object>> data = db.executeQuery("select * from a_comments");
 
         // Print returned data.
         for (Map<String, Object> row : data) {
@@ -23,8 +23,9 @@ public class DatabaseConnection {
             System.out.print("\n");
         }
     }
-    public List<Map<String, Object>> getData(String table) throws IOException, JSchException, SQLException {
-        // Initialize a list for table data as ArrayList.
+
+    public List<Map<String, Object>> executeQuery(String query) throws IOException, JSchException, SQLException {
+        // Initialize a list for returned data as ArrayList.
         List<Map<String, Object>> dataList = new ArrayList<>();
 
         // Load properties for SSH and DB access.
@@ -42,7 +43,6 @@ public class DatabaseConnection {
         String dbpassword = prop.getProperty("dbpassword");
         String url = "jdbc:postgresql://localhost:" + lport + "/webcrawl";
         String driver = "org.postgresql.Driver";
-
         Session session = null;
         Connection connection = null;
 
@@ -63,8 +63,7 @@ public class DatabaseConnection {
             Class.forName(driver).getDeclaredConstructor().newInstance();
             connection = DriverManager.getConnection(url, dbuser, dbpassword);
 
-            // Get specified table, save objects in ArrayList and return.
-            String query = "select * from a_" + table;
+            // Execute specified query, save ResultSet in ArrayList and return.
             Statement st = connection.createStatement();
             ResultSet rs = st.executeQuery(query);
             ResultSetMetaData md = rs.getMetaData();

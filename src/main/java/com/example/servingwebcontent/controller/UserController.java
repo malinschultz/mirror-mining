@@ -17,7 +17,7 @@ public class UserController {
         //List<String> usernames = UserService.getUsernames();
         // Get users from the DB.
         DatabaseConnection db = new DatabaseConnection();
-        List<Map<String, Object>> users = db.getData("users");
+        List<Map<String, Object>> users = db.executeQuery("select id from a_users");
         List<Integer> userList = new ArrayList<>();
         for (Map<String, Object> user : users) {
             int id = (Integer) user.get("id");
@@ -30,10 +30,9 @@ public class UserController {
              ) {
             usernames.add(String.valueOf(i));
         }
-
         model.addAttribute("userlist", usernames);
 
-        List<Double> data = new ArrayList<Double>();
+        List<Double> data = new ArrayList<>();
         data.add(0.781239);
         data.add(1.0);
         data.add(0.702673);
@@ -43,7 +42,6 @@ public class UserController {
         data.add(0.760855);
 
         model.addAttribute("data", data);
-
         return "user";
     }
 }
