@@ -21,7 +21,6 @@ import java.util.*;
 
 @Controller
 public class ArticleController {
-
     @GetMapping(value = "/chooseKatSel")
     public String article(@RequestParam(name = "chooseKatSel") String katName, Model model) throws JSchException, SQLException, IOException {
         List<Kategorie> katList = KategorieService.getKat();

@@ -18,14 +18,14 @@ import java.util.Map;
 @Controller
 public class UserDetailController {
     @GetMapping(value = "/userDetail")
-    public String userDetail(@RequestParam(name = "userDetail", required = false, defaultValue = "Username")String name, Model model) throws JSchException, SQLException, IOException {
-        model.addAttribute("username", name);
+    public String userDetail(@RequestParam(name = "userDetail", required = false, defaultValue = "userid") String id, Model model) throws JSchException, SQLException, IOException {
+        model.addAttribute("userid", id);
 
         // Get user from the DB and create lists from JSON columns.
         DatabaseConnection db = new DatabaseConnection();
         List<Map<String, Object>> users = db.getData("users");
         for (Map<String, Object> user : users) {
-            if (user.get("id").toString().equals(name)) {
+            if (user.get("id").toString().equals(id)) {
                 List<Double> ctoneList = new ArrayList<>();
                 JsonObject ctone = new Gson().fromJson(user.get("comment_tone").toString(), JsonObject.class);
                 ctone.keySet().forEach(key -> {

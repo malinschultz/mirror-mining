@@ -7,14 +7,14 @@
 </head>
 <header>
     <p class="titlesmall">Details zum Artikel</p><br><br>
-    <p class="about" th:text="${articleName}"> </p>
+    <!--<p class="about" th:text="${articleName}"> </p>-->
     <p class="about" th:text="${articleTitle}"></p>
     <div align="right"><a class="btn" th:href="@{./chooseKatSel(chooseKatSel=${articleCategory})}">zurück</a></div>
 </header>
 <body>
 <div class="about">
-    <!-- TODO Hier können Infos zum Artikel angezeigt werden.-->
-    Dieser Artikel gehört zur Kategorie <p th:text="${articleCategory}"></p>.<br>
+    <!--TODO Hier können Infos zum Artikel angezeigt werden.-->
+    Dieser Artikel gehört zur Kategorie <p th:text="${articleCategory}"></p><br>
 </div>
 
 <div class="flex">
@@ -22,7 +22,7 @@
 </div>
 
 <div class="flex">
-    <!--TODO Hier können Kommentare Angezeigt werden.-->
+    <!--TODO Hier können Kommentare angezeigt werden.-->
     <table>
         <tr>
             <th>Kommentare zum Artikel</th>
