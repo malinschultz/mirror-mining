@@ -40,7 +40,7 @@ public class KategorieService {
                     document.get("comment_tone"), document.get("answer_tone"));
             articleList.add(doc);
         }
-        articleList.sort(Comparator.comparing(Article::getId));
+        articleList.sort(Comparator.comparing(Article::getId).reversed());
 
         for (Map<String, Object> category : categories) {
             List<Article> cat = new ArrayList<>();
