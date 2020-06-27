@@ -30,6 +30,9 @@ public class Article {
     }
 
     public int getId() { return id; }
+    public String getIdAsString(){
+        return String.valueOf(id);
+    }
 
     public URL getUrl() { return url; }
 
