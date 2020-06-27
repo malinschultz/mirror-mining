@@ -82,9 +82,8 @@
         <th>Answer Tone</th>-->
     </tr>
        <tr th:each="Article : ${katArt}">
-            <td th:text="${Article.getId()}"></td>
-            <!--<td><a th:href="@{${Article.getUrl()}}" target="_blank"><p th:text="${Article.getTitle()}"></p></a></td>-->
-           <td><a th:href="@{./articleDetail(articleName=${Article.getIdAsString()})}"><p th:text="${Article.getTitle()}"></p></a></td>
+          <td><a th:href="@{./articleDetail(articleDetail=${Article.getId()})}"><p th:text="${Article.getId()}"></p></a></td>
+           <td><a th:href="@{${Article.getUrl()}}" target="_blank"><p th:text="${Article.getTitle()}"></p></a></td>
        </tr>
    </table>
 </div>
