@@ -14,14 +14,13 @@
 <body>
 <div class="flex">
     <div class="flex-item" style="display: inline-block; width:30%;">
-    <b> comment_tone  </b>
+    <b> avg_comment/answer_tone  </b>
     </div>
 
     <div class="flex-item" style="display: inline-block; width:30%;">
     <b> personality insights </b>
     </div>
 </div>
-</center>
 <center> <div style="display: inline-block; width:30%;">
     <canvas id="myChart" width="300" height="300"></canvas>
 </div>
@@ -31,7 +30,7 @@
     <script>
         var ctx = document.getElementById('myChart').getContext('2d');
         var user_cdata = [[${user_c}]];
-        var user_c_avdata = [[${user_c_av}]];
+        var user_adata = [[${user_a}]];
         var myChart = new Chart(ctx, {
             type: 'horizontalBar',
             data: {
@@ -44,9 +43,9 @@
                     borderColor: 'rgb(255,140,0,1)',
                     borderWidth: 1
                 }, {
-                    label: "average comment_tone",
-                    data: Object.keys(user_c_avdata).map(function (key) {
-                        return user_c_avdata[key];}),
+                    label: "answer_tone",
+                    data: Object.keys(user_adata).map(function (key) {
+                        return user_adata[key];}),
                     backgroundColor: 'rgba(32,189,57,1)',
                     borderColor: 'rgba(32,189,57,1)',
                     borderWidth: 1,
@@ -73,7 +72,6 @@
     <script>
         var ctx = document.getElementById('piChart').getContext('2d');
         var pidata = [[${user_pi}]];
-        var piadata = [[${user_pi_av}]];
         var piChart = new Chart(ctx, {
             type: 'horizontalBar',
             data: {
@@ -81,15 +79,8 @@
                 datasets: [{
                     label: "personality insights",
                     data: Object.keys(pidata).map(function(key) {return pidata[key];}),
-                    //  data: [0.781239 , 1, 0.702673, 0.583166, 0.587752, 0.581369, 0.760855]
                     backgroundColor: 'rgba(255,243,0,1)',
                     borderColor: 'rgb(255,243,0,1)',
-                    borderWidth: 1
-                }, {
-                    label: "average personality insights",
-                    data: Object.keys(piadata).map(function(key) {return piadata[key];}),
-                    backgroundColor: 'rgba(0,255,255,1)',
-                    borderColor: 'rgb(0,255,255,1)',
                     borderWidth: 1
                 }]
             },

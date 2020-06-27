@@ -2,8 +2,6 @@ package com.example.servingwebcontent.controller;
 
 import com.example.servingwebcontent.DatabaseConnection;
 import com.jcraft.jsch.JSchException;
-import com.example.servingwebcontent.User;
-import com.example.servingwebcontent.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
