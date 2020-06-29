@@ -6,6 +6,48 @@
     <link href="./style.css" rel="stylesheet" type="text/css">
     <title>base.camp: mirror mining</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        body {font-family: Arial, Helvetica, sans-serif;}
+
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <header>
     <p class="titlesmall">Artikelanalyse zu</p><br><p class="about" th:text="${katName}"></p>
@@ -25,6 +67,54 @@
     </div>
     <a style="float: right;" class="btn" href="./index.html">zurück</a>
 </div>
+
+<!-- Trigger/Open The Modal -->
+<button id="myBtn">Infobox</button>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <header class="w3-container w3-red w3-display-container">
+            <!-- <span onclick="document.getElementById('myModal').style.display='none'" class="w3-button w3-xlarge w3-display-topright w3-hover-red w3-hover-opacity">&times;</span> -->
+            <h2>Infobox</h2>
+        </header>
+        <span class="close">&times;</span>
+        <p> Wählen Sie hier eine Kategorie, von der Sie genauere Informationen und Analyseergebnisse haben wollen, aus. </p>
+        <p> Im Folgenden sehen Sie eine Analyse zu den Artikeln der ausgewählten Kategorie. </p>
+        <p> Ganz oben ist eine Chart, die den Average Comment_Tone und den Answer_Tone der jeweiligen Kommentare der Artikel vergleicht. Für die Kommentar-Suche greifen wir hierbei auf zehn Antworten auf Kommentare (answer_tone) und deren Elternkommentare (comment_tone) zu, sodass wir pro Artikel 20 Kommentare analysieren können.  </p>
+        <p> Der von Watson bereitgestellte Tone Analyzer erkennt Emotionen und Tonfälle in geschriebenem Text, verwertet diese und weist den Kommentaren einzelne Werte zwischen 0 und 1 zu. Diese werden dann zu einem Durchschnitt ausgerechnet und für den jeweiligen Artikel eingetragen. </p>
+    </div>
+</div>
+
+<script>
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
 <center>
     <b> avg_comment/answer_tone of </b>  <br><p class="about" th:text="${katName}"></p>
 </center>
