@@ -38,18 +38,27 @@ public class ArticleController {
         List<Map<String, Object>> category = db.executeQuery("select comment_tone, answer_tone from a_categories c where c.name = " + "'" + katName + "'");
         List<Double> ctoneList = new ArrayList<>();
         JsonObject ctone = new Gson().fromJson(category.get(0).get("comment_tone").toString(), JsonObject.class);
-        ctone.keySet().forEach(key -> {
-            Double value = Double.parseDouble(ctone.get(key).toString());
-            ctoneList.add(value);
-        });
+        List<String> tones = Arrays.asList("Analytical", "Anger", "Confident", "Fear", "Joy", "Sadness", "Tentative");
+        for (String tone : tones) {
+            if (ctone.has(tone)) {
+                Double value = Double.parseDouble(ctone.get(tone).toString());
+                ctoneList.add(value);
+            } else {
+                ctoneList.add(0.0);
+            }
+        }
         model.addAttribute("av_ctone", ctoneList);
 
         List<Double> atoneList = new ArrayList<>();
         JsonObject atone = new Gson().fromJson(category.get(0).get("answer_tone").toString(), JsonObject.class);
-        atone.keySet().forEach(key -> {
-            Double value = Double.parseDouble(atone.get(key).toString());
-            atoneList.add(value);
-        });
+        for (String tone : tones) {
+            if (atone.has(tone)) {
+                Double value = Double.parseDouble(atone.get(tone).toString());
+                atoneList.add(value);
+            } else {
+                atoneList.add(0.0);
+            }
+        }
         model.addAttribute("av_atone", atoneList);
         return "article";
     }

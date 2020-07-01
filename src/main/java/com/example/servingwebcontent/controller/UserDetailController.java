@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -26,18 +27,29 @@ public class UserDetailController {
         List<Map<String, Object>> user = db.executeQuery("select * from a_users where id = " + id);
         List<Double> ctoneList = new ArrayList<>();
         JsonObject ctone = new Gson().fromJson(user.get(0).get("comment_tone").toString(), JsonObject.class);
-        ctone.keySet().forEach(key -> {
-            Double value = Double.parseDouble(ctone.get(key).toString());
-            ctoneList.add(value);
-        });
+        List<String> tones = Arrays.asList("Analytical", "Anger", "Confident", "Fear", "Joy", "Sadness", "Tentative");
+        for (String tone : tones) {
+            if (ctone.has(tone)) {
+                Double value = Double.parseDouble(ctone.get(tone).toString());
+                ctoneList.add(value);
+            }
+            else {
+                ctoneList.add(0.0);
+            }
+        }
         model.addAttribute("user_c", ctoneList);
 
         List<Double> atoneList = new ArrayList<>();
         JsonObject atone = new Gson().fromJson(user.get(0).get("answer_tone").toString(), JsonObject.class);
-        atone.keySet().forEach(key -> {
-            Double value = Double.parseDouble(atone.get(key).toString());
-            atoneList.add(value);
-        });
+        for (String tone : tones) {
+            if (atone.has(tone)) {
+                Double value = Double.parseDouble(atone.get(tone).toString());
+                atoneList.add(value);
+            }
+            else {
+                atoneList.add(0.0);
+            }
+        }
         model.addAttribute("user_a", atoneList);
 
         List<Double> persList = new ArrayList<>();
