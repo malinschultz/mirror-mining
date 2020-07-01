@@ -67,9 +67,8 @@
     </div>
     <a style="float: right;" class="btn" href="./index.html">zurück</a>
 </div>
-
 <!-- Trigger/Open The Modal -->
-<button id="myBtn">Infobox</button>
+<button id="myBtn">&#9432;</button>
 
 <!-- The Modal -->
 <div id="myModal" class="modal">
@@ -115,11 +114,12 @@
         }
     }
 </script>
+
 <center>
-    <b> avg_comment/answer_tone of </b>  <br><p class="about" th:text="${katName}"></p>
+    <b> Durchschnitts-Tone der Kommentare und deren Antworten zur Kategorie </b>  <br><p class="about" th:text="${katName}"></p>
 </center>
 <center> <div style="display: inline-block; width:30%;">
-    <canvas id="av_cat_Chart" width="300" height="300"></canvas>
+    <canvas id="av_cat_Chart" width="200" height="200"></canvas>
 </div>
     <script
             src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js">
@@ -131,16 +131,16 @@
         var av_cat_Chart = new Chart(ctx, {
             type: 'horizontalBar',
             data: {
-                labels: ["Analytical", "Anger", "Confident", "Fear", "Joy", "Sadness", "Tentative"],
+                labels: ["Analytisch", "Wut", "Selbstbewusst", "Furcht", "Freude", "Traurigkeit", "Zaghaftigkeit"],
                 datasets: [{
-                    label: "comment_tone",
+                    label: "Kommentar Tonfall",
                     data: Object.keys(av_ctone).map(function(key) {
                         return av_ctone[key];}),
                     backgroundColor: 'rgb(255, 51, 153)',
                     borderColor: 'rgb(255, 51, 153)',
                     borderWidth: 1
                 }, {
-                    label: "answer_tone",
+                    label: "Antworten Tonfall",
                     data: Object.keys(av_atone).map(function (key) {
                         return av_atone[key];}),
                     backgroundColor: 'rgb(102, 255, 102)',
