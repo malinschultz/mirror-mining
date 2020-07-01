@@ -2,6 +2,8 @@ package com.example.servingwebcontent.controller;
 
 import com.example.servingwebcontent.Article;
 import com.example.servingwebcontent.DatabaseConnection;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.jcraft.jsch.JSchException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,8 +26,28 @@ public class ArticleDetailController {
     public String articleDetail(@RequestParam(name = "articleDetail") String id, Model model) throws JSchException, SQLException, IOException {
         model.addAttribute("articleId", id);
 
-        // Get doc title, doc category and doc comments from the DB.
+        // Get user from the DB and create lists from JSON columns.
         DatabaseConnection db = new DatabaseConnection();
+        List<Map<String, Object>> article = db.executeQuery("select * from a_documents where id = " + id);
+        List<Double> article_ctoneList = new ArrayList<>();
+        JsonObject article_ctone = new Gson().fromJson(article.get(0).get("comment_tone").toString(), JsonObject.class);
+        article_ctone.keySet().forEach(key -> {
+            Double value = Double.parseDouble(article_ctone.get(key).toString());
+            article_ctoneList.add(value);
+        });
+        model.addAttribute("article_c", article_ctoneList);
+
+        List<Double> article_atoneList = new ArrayList<>();
+        JsonObject article_atone = new Gson().fromJson(article.get(0).get("answer_tone").toString(), JsonObject.class);
+        article_atone.keySet().forEach(key -> {
+            Double value = Double.parseDouble(article_atone.get(key).toString());
+            article_atoneList.add(value);
+        });
+        model.addAttribute("article_a", article_atoneList);
+
+
+        // Get doc title, doc category and doc comments from the DB.
+        // DatabaseConnection db = new DatabaseConnection();
         List<Map<String, Object>> articleTitle = db.executeQuery("select title from a_documents where id = " + id);
         model.addAttribute("articleTitle", articleTitle.get(0).get("title").toString());
 
