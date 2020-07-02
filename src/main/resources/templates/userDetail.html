@@ -110,40 +110,85 @@
 
 <div class="flex">
     <div class="flex-item" style="display: inline-block; width:30%;">
-    <b> Durchschnitts-Tonfall der Kommentare  </b>
+    <b> Tonfall der Kommentare  </b>
     </div>
-
     <div class="flex-item" style="display: inline-block; width:30%;">
-    <b> Persönlichkeits-Einsichten </b>
+        <b> Tonfall der Antworten  </b>
+    </div>
+    <div class="flex-item" style="display: inline-block; width:30%;">
+    <b> Persönlichkeitsanalyse </b>
     </div>
 </div>
-<center> <div style="display: inline-block; width:30%;">
-    <canvas id="myChart" width="300" height="300"></canvas>
-</div>
+<center>
+    <div style="display: inline-block; width:30%;">
+        <canvas id="commentChart" width="300" height="300"></canvas>
+    </div>
     <script
             src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js">
     </script>
     <script>
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var user_cdata = [[${user_c}]];
-        var user_adata = [[${user_a}]];
-        var myChart = new Chart(ctx, {
+        var ctx = document.getElementById('commentChart').getContext('2d');
+        var ctone = [[${ctone}]];
+        var avg_ctone = [[${avg_ctone}]];
+        var commentChart = new Chart(ctx, {
             type: 'horizontalBar',
             data: {
                 labels: ["Analytical", "Anger", "Confident", "Fear", "Joy", "Sadness", "Tentative"],
                 datasets: [{
                     label: "comment_tone",
-                    data: Object.keys(user_cdata).map(function(key) {
-                        return user_cdata[key];}),
-                    backgroundColor: 'rgba(255,140,0,1)',
-                    borderColor: 'rgb(255,140,0,1)',
+                    data: Object.keys(ctone).map(function(key) {
+                        return ctone[key];}),
+                    backgroundColor: 'rgba(0,255,0,1)',
+                    borderColor: 'rgb(0,255,0)',
                     borderWidth: 1
                 }, {
+                    label: "avg_comment_tone",
+                    data: Object.keys(avg_ctone).map(function (key) {
+                        return avg_ctone[key];}),
+                    backgroundColor: 'rgba(255,255,0,1)',
+                    borderColor: 'rgb(255,255,0)',
+                    borderWidth: 1,
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+
+    <div class= "flex-item" style="display: inline-block; width:30%;">
+        <canvas id="answerChart" width="300" height="300"></canvas>
+    </div>
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js">
+    </script>
+    <script>
+        var ctx = document.getElementById('answerChart').getContext('2d');
+        var atone = [[${atone}]];
+        var avg_atone = [[${avg_atone}]];
+        var answerChart = new Chart(ctx, {
+            type: 'horizontalBar',
+            data: {
+                labels: ["Analytical", "Anger", "Confident", "Fear", "Joy", "Sadness", "Tentative"],
+                datasets: [{
                     label: "answer_tone",
-                    data: Object.keys(user_adata).map(function (key) {
-                        return user_adata[key];}),
-                    backgroundColor: 'rgba(32,189,57,1)',
-                    borderColor: 'rgba(32,189,57,1)',
+                    data: Object.keys(atone).map(function(key) {
+                        return atone[key];}),
+                    backgroundColor: 'rgba(255,0,0,1)',
+                    borderColor: 'rgb(255,0,0)',
+                    borderWidth: 1
+                }, {
+                    label: "avg_answer_tone",
+                    data: Object.keys(avg_atone).map(function (key) {
+                        return avg_atone[key];}),
+                    backgroundColor: 'rgba(255,255,0,1)',
+                    borderColor: 'rgb(255,255,0)',
                     borderWidth: 1,
                 }]
             },
@@ -167,16 +212,23 @@
     </script>
     <script>
         var ctx = document.getElementById('piChart').getContext('2d');
-        var pidata = [[${user_pi}]];
+        var pi = [[${pi}]];
+        var avg_pi = [[${avg_pi}]];
         var piChart = new Chart(ctx, {
             type: 'horizontalBar',
             data: {
                 labels: ["Openness", " Conscientiousness", "Extraversion", "Agreeableness", " Neuroticism"],
                 datasets: [{
-                    label: "personality insights",
-                    data: Object.keys(pidata).map(function(key) {return pidata[key];}),
-                    backgroundColor: 'rgba(255,243,0,1)',
-                    borderColor: 'rgb(255,243,0,1)',
+                    label: "personality_insights",
+                    data: Object.keys(pi).map(function(key) {return pi[key];}),
+                    backgroundColor: 'rgba(0,255,255,1)',
+                    borderColor: 'rgb(0,20,255)',
+                    borderWidth: 1
+                }, {
+                    label: "avg_personality_insights",
+                    data: Object.keys(avg_pi).map(function(key) {return avg_pi[key];}),
+                    backgroundColor: 'rgba(255,255,0,1)',
+                    borderColor: 'rgb(255,255,0)',
                     borderWidth: 1
                 }]
             },

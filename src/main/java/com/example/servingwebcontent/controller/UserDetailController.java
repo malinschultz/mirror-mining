@@ -25,6 +25,8 @@ public class UserDetailController {
         // Get user from the DB and create lists from JSON columns.
         DatabaseConnection db = new DatabaseConnection();
         List<Map<String, Object>> user = db.executeQuery("select * from a_users where id = " + id);
+        List<Map<String, Object>> user_avg = db.executeQuery("select * from a_averages where name = 'Average TP Users'");
+
         List<Double> ctoneList = new ArrayList<>();
         JsonObject ctone = new Gson().fromJson(user.get(0).get("comment_tone").toString(), JsonObject.class);
         List<String> tones = Arrays.asList("Analytical", "Anger", "Confident", "Fear", "Joy", "Sadness", "Tentative");
@@ -37,7 +39,20 @@ public class UserDetailController {
                 ctoneList.add(0.0);
             }
         }
-        model.addAttribute("user_c", ctoneList);
+        model.addAttribute("ctone", ctoneList);
+
+        List<Double> avg_ctoneList = new ArrayList<>();
+        JsonObject avg_ctone = new Gson().fromJson(user_avg.get(0).get("comment_tone").toString(), JsonObject.class);
+        for (String tone : tones) {
+            if (avg_ctone.has(tone)) {
+                Double value = Double.parseDouble(avg_ctone.get(tone).toString());
+                avg_ctoneList.add(value);
+            }
+            else {
+                avg_ctoneList.add(0.0);
+            }
+        }
+        model.addAttribute("avg_ctone", avg_ctoneList);
 
         List<Double> atoneList = new ArrayList<>();
         JsonObject atone = new Gson().fromJson(user.get(0).get("answer_tone").toString(), JsonObject.class);
@@ -50,15 +65,36 @@ public class UserDetailController {
                 atoneList.add(0.0);
             }
         }
-        model.addAttribute("user_a", atoneList);
+        model.addAttribute("atone", atoneList);
 
-        List<Double> persList = new ArrayList<>();
-        JsonObject pers = new Gson().fromJson(user.get(0).get("personality").toString(), JsonObject.class);
-        pers.keySet().forEach(key -> {
-            Double value = Double.parseDouble(pers.get(key).toString());
-            persList.add(value);
+        List<Double> avg_atoneList = new ArrayList<>();
+        JsonObject avg_atone = new Gson().fromJson(user_avg.get(0).get("answer_tone").toString(), JsonObject.class);
+        for (String tone : tones) {
+            if (avg_atone.has(tone)) {
+                Double value = Double.parseDouble(avg_atone.get(tone).toString());
+                avg_atoneList.add(value);
+            }
+            else {
+                avg_atoneList.add(0.0);
+            }
+        }
+        model.addAttribute("avg_atone", avg_atoneList);
+
+        List<Double> piList = new ArrayList<>();
+        JsonObject pi = new Gson().fromJson(user.get(0).get("personality").toString(), JsonObject.class);
+        pi.keySet().forEach(key -> {
+            Double value = Double.parseDouble(pi.get(key).toString());
+            piList.add(value);
         });
-        model.addAttribute("user_pi", persList);
+        model.addAttribute("pi", piList);
+
+        List<Double> avg_piList = new ArrayList<>();
+        JsonObject avg_pi = new Gson().fromJson(user_avg.get(0).get("personality").toString(), JsonObject.class);
+        pi.keySet().forEach(key -> {
+            Double value = Double.parseDouble(avg_pi.get(key).toString());
+            avg_piList.add(value);
+        });
+        model.addAttribute("avg_pi", avg_piList);
         return "userDetail";
     }
 }
