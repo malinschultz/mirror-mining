@@ -64,5 +64,37 @@ public class ArticleDetailController {
         model.addAttribute("articleComments", commentList);
         return "articleDetail";
     }
+    @GetMapping(value = "/chooseKatSel")
+    public String article(@RequestParam(name = "chooseKatSel") String katName, Model model) throws JSchException, SQLException, IOException {
+        List<Kategorie> katList = KategorieService.getKat();
+        model.addAttribute("katList", katList);
+
+        Kategorie kat = KategorieService.getKatByName(katName);
+        assert kat != null;
+        List<Article> katArt = kat.getKatArt();
+
+        model.addAttribute("katName", katName);
+        model.addAttribute("katArt", katArt);
+
+        // Get category from the DB and create lists from JSON columns.
+        DatabaseConnection db = new DatabaseConnection();
+        List<Map<String, Object>> category = db.executeQuery("select comment_tone, answer_tone from a_categories c where c.name = " + "'" + katName + "'");
+        List<Double> ctoneList = new ArrayList<>();
+        JsonObject ctone = new Gson().fromJson(category.get(0).get("comment_tone").toString(), JsonObject.class);
+        ctone.keySet().forEach(key -> {
+            Double value = Double.parseDouble(ctone.get(key).toString());
+            ctoneList.add(value);
+        });
+        model.addAttribute("av_ctone", ctoneList);
+
+        List<Double> atoneList = new ArrayList<>();
+        JsonObject atone = new Gson().fromJson(category.get(0).get("answer_tone").toString(), JsonObject.class);
+        atone.keySet().forEach(key -> {
+            Double value = Double.parseDouble(atone.get(key).toString());
+            atoneList.add(value);
+        });
+        model.addAttribute("av_atone", atoneList);
+        return "article";
+    }
 
 }
