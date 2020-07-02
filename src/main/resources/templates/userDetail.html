@@ -135,28 +135,28 @@
             data: {
                 labels: ["Analytical", "Anger", "Confident", "Fear", "Joy", "Sadness", "Tentative"],
                 datasets: [{
-                    label: "comment_tone",
+                    label: "ctone",
                     data: Object.keys(ctone).map(function(key) {
                         return ctone[key];}),
                     backgroundColor: 'rgba(0,255,0,1)',
                     borderColor: 'rgb(0,0,0)',
                     borderWidth: 1
                 }, {
-                    label: "avg_comment_tone",
+                    label: "avg_ctone",
                     data: Object.keys(avg_ctone).map(function (key) {
                         return avg_ctone[key];}),
                     backgroundColor: 'rgba(0,255,128,1)',
                     borderColor: 'rgb(0,0,0)',
                     borderWidth: 1,
                 }, {
-                    label: "answer_tone",
+                    label: "atone",
                     data: Object.keys(atone).map(function(key) {
                         return atone[key];}),
                     backgroundColor: 'rgba(255,0,0,1)',
                     borderColor: 'rgb(0,0,0)',
                     borderWidth: 1
                 }, {
-                    label: "avg_answer_tone",
+                    label: "avg_atone",
                     data: Object.keys(avg_atone).map(function (key) {
                         return avg_atone[key];}),
                     backgroundColor: 'rgba(255,128,0,1)',
