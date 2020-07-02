@@ -116,30 +116,30 @@
 
 </div>
 <center> <div style="display: inline-block; width:30%;">
-    <canvas id="myChart" width="300" height="300"></canvas>
+    <canvas id="commentanswertone" width="300" height="300"></canvas>
 </div>
     <script
             src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js">
     </script>
     <script>
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var article_cdata = [[${article_c}]];
-        var article_adata = [[${article_a}]];
+        var ctx = document.getElementById('commentanswertone').getContext('2d');
+        var ctone = [[${ctone}]];
+        var atone = [[${atone}]];
         var myChart = new Chart(ctx, {
             type: 'horizontalBar',
             data: {
                 labels: ["Analytical", "Anger", "Confident", "Fear", "Joy", "Sadness", "Tentative"],
                 datasets: [{
                     label: "comment_tone",
-                    data: Object.keys(article_cdata).map(function(key) {
-                        return article_cdata[key];}),
+                    data: Object.keys(ctone).map(function(key) {
+                        return ctone[key];}),
                     backgroundColor: 'rgba(255,140,0,1)',
                     borderColor: 'rgb(255,140,0,1)',
                     borderWidth: 1
                 }, {
                     label: "answer_tone",
-                    data: Object.keys(article_adata).map(function (key) {
-                        return article_adata[key];}),
+                    data: Object.keys(atone).map(function (key) {
+                        return atone[key];}),
                     backgroundColor: 'rgba(32,189,57,1)',
                     borderColor: 'rgba(32,189,57,1)',
                     borderWidth: 1,
@@ -158,28 +158,28 @@
     </script>
 
     <div class= "flex-item" style="display: inline-block; width:30%;">
-        <canvas id="piChart" width="300" height="300"></canvas>
+        <canvas id="avcommentanswertone" width="300" height="300"></canvas>
     </div>
     <script
             src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js">
     </script>
     <script>
-        var ctx = document.getElementById('av_cat_Chart').getContext('2d');
-        var av_ctone = [[${av_kat_ctone}]];
-        var av_atone = [[${av_kat_atone}]];
+        var ctx = document.getElementById('avcommentanswertone').getContext('2d');
+        var av_ctone = [[${av_ctone}]];
+        var av_atone = [[${av_atone}]];
         var av_cat_Chart = new Chart(ctx, {
             type: 'horizontalBar',
             data: {
                 labels: ["Analytical", "Anger", "Confident", "Fear", "Joy", "Sadness", "Tentative"],
                 datasets: [{
-                    label: "comment_tone",
+                    label: "av_comment_tone",
                     data: Object.keys(av_ctone).map(function(key) {
                         return av_ctone[key];}),
                     backgroundColor: 'rgb(255, 51, 153)',
                     borderColor: 'rgb(255, 51, 153)',
                     borderWidth: 1
                 }, {
-                    label: "answer_tone",
+                    label: "av_answer_tone",
                     data: Object.keys(av_atone).map(function (key) {
                         return av_atone[key];}),
                     backgroundColor: 'rgb(102, 255, 102)',

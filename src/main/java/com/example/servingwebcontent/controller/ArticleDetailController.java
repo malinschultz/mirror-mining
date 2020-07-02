@@ -39,7 +39,7 @@ public class ArticleDetailController {
                 ctoneList.add(0.0);
             }
         }
-        model.addAttribute("article_c", ctoneList);
+        model.addAttribute("ctone", ctoneList);
 
         List<Double> atoneList = new ArrayList<>();
         JsonObject atone = new Gson().fromJson(article.get(0).get("answer_tone").toString(), JsonObject.class);
@@ -52,16 +52,40 @@ public class ArticleDetailController {
                 atoneList.add(0.0);
             }
         }
-        model.addAttribute("article_a", atoneList);
+        model.addAttribute("atone", atoneList);
 
 
         // Get doc title, doc category and doc comments from the DB.
-        // DatabaseConnection db = new DatabaseConnection();
         List<Map<String, Object>> articleTitle = db.executeQuery("select title from a_documents where id = " + id);
         model.addAttribute("articleTitle", articleTitle.get(0).get("title").toString());
 
         List<Map<String, Object>> articleCategory = db.executeQuery("select category from a_documents where id = " + id);
         model.addAttribute("articleCategory", articleCategory.get(0).get("category").toString());
+
+        List<Map<String, Object>> category = db.executeQuery("select comment_tone, answer_tone from a_categories c where c.name = " + "'" + articleCategory.get(0).get("category").toString() + "'");
+        List<Double> av_ctoneList = new ArrayList<>();
+        JsonObject av_ctone = new Gson().fromJson(category.get(0).get("comment_tone").toString(), JsonObject.class);
+        for (String tone : tones) {
+            if (av_ctone.has(tone)) {
+                Double value = Double.parseDouble(av_ctone.get(tone).toString());
+                av_ctoneList.add(value);
+            } else {
+                av_ctoneList.add(0.0);
+            }
+        }
+        model.addAttribute("av_ctone", av_ctoneList);
+
+        List<Double> av_atoneList = new ArrayList<>();
+        JsonObject av_atone = new Gson().fromJson(category.get(0).get("answer_tone").toString(), JsonObject.class);
+        for (String tone : tones) {
+            if (av_atone.has(tone)) {
+                Double value = Double.parseDouble(av_atone.get(tone).toString());
+                av_atoneList.add(value);
+            } else {
+                av_atoneList.add(0.0);
+            }
+        }
+        model.addAttribute("av_atone", av_atoneList);
 
         List<Map<String, Object>> comments = db.executeQuery("select id, user_id, text from a_comments where doc_id = " + id + "order by id asc");
         List<String> commentList = new ArrayList<>();
@@ -71,5 +95,4 @@ public class ArticleDetailController {
         model.addAttribute("articleComments", commentList);
         return "articleDetail";
     }
-
 }
