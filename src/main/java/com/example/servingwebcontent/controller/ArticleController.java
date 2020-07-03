@@ -24,18 +24,17 @@ public class ArticleController {
     @GetMapping(value = "/chooseKatSel")
     public String article(@RequestParam(name = "chooseKatSel") String katName, Model model) throws JSchException, SQLException, IOException {
         List<Kategorie> katList = KategorieService.getKat();
-        model.addAttribute("katList", katList);
-
         Kategorie kat = KategorieService.getKatByName(katName);
         assert kat != null;
         List<Article> katArt = kat.getKatArt();
-
+        model.addAttribute("katList", katList);
         model.addAttribute("katName", katName);
         model.addAttribute("katArt", katArt);
 
         // Get category from the DB and create lists from JSON columns.
         DatabaseConnection db = new DatabaseConnection();
         List<Map<String, Object>> category = db.executeQuery("select comment_tone, answer_tone from a_categories c where c.name = " + "'" + katName + "'");
+        List<Map<String, Object>> cat_avg = db.executeQuery("select * from a_averages where name = 'Average Tone Overall'");
         List<Double> ctoneList = new ArrayList<>();
         JsonObject ctone = new Gson().fromJson(category.get(0).get("comment_tone").toString(), JsonObject.class);
         List<String> tones = Arrays.asList("Analytical", "Anger", "Confident", "Fear", "Joy", "Sadness", "Tentative");
@@ -47,7 +46,20 @@ public class ArticleController {
                 ctoneList.add(0.0);
             }
         }
-        model.addAttribute("av_ctone", ctoneList);
+        model.addAttribute("ctone", ctoneList);
+
+        List<Double> avg_ctoneList = new ArrayList<>();
+        JsonObject avg_ctone = new Gson().fromJson(cat_avg.get(0).get("comment_tone").toString(), JsonObject.class);
+        for (String tone : tones) {
+            if (avg_ctone.has(tone)) {
+                Double value = Double.parseDouble(avg_ctone.get(tone).toString());
+                avg_ctoneList.add(value);
+            }
+            else {
+                avg_ctoneList.add(0.0);
+            }
+        }
+        model.addAttribute("avg_ctone", avg_ctoneList);
 
         List<Double> atoneList = new ArrayList<>();
         JsonObject atone = new Gson().fromJson(category.get(0).get("answer_tone").toString(), JsonObject.class);
@@ -59,11 +71,23 @@ public class ArticleController {
                 atoneList.add(0.0);
             }
         }
-        model.addAttribute("av_atone", atoneList);
+        model.addAttribute("atone", atoneList);
+
+        List<Double> avg_atoneList = new ArrayList<>();
+        JsonObject avg_atone = new Gson().fromJson(cat_avg.get(0).get("answer_tone").toString(), JsonObject.class);
+        for (String tone : tones) {
+            if (avg_atone.has(tone)) {
+                Double value = Double.parseDouble(avg_atone.get(tone).toString());
+                avg_atoneList.add(value);
+            }
+            else {
+                avg_atoneList.add(0.0);
+            }
+        }
+        model.addAttribute("avg_atone", avg_atoneList);
         return "article";
     }
-
-    @GetMapping("/article")
+    /* @GetMapping("/article")
     public String article(Model model) {
         List<Kategorie> katList = KategorieService.getKat();
         model.addAttribute("katList", katList);
@@ -75,36 +99,6 @@ public class ArticleController {
 
         model.addAttribute("katName", katName);
         model.addAttribute("katArt", katArt);
-
-        /*
-         * Im Folgenden sollen die Daten aus der Datenbank gezogen werden.
-         * Diese werden schon erfolgreich in die richtige Chart implementiert.
-         * Dies sind die Average Comment Tones. */
-        List<Double> av_com_tone = new ArrayList<Double>();
-        av_com_tone.add(0.53495);  // Analytical
-        av_com_tone.add(0.89323);  // Anger
-        av_com_tone.add(0.69058);  // Confident
-        av_com_tone.add(0.54758);  // Fear
-        av_com_tone.add(0.31234);  // Joy
-        av_com_tone.add(0.781923); // Sadness
-        av_com_tone.add(0.82012);  // Tentative
-
-        model.addAttribute("av_com_tone", av_com_tone);
-
-
-        /* Dies sind die Comment Tones für den ausgewählten Artikel.
-         *  muss noch an die richtige Stelle integriert werden. */
-        List<Double> com_tone = new ArrayList<Double>();
-        com_tone.add(0.781239);  // Analytical
-        com_tone.add(0.0);       // Anger
-        com_tone.add(0.702673);  // Confident
-        com_tone.add(0.583166);  // Fear
-        com_tone.add(0.587752);  // Joy
-        com_tone.add(0.581369);  // Sadness
-        com_tone.add(0.760855);  // Tentative
-
-        model.addAttribute("com_tone", com_tone);
-
         return "article";
-    }
+    } */
 }
