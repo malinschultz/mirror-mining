@@ -66,9 +66,11 @@
         </div>
     </div>
     <a style="float: right;" class="btn" href="./index.html">zurück</a>
+
 </div>
 <!-- Trigger/Open The Modal -->
-<button id="myBtn">&#9432;</button>
+<button style="position: absolute; right: 3%; top: 3%;"
+        id="myBtn">&#9432;</button>
 
 <!-- The Modal -->
 <div id="myModal" class="modal">
@@ -77,13 +79,18 @@
     <div class="modal-content">
         <header class="w3-container w3-red w3-display-container">
             <!-- <span onclick="document.getElementById('myModal').style.display='none'" class="w3-button w3-xlarge w3-display-topright w3-hover-red w3-hover-opacity">&times;</span> -->
-            <h2>Infobox</h2>
+            <h2>Hilfe</h2>
         </header>
         <span class="close">&times;</span>
-        <p> Wählen Sie hier eine Kategorie, von der Sie genauere Informationen und Analyseergebnisse haben wollen, aus. </p>
-        <p> Im Folgenden sehen Sie eine Analyse zu den Artikeln der ausgewählten Kategorie. </p>
-        <p> Ganz oben ist eine Chart, die den Average Comment_Tone und den Answer_Tone der jeweiligen Kommentare der Artikel vergleicht. Für die Kommentar-Suche greifen wir hierbei auf zehn Antworten auf Kommentare (answer_tone) und deren Elternkommentare (comment_tone) zu, sodass wir pro Artikel 20 Kommentare analysieren können.  </p>
-        <p> Der von Watson bereitgestellte Tone Analyzer erkennt Emotionen und Tonfälle in geschriebenem Text, verwertet diese und weist den Kommentaren einzelne Werte zwischen 0 und 1 zu. Diese werden dann zu einem Durchschnitt ausgerechnet und für den jeweiligen Artikel eingetragen. </p>
+        <p> Wählen Sie hier eine Kategorie, von der Sie genauere Informationen und Analyseergebnisse haben wollen, aus. Klicken Sie dafür auf eine der ID's. </p>
+        <p> Im Folgenden sehen Sie eine erste Analyse zu den Artikeln der ausgewählten Kategorie. </p>
+        <p> Sie können sich die Artikel nach den drei gegebenen Tones sortieren lassen.</p>
+        <p> Außerdem ist ganz oben eine Chart, die den Durchschnitts Kommentar Tonfall und Antworten Tonfall der jeweiligen Kommentare der Artikel vergleicht.
+            Für die Kommentar-Suche greifen wir hierbei auf zehn Antworten auf Kommentare (answer_tone) und deren Elternkommentare (comment_tone) zu,
+            sodass wir pro Artikel 20 Kommentare analysieren. Die anderen Bars, die hier angezeigt werden sind die Durchschnittswerte aus allen Kategorien zusammen. </p>
+        <p> Der von Watson bereitgestellte Tone Analyzer erkennt Emotionen und Tonfälle in geschriebenem Text, verwertet diese
+            und weist den Kommentaren einzelne Werte zwischen 0 und 1 zu. Diese werden dann zu einem Durchschnitt ausgerechnet und für den jeweiligen Artikel eingetragen. </p>
+        <p> Des Weiteren ist es möglich zum Original Artikel zu gehen, indem Sie auf den Titel des Artikel klicken.</p>
     </div>
 </div>
 
@@ -116,36 +123,53 @@
 </script>
 
 <center>
-    <b> Durchschnitts-Tone der Kommentare und deren Antworten zur Kategorie </b>  <br><p class="about" th:text="${katName}"></p>
+    <b> Tonfall der Kommentare/Antworten </b>
 </center>
-<center> <div style="display: inline-block; width:30%;">
-    <canvas id="av_cat_Chart" width="200" height="200"></canvas>
-</div>
+<center>
+    <div style="display: inline-block; width:30%;">
+        <canvas id="caChart" width="300" height="300"></canvas>
+    </div>
     <script
             src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js">
     </script>
     <script>
-        var ctx = document.getElementById('av_cat_Chart').getContext('2d');
-        var av_ctone = [[${av_ctone}]];
-        var av_atone = [[${av_atone}]];
-        var av_cat_Chart = new Chart(ctx, {
+        var ctx = document.getElementById('caChart').getContext('2d');
+        var ctone = [[${ctone}]];
+        var avg_ctone = [[${avg_ctone}]];
+        var atone = [[${atone}]];
+        var avg_atone = [[${avg_atone}]];
+        var caChart = new Chart(ctx, {
             type: 'horizontalBar',
             data: {
-                labels: ["Analytisch", "Wut", "Selbstbewusst", "Furcht", "Freude", "Traurigkeit", "Zaghaftigkeit"],
+                labels: ["Analytical", "Anger", "Confident", "Fear", "Joy", "Sadness", "Tentative"],
                 datasets: [{
-                    label: "Kommentar Tonfall",
-                    data: Object.keys(av_ctone).map(function(key) {
-                        return av_ctone[key];}),
-                    backgroundColor: 'rgb(255, 51, 153)',
-                    borderColor: 'rgb(255, 51, 153)',
-                    borderWidth: 1
+                    label: "ctone",
+                    data: Object.keys(ctone).map(function(key) {
+                        return ctone[key];}),
+                    backgroundColor: 'rgba(0,255,0,1)',
+                    borderColor: 'rgb(0,0,0)',
+                    borderWidth: 2
                 }, {
-                    label: "Antworten Tonfall",
-                    data: Object.keys(av_atone).map(function (key) {
-                        return av_atone[key];}),
-                    backgroundColor: 'rgb(102, 255, 102)',
-                    borderColor: 'rgb(102, 255, 102)',
-                    borderWidth: 1,
+                    label: "avg_ctone",
+                    data: Object.keys(avg_ctone).map(function (key) {
+                        return avg_ctone[key];}),
+                    backgroundColor: 'rgba(0,255,128,1)',
+                    borderColor: 'rgb(0,0,0)',
+                    borderWidth: 2,
+                }, {
+                    label: "atone",
+                    data: Object.keys(atone).map(function(key) {
+                        return atone[key];}),
+                    backgroundColor: 'rgba(255,0,0,1)',
+                    borderColor: 'rgb(0,0,0)',
+                    borderWidth: 2
+                }, {
+                    label: "avg_atone",
+                    data: Object.keys(avg_atone).map(function (key) {
+                        return avg_atone[key];}),
+                    backgroundColor: 'rgba(255,128,0,1)',
+                    borderColor: 'rgb(0,0,0)',
+                    borderWidth: 2,
                 }]
             },
             options: {
@@ -160,7 +184,6 @@
         });
     </script>
 </center>
-
 
 <br><br>
 <div class="flex">
