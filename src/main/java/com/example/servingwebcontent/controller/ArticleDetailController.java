@@ -65,5 +65,4 @@ public class ArticleDetailController {
         return "articleDetail";
     }
 
-
 }

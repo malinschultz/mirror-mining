@@ -123,36 +123,53 @@
 </script>
 
 <center>
-    <b> Durchschnitts-Tone der Kommentare und deren Antworten zur Kategorie </b>  <br><p class="about" th:text="${katName}"></p>
+    <b> Tonfall der Kommentare/Antworten </b>
 </center>
-<center> <div style="display: inline-block; width:30%;">
-    <canvas id="av_cat_Chart" width="200" height="200"></canvas>
-</div>
+<center>
+    <div style="display: inline-block; width:30%;">
+        <canvas id="caChart" width="300" height="300"></canvas>
+    </div>
     <script
             src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js">
     </script>
     <script>
-        var ctx = document.getElementById('av_cat_Chart').getContext('2d');
-        var av_ctone = [[${av_ctone}]];
-        var av_atone = [[${av_atone}]];
-        var av_cat_Chart = new Chart(ctx, {
+        var ctx = document.getElementById('caChart').getContext('2d');
+        var ctone = [[${ctone}]];
+        var avg_ctone = [[${avg_ctone}]];
+        var atone = [[${atone}]];
+        var avg_atone = [[${avg_atone}]];
+        var caChart = new Chart(ctx, {
             type: 'horizontalBar',
             data: {
                 labels: ["Analytical", "Anger", "Confident", "Fear", "Joy", "Sadness", "Tentative"],
                 datasets: [{
-                    label: "comment_tone",
-                    data: Object.keys(av_ctone).map(function(key) {
-                        return av_ctone[key];}),
-                    backgroundColor: 'rgb(255, 51, 153)',
-                    borderColor: 'rgb(255, 51, 153)',
-                    borderWidth: 1
+                    label: "ctone",
+                    data: Object.keys(ctone).map(function(key) {
+                        return ctone[key];}),
+                    backgroundColor: 'rgba(0,255,0,1)',
+                    borderColor: 'rgb(0,0,0)',
+                    borderWidth: 2
                 }, {
-                    label: "answert_tone",
-                    data: Object.keys(av_atone).map(function (key) {
-                        return av_atone[key];}),
-                    backgroundColor: 'rgb(102, 255, 102)',
-                    borderColor: 'rgb(102, 255, 102)',
-                    borderWidth: 1,
+                    label: "avg_ctone",
+                    data: Object.keys(avg_ctone).map(function (key) {
+                        return avg_ctone[key];}),
+                    backgroundColor: 'rgba(0,255,128,1)',
+                    borderColor: 'rgb(0,0,0)',
+                    borderWidth: 2,
+                }, {
+                    label: "atone",
+                    data: Object.keys(atone).map(function(key) {
+                        return atone[key];}),
+                    backgroundColor: 'rgba(255,0,0,1)',
+                    borderColor: 'rgb(0,0,0)',
+                    borderWidth: 2
+                }, {
+                    label: "avg_atone",
+                    data: Object.keys(avg_atone).map(function (key) {
+                        return avg_atone[key];}),
+                    backgroundColor: 'rgba(255,128,0,1)',
+                    borderColor: 'rgb(0,0,0)',
+                    borderWidth: 2,
                 }]
             },
             options: {
@@ -167,7 +184,6 @@
         });
     </script>
 </center>
-
 
 <br><br>
 <div class="flex">
