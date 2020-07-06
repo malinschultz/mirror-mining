@@ -11,9 +11,9 @@ import com.jcraft.jsch.Session;
 import java.sql.*;
 
 public class DatabaseConnection {
-    public static void main(String[] args) throws JSchException, SQLException, IOException {
+    public static void main(String[] args) throws IOException, JSchException, SQLException {
         DatabaseConnection db = new DatabaseConnection();
-        List<Map<String, Object>> data = db.executeQuery("select * from a_comments");
+        List<Map<String, Object>> data = db.executeQuery("select * from a_documents");
 
         // Print returned data.
         for (Map<String, Object> row : data) {
@@ -29,7 +29,7 @@ public class DatabaseConnection {
         List<Map<String, Object>> dataList = new ArrayList<>();
 
         // Load properties for SSH and DB access.
-        InputStream input = DatabaseConnection.class.getClassLoader().getResourceAsStream("database.properties");
+        InputStream input = getClass().getClassLoader().getResourceAsStream("database.properties");
         Properties prop = new Properties();
         prop.load(input);
 
