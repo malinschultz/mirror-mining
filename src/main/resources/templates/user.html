@@ -25,11 +25,11 @@
             <th>Joy</th>
             <th>Sadness</th>
         </tr>
-        <tr th:each="User : ${usrList}">
+        <tr th:each="User : ${userlist}">
             <td><a th:href="@{./userDetail(userDetail=${User.getName()})}"><p th:text="${User.getName()}"></p></a></td>
-            <td><p th:text="${}"></p></td>
-            <td><p th:text="${}"></p></td>
-            <td><p th:text="${}"></p></td>
+            <td><p th:text="${User.getAnger()}"></p></td>
+            <td><p th:text="${User.getJoy()}"></p></td>
+            <td><p th:text="${User.getSadness()}"></p></td>
         </tr>
     </table>
 </div>
