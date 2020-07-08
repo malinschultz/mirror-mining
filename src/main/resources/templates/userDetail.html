@@ -68,11 +68,11 @@
 
 <div class="flex">
     <div class="flex-item" style="display: inline-block; width:30%;">
-    <b> Tonfall der Kommentare/Antworten  </b>
+        <b> Tonfall der Kommentare/Antworten  </b>
     </div>
 
     <div class="flex-item" style="display: inline-block; width:30%;">
-    <b> Persönlichkeitsanalyse </b>
+        <b> Persönlichkeitsanalyse </b>
     </div>
 </div>
 <center>
@@ -175,4 +175,20 @@
     </script>
 </center>
 </body>
+<div class="flex">
+    <table>
+        <tr>
+            <th>Kommentare</th>
+            <th>Tone Anger</th>
+            <th>Tone Joy</th>
+            <th>Tone Sadness</th>
+        </tr>
+        <tr th:each="comment : ${userComments}">
+            <td th:text="${comment}"></td>
+            <td><p th:text="${username}"></p>ist soo+++ wütend</td>
+            <td><p th:text="${username}"></p>ist soo+++ glücklich</td>
+            <td><p th:text="${username}"></p>ist soo+++ traurig</td>
+        </tr>
+    </table>
+</div>
 </html>
