@@ -1,11 +1,15 @@
 package com.example.servingwebcontent;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.jcraft.jsch.JSchException;
 import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.*;
+
+import java.lang.Math;
 
 
 
@@ -32,12 +36,37 @@ public class KategorieService {
         DatabaseConnection db = new DatabaseConnection();
         List<Map<String, Object>> categories = db.executeQuery("select * from a_categories");
         List<Map<String, Object>> documents = db.executeQuery("select * from a_documents");
+        List<String> tones = Arrays.asList("Anger", "Joy", "Sadness");
 
         List<Article> articleList = new ArrayList<>();
         for (Map<String, Object> document : documents) {
+            List<Double> ctoneList = new ArrayList<>();
+            JsonObject ctone = new Gson().fromJson(document.get("comment_tone").toString(), JsonObject.class);
+            for (String tone : tones) {
+                if (ctone.has(tone)) {
+                    Double value = Double.parseDouble(ctone.get(tone).toString());
+                    ctoneList.add(value);
+                } else {
+                    ctoneList.add(0.0);
+                }
+            }
+            List<Double> atoneList = new ArrayList<>();
+            JsonObject atone = new Gson().fromJson(document.get("answer_tone").toString(), JsonObject.class);
+            for (String tone : tones) {
+                if (atone.has(tone)) {
+                    Double value = Double.parseDouble(atone.get(tone).toString());
+                    atoneList.add(value);
+                } else {
+                    atoneList.add(0.0);
+                }
+            }
+            List<Double> avgtoneList = new ArrayList<>();
+            for (int i = 0; i < 3; i++) {
+                avgtoneList.add((double) Math.round(((ctoneList.get(i) + atoneList.get(i)) / 2) * 100d) / 100d);
+            }
             Article doc = new Article((Integer) document.get("id"), document.get("url").toString(),
                     document.get("title").toString(), document.get("category").toString(),
-                    document.get("comment_tone"), document.get("answer_tone"));
+                    avgtoneList.get(0), avgtoneList.get(1), avgtoneList.get(2));
             articleList.add(doc);
         }
         articleList.sort(Comparator.comparing(Article::getId).reversed());

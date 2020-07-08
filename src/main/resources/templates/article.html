@@ -149,16 +149,16 @@
     <tr>
         <th>ID</th>
         <th>Title</th>
-        <th>Tone Anger</th>
-        <th>Tone Joy</th>
-        <th>Tone Sadness</th>
+        <th>Anger</th>
+        <th>Joy</th>
+        <th>Sadness</th>
     </tr>
        <tr th:each="Article : ${katArt}">
           <td class="table-content"><a th:href="@{./articleDetail(articleDetail=${Article.getId()})}"><p th:text="${Article.getId()}"></p></a></td>
            <td><a th:href="@{${Article.getUrl()}}" target="_blank"><p th:text="${Article.getTitle()}"></p></a></td>
-           <td><p th:text="${Article.getId()}"></p>anger</td>
-           <td><p th:text="${Article.getId()}"></p>joy</td>
-           <td><p th:text="${Article.getId()}"></p>Sadness</td>
+           <td><p th:text="${Article.getAnger()}"></p></td>
+           <td><p th:text="${Article.getJoy()}"></p></td>
+           <td><p th:text="${Article.getSadness()}"></p></td>
        </tr>
    </table>
 </div>

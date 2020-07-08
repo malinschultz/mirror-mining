@@ -25,23 +25,12 @@ public class UserController {
         }
         Collections.sort(userList);
 
-        List<String> usernames = new ArrayList<String>();
+        List<String> usernames = new ArrayList<>();
         for (int i: userList
              ) {
             usernames.add(String.valueOf(i));
         }
         model.addAttribute("userlist", usernames);
-
-        List<Double> data = new ArrayList<>();
-        data.add(0.781239);
-        data.add(1.0);
-        data.add(0.702673);
-        data.add(0.583166);
-        data.add(0.587752);
-        data.add(0.581369);
-        data.add(0.760855);
-
-        model.addAttribute("data", data);
         return "user";
     }
 }

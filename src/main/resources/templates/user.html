@@ -21,17 +21,17 @@
     <table>
         <tr>
             <th>ID</th>
-            <th>Tone Anger: Durchschnittstone für wie sauer bin ich</th>
-            <th>Tone Joy: Durchschnittstone</th>
-            <th>Tone sadness: Durchschnittstone</th>
+            <th>Anger</th>
+            <th>Joy</th>
+            <th>Sadness</th>
         </tr>
         <tr th:each="username : ${userlist}">
             <!--<td th:text="${username}"></td>-->
             <!--<td><a th:href="'./userDetail'+'?'+'userDetail='${username}"></a><p>Info</p></td>-->
             <td><a th:href="@{./userDetail(userDetail=${username})}"><p th:text="${username}"></p></a></td>
-            <td><p th:text="${username}"></p>ist soo+++ wütend</td>
-            <td><p th:text="${username}"></p>ist soo+++ glücklich</td>
-            <td><p th:text="${username}"></p>ist soo+++ traurig</td>
+            <td><p th:text="${username}"></p></td>
+            <td><p th:text="${username}"></p></td>
+            <td><p th:text="${username}"></p></td>
         </tr>
     </table>
 </div>

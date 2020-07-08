@@ -13,20 +13,22 @@ public class Article {
     private URL url;
     private String title;
     private String category;
-    private Object comment_tone;
-    private Object answer_tone;
+    private Double anger;
+    private Double joy;
+    private Double sadness;
 
     public Article() {
 
     }
 
-    public Article(int id, String url, String title, String category, Object ctone, Object atone) throws MalformedURLException {
+    public Article(int id, String url, String title, String category, Double anger, Double joy, Double sadness) throws MalformedURLException {
         this.id=id;
         this.url= new URL(url);
         this.title=title;
         this.category=category;
-        this.comment_tone=ctone;
-        this.answer_tone=atone;
+        this.anger=anger;
+        this.joy=joy;
+        this.sadness=sadness;
     }
 
     public int getId() { return id; }
@@ -41,7 +43,9 @@ public class Article {
 
     public String getCategory() { return category; }
 
-    public Object getCTone() { return comment_tone; }
+    public Double getAnger() { return anger; }
 
-    public Object getATone() { return answer_tone; }
+    public Double getJoy() { return joy; }
+
+    public Double getSadness() { return sadness; }
 }
