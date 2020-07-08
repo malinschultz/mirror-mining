@@ -17,8 +17,8 @@ import java.sql.SQLException;
 import java.util.*;
 
 /*Diese Klasse setzt die articleDetail.html Seite
-*
-* Malin Schultz*/
+ *
+ * Malin Schultz*/
 @Controller
 public class ArticleDetailController {
     @GetMapping("/articleDetail")

@@ -96,6 +96,13 @@ public class UserDetailController {
             avg_piList.add(value);
         });
         model.addAttribute("avg_pi", avg_piList);
+
+        List<Map<String, Object>> comments = db.executeQuery("select id, user_id, text from a_comments where user_id = " + id + "order by id asc");
+        List<String> commentList = new ArrayList<>();
+        for (Map<String, Object> comment : comments) {
+            commentList.add(comment.get("text").toString());
+        }
+        model.addAttribute("userComments", commentList);
         return "userDetail";
     }
 }
