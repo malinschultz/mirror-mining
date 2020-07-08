@@ -21,6 +21,7 @@ public class UserDetailController {
     @GetMapping(value = "/userDetail")
     public String userDetail(@RequestParam(name = "userDetail", required = false, defaultValue = "userid") String id, Model model) throws JSchException, SQLException, IOException {
         model.addAttribute("userid", id);
+        model.addAttribute("username", String.valueOf(id));
 
         // Get user from the DB and create lists from JSON columns.
         DatabaseConnection db = new DatabaseConnection();

@@ -61,18 +61,36 @@ canvas + canvas {
 }
 /*** Tabellen *************/
 
-table, td, th{
+table, td{
     background-color: whitesmoke;
     /*border: 1px solid #6699ff;*/
     border: 1px solid #88a4dd;
     text-align: left;
 }
+
+th{
+    background-color: black;
+    color: whitesmoke;
+}
+
 table{
     border-collapse: collapse;
     width: 95%;
 }
 td, th{
     padding: 15px;
+}
+.table-content a {
+    border: 3px solid whitesmoke;
+    float: left;
+    color: black;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+}
+.table-content a:hover {
+    border: 3px solid black;
+    border-radius: 2px;
 }
 
 /** Select Menues **/
@@ -197,4 +215,43 @@ a.btn:hover, a.btn:active{
 
 .dropdown:hover .dropdown-content {
     display: block;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+/***Modal Style*******************/
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
 }

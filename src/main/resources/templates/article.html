@@ -6,48 +6,6 @@
     <link href="./style.css" rel="stylesheet" type="text/css">
     <title>base.camp: mirror mining</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <style>
-        body {font-family: Arial, Helvetica, sans-serif;}
-
-        /* The Modal (background) */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            padding-top: 100px; /* Location of the box */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(0,0,0); /* Fallback color */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-        }
-
-        /* Modal Content */
-        .modal-content {
-            background-color: #fefefe;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-        }
-
-        /* The Close Button */
-        .close {
-            color: #aaaaaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: #000;
-            text-decoration: none;
-            cursor: pointer;
-        }
-    </style>
 </head>
 <header>
     <p class="titlesmall">Artikelanalyse zu</p><br><p class="about" th:text="${katName}"></p>
@@ -191,12 +149,16 @@
     <tr>
         <th>ID</th>
         <th>Title</th>
-        <!--<th>Comment Tone</th>
-        <th>Answer Tone</th>-->
+        <th>Tone Anger</th>
+        <th>Tone Joy</th>
+        <th>Tone Sadness</th>
     </tr>
        <tr th:each="Article : ${katArt}">
-          <td><a th:href="@{./articleDetail(articleDetail=${Article.getId()})}"><p th:text="${Article.getId()}"></p></a></td>
+          <td class="table-content"><a th:href="@{./articleDetail(articleDetail=${Article.getId()})}"><p th:text="${Article.getId()}"></p></a></td>
            <td><a th:href="@{${Article.getUrl()}}" target="_blank"><p th:text="${Article.getTitle()}"></p></a></td>
+           <td><p th:text="${Article.getId()}"></p>anger</td>
+           <td><p th:text="${Article.getId()}"></p>joy</td>
+           <td><p th:text="${Article.getId()}"></p>Sadness</td>
        </tr>
    </table>
 </div>
