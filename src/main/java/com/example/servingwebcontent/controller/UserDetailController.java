@@ -97,12 +97,26 @@ public class UserDetailController {
         });
         model.addAttribute("avg_pi", avg_piList);
 
-        List<Map<String, Object>> comments = db.executeQuery("select id, user_id, text from a_comments where user_id = " + id + "order by id asc");
-        List<String> commentList = new ArrayList<>();
+        List<Map<String, Object>> comments = db.executeQuery("select id, user_id, text, tone " +
+                "from a_comments where user_id = " + id + "order by id asc");
+        List<String> ajs = Arrays.asList("Anger", "Joy", "Sadness");
+
+        List<List<String>> commentList = new ArrayList<>();
         for (Map<String, Object> comment : comments) {
-            commentList.add(comment.get("text").toString());
+            List<String> com = new ArrayList<>();
+            com.add(comment.get("text").toString());
+            JsonObject ttone = new Gson().fromJson(comment.get("tone").toString(), JsonObject.class);
+            for (String t : ajs) {
+                if (ttone.has(t)) {
+                    double value = Math.round(Double.parseDouble(ttone.get(t).toString()) * 100d) / 100d;
+                    com.add(Double.toString(value));
+                } else {
+                    com.add("0.0");
+                }
+            }
+            commentList.add(com);
         }
-        model.addAttribute("userComments", commentList);
+        model.addAttribute("commentList", commentList);
         return "userDetail";
     }
 }
