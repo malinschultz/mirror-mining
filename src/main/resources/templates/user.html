@@ -6,48 +6,6 @@
     <link href="./style.css" rel="stylesheet" type="text/css">
     <title>base.camp: mirror mining</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <style>
-        body {font-family: Arial, Helvetica, sans-serif;}
-
-        /* The Modal (background) */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            padding-top: 100px; /* Location of the box */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(0,0,0); /* Fallback color */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-        }
-
-        /* Modal Content */
-        .modal-content {
-            background-color: #fefefe;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-        }
-
-        /* The Close Button */
-        .close {
-            color: #aaaaaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: #000;
-            text-decoration: none;
-            cursor: pointer;
-        }
-    </style>
 </head>
 
 <header>
@@ -63,17 +21,20 @@
     <table>
         <tr>
             <th>ID</th>
+            <th>Tone Anger: Durchschnittstone für wie sauer bin ich</th>
+            <th>Tone Joy: Durchschnittstone</th>
+            <th>Tone sadness: Durchschnittstone</th>
         </tr>
         <tr th:each="username : ${userlist}">
             <!--<td th:text="${username}"></td>-->
             <!--<td><a th:href="'./userDetail'+'?'+'userDetail='${username}"></a><p>Info</p></td>-->
             <td><a th:href="@{./userDetail(userDetail=${username})}"><p th:text="${username}"></p></a></td>
+            <td><p th:text="${username}"></p>ist soo+++ wütend</td>
+            <td><p th:text="${username}"></p>ist soo+++ glücklich</td>
+            <td><p th:text="${username}"></p>ist soo+++ traurig</td>
         </tr>
     </table>
 </div>
-    <form>
-        <div align="right"><a class="btn" href="./userDetail">Details</a></div>
-    </form>
 <!-- Trigger/Open The Modal -->
 <button style="position: absolute; right: 3%; top: 3%;"
         id="myBtn">&#9432;</button>
