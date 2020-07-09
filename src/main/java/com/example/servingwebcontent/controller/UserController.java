@@ -1,6 +1,10 @@
 package com.example.servingwebcontent.controller;
 
+import com.example.servingwebcontent.Article;
 import com.example.servingwebcontent.DatabaseConnection;
+import com.example.servingwebcontent.User;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.jcraft.jsch.JSchException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,34 +18,46 @@ import java.util.*;
 public class UserController {
     @GetMapping("/user")
     public String user(Model model) throws JSchException, SQLException, IOException {
-        //List<String> usernames = UserService.getUsernames();
         // Get users from the DB.
         DatabaseConnection db = new DatabaseConnection();
-        List<Map<String, Object>> users = db.executeQuery("select id from a_users");
-        List<Integer> userList = new ArrayList<>();
+        List<Map<String, Object>> users = db.executeQuery("select id, comment_tone, answer_tone from a_users");
+        List<String> tones = Arrays.asList("Anger", "Joy", "Sadness");
+
+        List<User> userList = new ArrayList<>();
         for (Map<String, Object> user : users) {
-            int id = (Integer) user.get("id");
-            userList.add(id);
+            List<Double> ctoneList = new ArrayList<>();
+            JsonObject ctone = new Gson().fromJson(user.get("comment_tone").toString(), JsonObject.class);
+            for (String tone : tones) {
+                if (ctone.has(tone)) {
+                    Double value = Double.parseDouble(ctone.get(tone).toString());
+                    ctoneList.add(value);
+                } else {
+                    ctoneList.add(0.0);
+                }
+            }
+            List<Double> atoneList = new ArrayList<>();
+            JsonObject atone = new Gson().fromJson(user.get("answer_tone").toString(), JsonObject.class);
+            for (String tone : tones) {
+                if (atone.has(tone)) {
+                    Double value = Double.parseDouble(atone.get(tone).toString());
+                    atoneList.add(value);
+                } else {
+                    atoneList.add(0.0);
+                }
+            }
+            List<Double> avgtoneList = new ArrayList<>();
+            for (int i = 0; i < 3; i++) {
+                avgtoneList.add((double) Math.round(((ctoneList.get(i) + atoneList.get(i)) / 2) * 100d) / 100d);
+            }
+            Double anger = avgtoneList.get(0);
+            Double joy = avgtoneList.get(1);
+            Double sadness = avgtoneList.get(2);
+
+            User usr = new User(user.get("id").toString(), anger, joy, sadness);
+            userList.add(usr);
         }
-        Collections.sort(userList);
-
-        List<String> usernames = new ArrayList<String>();
-        for (int i: userList
-             ) {
-            usernames.add(String.valueOf(i));
-        }
-        model.addAttribute("userlist", usernames);
-
-        List<Double> data = new ArrayList<>();
-        data.add(0.781239);
-        data.add(1.0);
-        data.add(0.702673);
-        data.add(0.583166);
-        data.add(0.587752);
-        data.add(0.581369);
-        data.add(0.760855);
-
-        model.addAttribute("data", data);
+        userList.sort(Comparator.comparing(User::getName));
+        model.addAttribute("userlist", userList);
         return "user";
     }
 }
