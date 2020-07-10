@@ -144,17 +144,22 @@
 </center>
 
 <br><br>
+
+
+
 <div class="flex">
-    <table>
+    <table id="articleTable">
+        <script src="https://www.w3schools.com/lib/w3.js"></script>
+        <link href="https://www.w3schools.com/w3css/4/w3.css" rel="stylesheet" />
     <tr>
         <th>ID</th>
         <th>Title</th>
-        <th>Anger</th>
-        <th>Joy</th>
-        <th>Sadness</th>
+        <th class="w3-dark-grey w3-hover-black" onclick="w3.sortHTML('#articleTable', '.item', 'td:nth-child(3)')" style="cursor:pointer">Anger &#x25B2;&#x25BC;</th>
+        <th class="w3-dark-grey w3-hover-black" onclick="w3.sortHTML('#articleTable', '.item', 'td:nth-child(4)')" style="cursor:pointer">Joy &#x25B2;&#x25BC;</th>
+        <th class="w3-dark-grey w3-hover-black" onclick="w3.sortHTML('#articleTable', '.item', 'td:nth-child(5)')" style="cursor:pointer">Sadness &#x25B2;&#x25BC;</th>
     </tr>
-       <tr th:each="Article : ${katArt}">
-          <td class="table-content"><a th:href="@{./articleDetail(articleDetail=${Article.getId()})}"><p th:text="${Article.getId()}"></p></a></td>
+       <tr class="item" th:each="Article : ${katArt}">
+          <td  class="table-content"><a th:href="@{./articleDetail(articleDetail=${Article.getId()})}"><p th:text="${Article.getId()}"></p></a></td>
            <td><a th:href="@{${Article.getUrl()}}" target="_blank"><p th:text="${Article.getTitle()}"></p></a></td>
            <td><p th:text="${Article.getAnger()}"></p></td>
            <td><p th:text="${Article.getJoy()}"></p></td>

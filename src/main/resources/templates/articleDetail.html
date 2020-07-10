@@ -163,9 +163,15 @@
     <table>
         <tr>
             <th>Kommentare</th>
+            <th>Anger</th>
+            <th>Joy</th>
+            <th>Sadness</th>
         </tr>
         <tr th:each="comment : ${articleComments}">
-            <td th:text="${comment}"></td>
+            <td th:text="${comment.get(0)}"></td>
+            <td><p th:text="${comment.get(1)}"></p></td>
+            <td><p th:text="${comment.get(2)}"></p></td>
+            <td><p th:text="${comment.get(3)}"></p></td>
         </tr>
     </table>
 </div>
