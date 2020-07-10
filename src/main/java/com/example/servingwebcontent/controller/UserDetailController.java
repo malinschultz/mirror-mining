@@ -97,7 +97,7 @@ public class UserDetailController {
         });
         model.addAttribute("avg_pi", avg_piList);
 
-        List<Map<String, Object>> comments = db.executeQuery("select id, user_id, text, tone " +
+        List<Map<String, Object>> comments = db.executeQuery("select text, tone " +
                 "from a_comments where user_id = " + id + "order by id asc");
         List<String> ajs = Arrays.asList("Anger", "Joy", "Sadness");
 
