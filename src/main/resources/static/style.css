@@ -92,23 +92,6 @@ td, th{
     border: 3px solid black;
     border-radius: 2px;
 }
-#users {
-    background-color: whitesmoke;
-    /*border: 1px solid #6699ff;*/
-    border: 1px solid #88a4dd;
-    text-align: left;
-}
-#users td, #users th, #users tr {
-    padding: 15px;
-}
-#users tr:nth-child(odd){background-color: red;}
-#users tr:hover {background-color: #003c80;}
-#users th {
-    border-collapse: collapse;
-    width: 95%;
-}
-#users.even { background-color:#FFF; }
-#users.odd { background-color:red; }
 /** Select Menues **/
 select{
     padding: 16px 32px;
