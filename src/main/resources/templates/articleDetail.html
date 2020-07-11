@@ -28,11 +28,11 @@
         <p> Im Folgenden sehen Sie eine Analyse zu dem von Ihnen ausgewählten Artikel. </p>
         <p> In der Mitte sehen Sie zwei Charts. Auf der linken Seite ist der Durchschnitts Kommentar Tonfall und Antworten Tonfall des jeweiligen Artikels im Vergleich zu sehen.
             Für die Kommentar-Suche greifen wir hierbei auf zehn Antworten auf Kommentare (answer_tone) und deren Elternkommentare (comment_tone) zu,
-            sodass wir pro Artikel 20 Kommentare analysieren. Die anderen Bars, die hier angezeigt werden sind die Durchschnittswerte aus allen Kategorien zusammen. </p>
+            sodass wir pro Artikel 20 Kommentare analysieren. </p>
         <p> Der von Watson bereitgestellte Tone Analyzer erkennt Emotionen und Tonfälle in geschriebenem Text, verwertet diese
             und weist den Kommentaren einzelne Werte zwischen 0 und 1 zu. Diese werden dann zu einem Durchschnitt ausgerechnet und für den jeweiligen Artikel eingetragen. </p>
         <p> In der rechten Chart werden die durschnittlichen Werte der gesamten Kategorie angezeigt.</p>
-        <p> Außerdem können Sie sich unter den Charts noch die analysierten Kommentare des Artikels angucken und diese nach den drei gegebenen Tones sortieren.</p>
+        <p> Außerdem können Sie sich unter den Charts noch die analysierten Kommentare des Artikels angucken.</p>
     </div>
 </div>
 
@@ -163,9 +163,15 @@
     <table>
         <tr>
             <th>Kommentare</th>
+            <th>Anger</th>
+            <th>Joy</th>
+            <th>Sadness</th>
         </tr>
         <tr th:each="comment : ${articleComments}">
-            <td th:text="${comment}"></td>
+            <td th:text="${comment.get(0)}"></td>
+            <td><p th:text="${comment.get(1)}"></p></td>
+            <td><p th:text="${comment.get(2)}"></p></td>
+            <td><p th:text="${comment.get(3)}"></p></td>
         </tr>
     </table>
 </div>

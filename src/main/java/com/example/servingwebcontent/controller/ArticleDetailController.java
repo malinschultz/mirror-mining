@@ -87,12 +87,30 @@ public class ArticleDetailController {
         }
         model.addAttribute("av_atone", av_atoneList);
 
-        List<Map<String, Object>> comments = db.executeQuery("select id, user_id, text from a_comments where doc_id = " + id + "order by id asc");
+        List<Map<String, Object>> comments = db.executeQuery("select id, user_id, text, tone " +
+                "from a_comments where doc_id = " + id + "order by id asc");
         List<String> commentList = new ArrayList<>();
         for (Map<String, Object> comment : comments) {
             commentList.add(comment.get("text").toString());
         }
-        model.addAttribute("articleComments", commentList);
+        List<String> ajs = Arrays.asList("Anger", "Joy", "Sadness");
+
+        List<List<String>> article_commentList = new ArrayList<>();
+        for (Map<String, Object> comment : comments) {
+            List<String> art_com = new ArrayList<>();
+            art_com.add(comment.get("text").toString());
+            JsonObject ttone = new Gson().fromJson(comment.get("tone").toString(), JsonObject.class);
+            for (String t : ajs) {
+                if (ttone.has(t)) {
+                    double value = Math.round(Double.parseDouble(ttone.get(t).toString()) * 100d) / 100d;
+                    art_com.add(Double.toString(value));
+                } else {
+                    art_com.add("0.0");
+                }
+            }
+            article_commentList.add(art_com);
+        }
+        model.addAttribute("articleComments", article_commentList);
         return "articleDetail";
     }
 }
