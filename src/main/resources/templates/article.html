@@ -35,7 +35,7 @@
 
     <!-- Modal content -->
     <div class="modal-content">
-        <header class="w3-container w3-red w3-display-container">
+        <header>
             <!-- <span onclick="document.getElementById('myModal').style.display='none'" class="w3-button w3-xlarge w3-display-topright w3-hover-red w3-hover-opacity">&times;</span> -->
             <h2>Hilfe</h2>
         </header>
@@ -45,7 +45,7 @@
         <p> Sie können sich die Artikel nach den drei gegebenen Tones sortieren lassen.</p>
         <p> Außerdem ist ganz oben eine Chart, die den Durchschnitts Kommentar Tonfall und Antworten Tonfall der jeweiligen Kommentare der Artikel vergleicht.
             Für die Kommentar-Suche greifen wir hierbei auf zehn Antworten auf Kommentare (answer_tone) und deren Elternkommentare (comment_tone) zu,
-            sodass wir pro Artikel 20 Kommentare analysieren. Die anderen Bars, die hier angezeigt werden sind die Durchschnittswerte aus allen Kategorien zusammen. </p>
+            sodass wir pro Artikel 20 Kommentare analysieren. Die anderen Bars, die hier angezeigt werden sind die Durchschnittswerte aus allen Kategorien zusammengefasst. </p>
         <p> Der von Watson bereitgestellte Tone Analyzer erkennt Emotionen und Tonfälle in geschriebenem Text, verwertet diese
             und weist den Kommentaren einzelne Werte zwischen 0 und 1 zu. Diese werden dann zu einem Durchschnitt ausgerechnet und für den jeweiligen Artikel eingetragen. </p>
         <p> Des Weiteren ist es möglich zum Original Artikel zu gehen, indem Sie auf den Titel des Artikel klicken.</p>
@@ -150,9 +150,9 @@
 <div class="flex">
     <table id="articleTable">
         <script src="https://www.w3schools.com/lib/w3.js"></script>
-        <link href="https://www.w3schools.com/w3css/4/w3.css" rel="stylesheet" />
+
     <tr>
-        <th>ID</th>
+        <th class="w3-dark-grey w3-hover-black" onclick="w3.sortHTML('#articleTable', '.item', 'td:nth-child(1)')" style="cursor:pointer">ID &#x25B2;&#x25BC;</th>
         <th>Title</th>
         <th class="w3-dark-grey w3-hover-black" onclick="w3.sortHTML('#articleTable', '.item', 'td:nth-child(3)')" style="cursor:pointer">Anger &#x25B2;&#x25BC;</th>
         <th class="w3-dark-grey w3-hover-black" onclick="w3.sortHTML('#articleTable', '.item', 'td:nth-child(4)')" style="cursor:pointer">Joy &#x25B2;&#x25BC;</th>
