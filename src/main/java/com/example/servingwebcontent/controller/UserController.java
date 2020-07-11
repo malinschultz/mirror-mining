@@ -1,6 +1,5 @@
 package com.example.servingwebcontent.controller;
 
-import com.example.servingwebcontent.Article;
 import com.example.servingwebcontent.DatabaseConnection;
 import com.example.servingwebcontent.User;
 import com.google.gson.Gson;
