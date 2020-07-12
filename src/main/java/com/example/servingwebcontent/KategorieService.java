@@ -80,6 +80,7 @@ public class KategorieService {
             }
             Kategorie c = new Kategorie(cat, category.get("name").toString());
             kat.add(c);
+            kat.sort(Comparator.comparing(Kategorie::getKatName));
         }
     }
 
