@@ -1,6 +1,5 @@
 package com.example.servingwebcontent.controller;
 
-import com.example.servingwebcontent.Article;
 import com.example.servingwebcontent.DatabaseConnection;
 import com.example.servingwebcontent.User;
 import com.google.gson.Gson;
@@ -53,7 +52,7 @@ public class UserController {
             Double joy = avgtoneList.get(1);
             Double sadness = avgtoneList.get(2);
 
-            User usr = new User(user.get("id").toString(), anger, joy, sadness);
+            User usr = new User(Integer.parseInt(user.get("id").toString()), anger, joy, sadness);
             userList.add(usr);
         }
         userList.sort(Comparator.comparing(User::getName));

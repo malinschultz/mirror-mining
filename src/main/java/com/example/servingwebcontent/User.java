@@ -6,7 +6,7 @@ package com.example.servingwebcontent;
 
 public class User {
 
-    private String name;
+    private int name;
     private Double anger;
     private Double joy;
     private Double sadness;
@@ -15,14 +15,14 @@ public class User {
 
     }
 
-    public User(String name, Double anger, Double joy, Double sadness) {
+    public User(int name, Double anger, Double joy, Double sadness) {
         this.name = name;
         this.anger = anger;
         this.joy = joy;
         this.sadness = sadness;
     }
 
-    public String getName() { return name; }
+    public int getName() { return name; }
 
     public Double getAnger() { return anger; }
 

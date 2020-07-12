@@ -167,7 +167,7 @@
             <th>Joy</th>
             <th>Sadness</th>
         </tr>
-        <tr th:each="comment : ${articleComments}">
+        <tr th:each="comment : ${commentList}">
             <td th:text="${comment.get(0)}"></td>
             <td><p th:text="${comment.get(1)}"></p></td>
             <td><p th:text="${comment.get(2)}"></p></td>

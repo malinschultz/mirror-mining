@@ -177,13 +177,14 @@
 </body>
 <div class="flex">
     <table id="users">
+        <script src="https://www.w3schools.com/lib/w3.js"></script>
         <tr>
             <th>Kommentar</th>
-            <th>Anger</th>
-            <th>Joy</th>
-            <th>Sadness</th>
+            <th class="w3-dark-grey w3-hover-black" onclick="w3.sortHTML('#users', '.item', 'td:nth-child(2)')" style="cursor:pointer">Anger &#x25B2;&#x25BC;</th>
+            <th class="w3-dark-grey w3-hover-black" onclick="w3.sortHTML('#users', '.item', 'td:nth-child(3)')" style="cursor:pointer">Joy &#x25B2;&#x25BC;</th>
+            <th class="w3-dark-grey w3-hover-black" onclick="w3.sortHTML('#users', '.item', 'td:nth-child(4)')" style="cursor:pointer">Sadness &#x25B2;&#x25BC;</th>
         </tr>
-        <tr th:each="comment : ${commentList}">
+        <tr class="item" th:each="comment : ${commentList}">
             <td th:text="${comment.get(0)}"></td>
             <td><p th:text="${comment.get(1)}"></p></td>
             <td><p th:text="${comment.get(2)}"></p></td>
