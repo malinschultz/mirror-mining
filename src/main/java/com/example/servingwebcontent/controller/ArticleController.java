@@ -95,18 +95,4 @@ public class ArticleController {
         model.addAttribute("avg_atone", avg_atoneList);
         return "article";
     }
-    /* @GetMapping("/article")
-    public String article(Model model) {
-        List<Kategorie> katList = KategorieService.getKat();
-        model.addAttribute("katList", katList);
-
-        String katName = "wähle hier eine Kategorie aus";
-        List<Article> katArt = new ArrayList<>();
-        Article art = new Article();
-        katArt.add(art);
-
-        model.addAttribute("katName", katName);
-        model.addAttribute("katArt", katArt);
-        return "article";
-    } */
 }

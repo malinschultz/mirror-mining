@@ -14,7 +14,7 @@
         <li><a style="color: whitesmoke" href="./index.html">MM</a></li>
         <li><a href="./articleStart">Artikel</a></li>
         <li><a href="./user">Personen</a></li>
-        <li><a href="index.html">zurück</a></li>
+        <li><a href="index.html">Zurück</a></li>
     </ul>
 </header>
 
@@ -30,9 +30,9 @@
 
         <tr>
             <th>ID</th>
-            <th class="w3-dark-grey w3-hover-black table-head-sort" onclick="w3.sortHTML('#userTable', '.item', 'td:nth-child(2)')" style="cursor:pointer">Anger &#x25B2;&#x25BC;</th>
-            <th class="w3-dark-grey w3-hover-black table-head-sort" onclick="w3.sortHTML('#userTable', '.item', 'td:nth-child(3)')" style="cursor:pointer">Joy &#x25B2;&#x25BC;</th>
-            <th class="w3-dark-grey w3-hover-black table-head-sort" onclick="w3.sortHTML('#userTable', '.item', 'td:nth-child(4)')" style="cursor:pointer">Sadness &#x25B2;&#x25BC;</th>
+            <th class="w3-dark-grey w3-hover-black table-head-sort" onclick="w3.sortHTML('#userTable', '.item', 'td:nth-child(2)')" style="cursor:pointer">Ärger &#x25B2;&#x25BC;</th>
+            <th class="w3-dark-grey w3-hover-black table-head-sort" onclick="w3.sortHTML('#userTable', '.item', 'td:nth-child(3)')" style="cursor:pointer">Freude &#x25B2;&#x25BC;</th>
+            <th class="w3-dark-grey w3-hover-black table-head-sort" onclick="w3.sortHTML('#userTable', '.item', 'td:nth-child(4)')" style="cursor:pointer">Trauer &#x25B2;&#x25BC;</th>
         </tr>
         <tr class="item" th:each="User : ${userlist}">
             <td><a th:href="@{./userDetail(userDetail=${User.getName()})}"><p th:text="${User.getName()}"></p></a></td>
