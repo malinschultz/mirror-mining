@@ -8,24 +8,17 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <header>
-    <p class="titlesmall">Artikelanalyse zu</p><br><p class="about" th:text="${katName}"></p>
+    <img src="MM-2.JPG" width="400">
+    <ul>
+        <li><a style="color: whitesmoke" href="./index.html">MM</a></li>
+        <li><a href="./articleStart">Artikel</a></li>
+        <li><a href="./user">Personen</a></li>
+        <li><a href="./index.html">zurück</a></li>
+    </ul>
 </header>
 
 <body>
-<div class="navbar">
-    <div class="dropdown">
-        <button class="dropbtn">Kategorie
-            <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content">
-            <a th:each="chooseKatSel : ${katList}"
-               th:value="${chooseKatSel.katName}"
-               th:utext="${chooseKatSel.katName}" th:href="@{./chooseKatSel(chooseKatSel=${chooseKatSel.katName})}"></a>
-        </div>
-    </div>
-    <a style="float: right;" class="btn" href="./index.html">zurück</a>
 
-</div>
 <!-- Trigger/Open The Modal -->
 <button style="position: absolute; right: 3%; top: 3%;"
         id="myBtn">&#9432;</button>
@@ -80,12 +73,28 @@
     }
 </script>
 
-<center>
-    <b> Tonfall der Kommentare/Antworten </b>
-</center>
-<center>
-    <div style="display: inline-block; width:30%;">
-        <canvas id="caChart" width="300" height="300"></canvas>
+<div class="grid-container">
+<div class="item1">
+    <p class="about">Artikelanalyse zur Kategorie </p> <p class="about" th:text="${katName}"></p>
+</div>
+    <div class="item2">
+    <div class="navbar">
+        <div class="dropdown">
+            <button class="dropbtn">Kategorie
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a th:each="chooseKatSel : ${katList}"
+                   th:value="${chooseKatSel.katName}"
+                   th:utext="${chooseKatSel.katName}" th:href="@{./chooseKatSel(chooseKatSel=${chooseKatSel.katName})}"></a>
+            </div>
+        </div>
+    </div>
+    </div>
+
+<div class="item3 chart">
+    <div>
+        <canvas id="caChart"></canvas>
     </div>
     <script
             src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js">
@@ -97,37 +106,29 @@
         var atone = [[${atone}]];
         var avg_atone = [[${avg_atone}]];
         var caChart = new Chart(ctx, {
-            type: 'horizontalBar',
+            type: 'bar',
             data: {
-                labels: ["Analytical", "Anger", "Confident", "Fear", "Joy", "Sadness", "Tentative"],
+                labels: ["analytisch", "ärgerlich", "selbstsicher", "ängstlich", "erfreut", "traurig", "zögerlich"],
                 datasets: [{
-                    label: "ctone",
+                    label: "Tonfall der direkten Kommentare",
                     data: Object.keys(ctone).map(function(key) {
                         return ctone[key];}),
-                    backgroundColor: 'rgba(0,255,0,1)',
-                    borderColor: 'rgb(0,0,0)',
-                    borderWidth: 2
+                    backgroundColor: '#ff6600',
                 }, {
-                    label: "avg_ctone",
+                    label: "Durchschnitt aller Kommentare aller Kategorien",
                     data: Object.keys(avg_ctone).map(function (key) {
                         return avg_ctone[key];}),
-                    backgroundColor: 'rgba(0,255,128,1)',
-                    borderColor: 'rgb(0,0,0)',
-                    borderWidth: 2,
+                    backgroundColor: '#ffa366',
                 }, {
-                    label: "atone",
+                    label: "Tonfall der Antworten",
                     data: Object.keys(atone).map(function(key) {
                         return atone[key];}),
-                    backgroundColor: 'rgba(255,0,0,1)',
-                    borderColor: 'rgb(0,0,0)',
-                    borderWidth: 2
+                    backgroundColor: '#ffcc00',
                 }, {
-                    label: "avg_atone",
+                    label: "Durchschnitt aller Antworten aller Kategorien",
                     data: Object.keys(avg_atone).map(function (key) {
                         return avg_atone[key];}),
-                    backgroundColor: 'rgba(255,128,0,1)',
-                    borderColor: 'rgb(0,0,0)',
-                    borderWidth: 2,
+                    backgroundColor: '#ffe066',
                 }]
             },
             options: {
@@ -137,25 +138,27 @@
                             beginAtZero: true
                         }
                     }]
+                },
+                title: {
+                    display: true,
+                    text: 'Tonfall der Kommentare innerhalb dieser Kategorie',
+                    fontSize: 24,
                 }
             }
         });
     </script>
-</center>
-
-<br><br>
+</div>
 
 
-
-<div class="flex">
+<div class="item4 flex">
     <table id="articleTable">
         <script src="https://www.w3schools.com/lib/w3.js"></script>
     <tr>
         <th>ID</th>
         <th>Title</th>
-        <th class="w3-dark-grey w3-hover-black" onclick="w3.sortHTML('#articleTable', '.item', 'td:nth-child(3)')" style="cursor:pointer">Anger &#x25B2;&#x25BC;</th>
-        <th class="w3-dark-grey w3-hover-black" onclick="w3.sortHTML('#articleTable', '.item', 'td:nth-child(4)')" style="cursor:pointer">Joy &#x25B2;&#x25BC;</th>
-        <th class="w3-dark-grey w3-hover-black" onclick="w3.sortHTML('#articleTable', '.item', 'td:nth-child(5)')" style="cursor:pointer">Sadness &#x25B2;&#x25BC;</th>
+        <th class="w3-dark-grey w3-hover-black table-head-sort" onclick="w3.sortHTML('#articleTable', '.item', 'td:nth-child(3)')" style="cursor:pointer">Anger &#x25B2;&#x25BC;</th>
+        <th class="w3-dark-grey w3-hover-black table-head-sort" onclick="w3.sortHTML('#articleTable', '.item', 'td:nth-child(4)')" style="cursor:pointer">Joy &#x25B2;&#x25BC;</th>
+        <th class="w3-dark-grey w3-hover-black table-head-sort" onclick="w3.sortHTML('#articleTable', '.item', 'td:nth-child(5)')" style="cursor:pointer">Sadness &#x25B2;&#x25BC;</th>
     </tr>
        <tr class="item" th:each="Article : ${katArt}">
           <td  class="table-content"><a th:href="@{./articleDetail(articleDetail=${Article.getId()})}"><p th:text="${Article.getId()}"></p></a></td>
@@ -165,6 +168,7 @@
            <td><p th:text="${Article.getSadness()}"></p></td>
        </tr>
    </table>
+</div>
 </div>
 </body>
 </html>

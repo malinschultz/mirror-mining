@@ -31,10 +31,13 @@ public class ArticleController {
         model.addAttribute("katName", katName);
         model.addAttribute("katArt", katArt);
 
+
+
         // Get category from the DB and create lists from JSON columns.
         DatabaseConnection db = new DatabaseConnection();
         List<Map<String, Object>> category = db.executeQuery("select comment_tone, answer_tone from a_categories c where c.name = " + "'" + katName + "'");
         List<Map<String, Object>> cat_avg = db.executeQuery("select * from a_averages where name = 'Average Tone Overall'");
+
         List<Double> ctoneList = new ArrayList<>();
         JsonObject ctone = new Gson().fromJson(category.get(0).get("comment_tone").toString(), JsonObject.class);
         List<String> tones = Arrays.asList("Analytical", "Anger", "Confident", "Fear", "Joy", "Sadness", "Tentative");
@@ -49,6 +52,8 @@ public class ArticleController {
         model.addAttribute("ctone", ctoneList);
 
         List<Double> avg_ctoneList = new ArrayList<>();
+
+
         JsonObject avg_ctone = new Gson().fromJson(cat_avg.get(0).get("comment_tone").toString(), JsonObject.class);
         for (String tone : tones) {
             if (avg_ctone.has(tone)) {
@@ -62,6 +67,7 @@ public class ArticleController {
         model.addAttribute("avg_ctone", avg_ctoneList);
 
         List<Double> atoneList = new ArrayList<>();
+
         JsonObject atone = new Gson().fromJson(category.get(0).get("answer_tone").toString(), JsonObject.class);
         for (String tone : tones) {
             if (atone.has(tone)) {
@@ -74,6 +80,8 @@ public class ArticleController {
         model.addAttribute("atone", atoneList);
 
         List<Double> avg_atoneList = new ArrayList<>();
+
+
         JsonObject avg_atone = new Gson().fromJson(cat_avg.get(0).get("answer_tone").toString(), JsonObject.class);
         for (String tone : tones) {
             if (avg_atone.has(tone)) {

@@ -25,10 +25,13 @@ public class ArticleDetailController {
     public String articleDetail(@RequestParam(name = "articleDetail") String id, Model model) throws JSchException, SQLException, IOException {
         model.addAttribute("articleId", id);
 
+
         // Get user from the DB and create lists from JSON columns.
         DatabaseConnection db = new DatabaseConnection();
         List<Map<String, Object>> article = db.executeQuery("select * from a_documents where id = " + id);
+
         List<Double> ctoneList = new ArrayList<>();
+
         JsonObject ctone = new Gson().fromJson(article.get(0).get("comment_tone").toString(), JsonObject.class);
         List<String> tones = Arrays.asList("Analytical", "Anger", "Confident", "Fear", "Joy", "Sadness", "Tentative");
         for (String tone : tones) {
@@ -59,11 +62,14 @@ public class ArticleDetailController {
         List<Map<String, Object>> articleTitle = db.executeQuery("select title from a_documents where id = " + id);
         model.addAttribute("articleTitle", articleTitle.get(0).get("title").toString());
 
+
         List<Map<String, Object>> articleCategory = db.executeQuery("select category from a_documents where id = " + id);
         model.addAttribute("articleCategory", articleCategory.get(0).get("category").toString());
 
+
         List<Map<String, Object>> category = db.executeQuery("select comment_tone, answer_tone from a_categories c where c.name = " + "'" + articleCategory.get(0).get("category").toString() + "'");
         List<Double> av_ctoneList = new ArrayList<>();
+
         JsonObject av_ctone = new Gson().fromJson(category.get(0).get("comment_tone").toString(), JsonObject.class);
         for (String tone : tones) {
             if (av_ctone.has(tone)) {

@@ -22,6 +22,7 @@ import java.lang.Math;
 @Repository
 public class KategorieService {
     private static final List<Kategorie> kat= new ArrayList<>();
+    private static final DatabaseConnection db = new DatabaseConnection();
 
     static {
         try {
@@ -32,6 +33,27 @@ public class KategorieService {
     }
 
     private static void initData() throws JSchException, SQLException, IOException {
+
+       /* Article artA1 = new Article(1, "https://www.spiegel.de/", "Atitle", "Acategory", 0.1, 0.1, 0.1);
+        Article artA2 = new Article(2, "https://www.spiegel.de/", "Atitle", "Acategory", 0.2, 0.2, 0.2);
+        Article artB1 = new Article(1, "https://www.spiegel.de/", "Btitle", "Bcategory", 0.1, 0.1, 0.1);
+        Article artB2 = new Article(2, "https://www.spiegel.de/", "Btitle", "Bcategory", 0.2, 0.2, 0.2);
+
+        List<Article> katA = new ArrayList<Article>();
+        katA.add(artA1);
+        katA.add(artA2);
+
+        List<Article> katB = new ArrayList<Article>();
+        katB.add(artB1);
+        katB.add(artB2);
+
+        Kategorie A = new Kategorie(katA, "Acategory");
+        Kategorie B = new Kategorie(katB, "Bcategory");
+
+        kat.add(A);
+        kat.add(B);*/
+
+
         // Get categories and documents from the DB.
         DatabaseConnection db = new DatabaseConnection();
         List<Map<String, Object>> categories = db.executeQuery("select * from a_categories");
@@ -97,4 +119,41 @@ public class KategorieService {
         }
         return null;
     }
+
+    public static List<Double> getKatCtone(String katName) throws JSchException, SQLException, IOException {
+        // Get category from the DB and create lists from JSON columns.
+        List<Map<String, Object>> category = db.executeQuery("select comment_tone, answer_tone from a_categories c where c.name = " + "'" + katName + "'");
+
+        List<Double> ctoneList = new ArrayList<>();
+        JsonObject ctone = new Gson().fromJson(category.get(0).get("comment_tone").toString(), JsonObject.class);
+        List<String> tones = Arrays.asList("Analytical", "Anger", "Confident", "Fear", "Joy", "Sadness", "Tentative");
+        for (String tone : tones) {
+            if (ctone.has(tone)) {
+                Double value = Double.parseDouble(ctone.get(tone).toString());
+                ctoneList.add(value);
+            } else {
+                ctoneList.add(0.0);
+            }
+        }
+        return ctoneList;
+    }
+
+    public static List<Double> getKatAtone(String katName) throws JSchException, SQLException, IOException {
+        DatabaseConnection db = new DatabaseConnection();
+        List<Map<String, Object>> category = db.executeQuery("select comment_tone, answer_tone from a_categories c where c.name = " + "'" + katName + "'");
+        List<String> tones = Arrays.asList("Analytical", "Anger", "Confident", "Fear", "Joy", "Sadness", "Tentative");
+
+        List<Double> atoneList = new ArrayList<>();
+        JsonObject atone = new Gson().fromJson(category.get(0).get("answer_tone").toString(), JsonObject.class);
+        for (String tone : tones) {
+            if (atone.has(tone)) {
+                Double value = Double.parseDouble(atone.get(tone).toString());
+                atoneList.add(value);
+            } else {
+                atoneList.add(0.0);
+            }
+        }
+        return atoneList;
+    }
+
 }

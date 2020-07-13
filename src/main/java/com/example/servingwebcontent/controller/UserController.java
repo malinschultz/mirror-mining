@@ -17,10 +17,13 @@ import java.util.*;
 public class UserController {
     @GetMapping("/user")
     public String user(Model model) throws JSchException, SQLException, IOException {
+
+
         // Get users from the DB.
         DatabaseConnection db = new DatabaseConnection();
         List<Map<String, Object>> users = db.executeQuery("select id, comment_tone, answer_tone from a_users");
         List<String> tones = Arrays.asList("Anger", "Joy", "Sadness");
+
 
         List<User> userList = new ArrayList<>();
         for (Map<String, Object> user : users) {

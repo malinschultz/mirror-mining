@@ -40,6 +40,7 @@ public class UserDetailController {
                 ctoneList.add(0.0);
             }
         }
+
         model.addAttribute("ctone", ctoneList);
 
         List<Double> avg_ctoneList = new ArrayList<>();
@@ -79,6 +80,7 @@ public class UserDetailController {
                 avg_atoneList.add(0.0);
             }
         }
+
         model.addAttribute("avg_atone", avg_atoneList);
 
         List<Double> piList = new ArrayList<>();
@@ -87,6 +89,7 @@ public class UserDetailController {
             Double value = Double.parseDouble(pi.get(key).toString());
             piList.add(value);
         });
+
         model.addAttribute("pi", piList);
 
         List<Double> avg_piList = new ArrayList<>();
@@ -100,6 +103,7 @@ public class UserDetailController {
         List<Map<String, Object>> comments = db.executeQuery("select text, tone " +
                 "from a_comments where user_id = " + id + "order by id asc");
         List<String> ajs = Arrays.asList("Anger", "Joy", "Sadness");
+
 
         List<List<String>> commentList = new ArrayList<>();
         for (Map<String, Object> comment : comments) {

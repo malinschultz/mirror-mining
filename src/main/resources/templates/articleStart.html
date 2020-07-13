@@ -1,0 +1,145 @@
+<!--Das ist die Seite, die die Artikel anzeigt.
+ Malin Schultz-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="./style.css" rel="stylesheet" type="text/css">
+    <title>base.camp: mirror mining</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<header>
+    <img src="MM-2.JPG" width="400">
+    <ul>
+        <li><a style="color: whitesmoke" href="./index.html">MM</a></li>
+        <li><a href="./articleStart">Artikel</a></li>
+        <li><a href="./user">Personen</a></li>
+        <li><a href="./index.html">zurück</a></li>
+    </ul>
+</header>
+<body>
+
+<div class="grid-container">
+    <div class="item1">
+        <p class="about">Artikelanalyse</p><br><p class="about">Wähle hier eine Kategorie aus, um sie zu analysieren.</p>
+    </div>
+    <div class="item2">
+        <div class="navbar">
+            <div class="dropdown">
+                <button class="dropbtn">Kategorie
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a th:each="chooseKatSel : ${katList}"
+                       th:value="${chooseKatSel.katName}"
+                       th:utext="${chooseKatSel.katName}" th:href="@{./chooseKatSel(chooseKatSel=${chooseKatSel.katName})}"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="item3 chart">
+        <div>
+            <canvas id="caChart" style="height: 1500px"></canvas>
+        </div>
+        <script
+                src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js">
+        </script>
+        <script>
+            var ctx = document.getElementById('caChart').getContext('2d');
+            var panCtone = [[${panCtone}]];
+            var polCtone = [[${polCtone}]];
+            var spCtone = [[${spCtone}]];
+            var geCtone = [[${geCtone}]];
+            var kuCtone = [[${kuCtone}]];
+            var neCtone = [[${neCtone}]];
+            var wirCtone = [[${wirCtone}]];
+            var wisCtone = [[${wisCtone}]];
+            var Chart = new Chart(ctx, {
+                type: 'horizontalBar',
+                data: {
+                    labels: ["analytisch", "ärgerlich", "selbstsicher", "ängstlich", "erfreut", "traurig", "zögerlich"],
+                    datasets: [{
+                        label: "Panorama",
+                        data: Object.keys(panCtone).map(function(key) {
+                            return panCtone[key];}),
+                        backgroundColor: '#996633',
+                    }, {
+                        label: "Politik",
+                        data: Object.keys(polCtone).map(function(key) {
+                            return polCtone[key];}),
+                        backgroundColor: '#cc9900',
+                    }, {
+                        label: "Sport",
+                        data: Object.keys(spCtone).map(function(key) {
+                            return spCtone[key];}),
+                        backgroundColor: '#ff9900',
+                    }, {
+                        label: "Gesundheit",
+                        data: Object.keys(geCtone).map(function(key) {
+                            return geCtone[key];}),
+                        backgroundColor: '#cc6600',
+                    }, {
+                        label: "Kultur",
+                        data: Object.keys(kuCtone).map(function (key) {
+                            return kuCtone[key];
+                        }),
+                        backgroundColor: '#ff3300',
+                    }, {
+                        label: "Netzwelt",
+                        data: Object.keys(neCtone).map(function (key) {
+                            return neCtone[key];
+                        }),
+                        backgroundColor: '#ff0000',
+                    }, {
+                        label: "Wirtschaft",
+                        data: Object.keys(wirCtone).map(function (key) {
+                            return wirCtone[key];
+                        }),
+                        backgroundColor: '#cc0000',
+                    }, {
+                        label: "Wissenschaft",
+                        data: Object.keys(wisCtone).map(function (key) {
+                            return wisCtone[key];
+                        }),
+                        backgroundColor: '#990033',
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    responsive: true,
+                    scales: {
+                        xAxes: [{
+                            position: 'top',
+                            ticks: {
+                                fontSize: 18
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                fontSize: 18
+                            }
+                        }]
+                    },
+                    title: {
+                        display: true,
+                        text: 'Vergleich des Tonfalls der direkten Kommentare aller Kategorien',
+                        fontSize: 24,
+                    },
+                    legend: {
+                        position: 'right',
+                        align: 'start',
+                        labels:{
+                            fontSize: 18,
+                        },
+                    }
+                }
+            });
+        </script>
+    </div>
+
+</div>
+
+
+</body>
+</html>

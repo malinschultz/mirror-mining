@@ -5,12 +5,23 @@
     <title>base.camp: mirror mining</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
+
 <header>
-    <p class="titlesmall">Details zum Artikel </p><br><br>
-    <p class="about" th:text="${articleTitle}"></p>
-    <div align="right"><a class="btn" th:href="@{./chooseKatSel(chooseKatSel=${articleCategory})}">zurück</a></div>
+    <img src="MM-2.JPG" width="400">
+    <ul>
+        <li><a style="color: whitesmoke" href="./index.html">MM</a></li>
+        <li><a href="./articleStart">Artikel</a></li>
+        <li><a href="./user">Personen</a></li>
+        <li><a th:href="@{./chooseKatSel(chooseKatSel=${articleCategory})}">zurück</a></li>
+    </ul>
 </header>
+
+
 <body>
+<div>
+    <p class="titlesmall">Details zum Artikel </p><br><br><p class="about" th:text="${articleTitle}"></p>
+</div>
+
 <!-- Trigger/Open The Modal -->
 <button style="position: absolute; right: 3%; top: 3%;"
         id="myBtn">&#9432;</button>
@@ -65,16 +76,14 @@
 </script>
 
 <div class="about">
-    <!--TODO Hier können Infos zum Artikel angezeigt werden.-->
     Dieser Artikel gehört zur Kategorie <p th:text="${articleCategory}"></p><br>
 </div>
 
 <div class="flex">
-    <!--TODO Hier können Charts eingefügt werden. -->
 
 </div>
-<center> <div style="display: inline-block; width:30%;">
-    <canvas id="commentanswertone" width="300" height="300"></canvas>
+<center> <div style="display: inline-block;">
+    <canvas id="commentanswertone"></canvas>
 </div>
     <script
             src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js">
@@ -115,8 +124,8 @@
         });
     </script>
 
-    <div class= "flex-item" style="display: inline-block; width:30%;">
-        <canvas id="avcommentanswertone" width="300" height="300"></canvas>
+    <div class= "flex-item" style="display: inline-block;">
+        <canvas id="avcommentanswertone"></canvas>
     </div>
     <script
             src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js">

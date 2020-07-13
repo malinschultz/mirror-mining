@@ -7,11 +7,17 @@
 </head>
 
 <header>
-    <p class="titlesmall">Personenanalyse zu</p><br><br>
-    <p class="about" th:text="${userid}"></p>
-    <div align="right"><a class="btn" href="./user">zurück</a></div>
+    <img src="MM-2.JPG" width="400">
+    <ul>
+        <li><a style="color: whitesmoke" href="./index.html">MM</a></li>
+        <li><a href="./articleStart">Artikel</a></li>
+        <li><a href="./user">Personen</a></li>
+        <li><a href="./user">zurück</a></li>
+    </ul>
 </header>
+
 <body>
+
 <!-- Trigger/Open The Modal -->
 <button style="position: absolute; right: 3%; top: 3%;"
         id="myBtn">&#9432;</button>
@@ -66,18 +72,14 @@
     }
 </script>
 
-<div class="flex">
-    <div class="flex-item" style="display: inline-block; width:30%;">
-        <b> Tonfall der Kommentare/Antworten  </b>
+<div class="grid-container2">
+    <div class="item1b">
+        <p class="about">Personenanalyse zu</p><p class="about" th:text="${userid}"></p>
     </div>
 
-    <div class="flex-item" style="display: inline-block; width:30%;">
-        <b> Persönlichkeitsanalyse </b>
-    </div>
-</div>
-<center>
-    <div style="display: inline-block; width:30%;">
-        <canvas id="caChart" width="300" height="300"></canvas>
+<div class="flex item2b">
+    <div style="display: inline-block;">
+        <canvas id="caChart" style="width: 40vw;height: 100vh"></canvas>
     </div>
     <script
             src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js">
@@ -96,46 +98,56 @@
                     label: "ctone",
                     data: Object.keys(ctone).map(function(key) {
                         return ctone[key];}),
-                    backgroundColor: 'rgba(0,255,0,1)',
-                    borderColor: 'rgb(0,0,0)',
-                    borderWidth: 2
+                    backgroundColor: '#ff6600'
                 }, {
                     label: "avg_ctone",
                     data: Object.keys(avg_ctone).map(function (key) {
                         return avg_ctone[key];}),
-                    backgroundColor: 'rgba(0,255,128,1)',
-                    borderColor: 'rgb(0,0,0)',
-                    borderWidth: 2,
+                    backgroundColor: '#ffa366'
                 }, {
                     label: "atone",
                     data: Object.keys(atone).map(function(key) {
                         return atone[key];}),
-                    backgroundColor: 'rgba(255,0,0,1)',
-                    borderColor: 'rgb(0,0,0)',
-                    borderWidth: 2
+                    backgroundColor: '#ffcc00'
                 }, {
                     label: "avg_atone",
                     data: Object.keys(avg_atone).map(function (key) {
                         return avg_atone[key];}),
-                    backgroundColor: 'rgba(255,128,0,1)',
-                    borderColor: 'rgb(0,0,0)',
-                    borderWidth: 2,
+                    backgroundColor: '#ffe066'
                 }]
             },
             options: {
+                maintainAspectRatio: false,
+                responsive: true,
                 scales: {
+                    xAxes: [{
+                        ticks: {
+                            fontSize: 18
+                        }
+                    }],
                     yAxes: [{
                         ticks: {
+                            fontSize: 18,
                             beginAtZero: true
                         }
                     }]
+                },
+                title: {
+                    display: true,
+                    text: 'Tonfall der KommentareAntworten',
+                    fontSize: 24,
+                },
+                legend: {
+                    fontSize: 18
                 }
             }
         });
     </script>
+</div>
 
-    <div class= "flex-item" style="display: inline-block; width:30%;">
-        <canvas id="piChart" width="300" height="300"></canvas>
+    <div class="flex item3b">
+    <div style="display: inline-block;">
+        <canvas id="piChart" style="width: 40vw; height: 100vh"></canvas>
     </div>
     <script
             src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js">
@@ -151,38 +163,50 @@
                 datasets: [{
                     label: "personality_insights",
                     data: Object.keys(pi).map(function(key) {return pi[key];}),
-                    backgroundColor: 'rgba(0,0,255,1)',
-                    borderColor: 'rgb(0,0,0)',
-                    borderWidth: 2
+                    backgroundColor: '#993333'
                 }, {
                     label: "avg_personality_insights",
                     data: Object.keys(avg_pi).map(function(key) {return avg_pi[key];}),
-                    backgroundColor: 'rgba(255,255,0,1)',
-                    borderColor: 'rgb(0,0,0)',
-                    borderWidth: 2
+                    backgroundColor: '#cc6666'
                 }]
             },
             options: {
+                maintainAspectRatio: false,
+                responsive: true,
                 scales: {
+                    xAxes: [{
+                        ticks: {
+                            fontSize: 18
+                        }
+                    }],
                     yAxes: [{
                         ticks: {
+                            fontSize: 18,
                             beginAtZero: true
                         }
                     }]
+                },
+                title: {
+                    display: true,
+                    text: 'Persönlichkeitsanalyse',
+                    fontSize: 24,
+                },
+                legend: {
+                    fontSize: 18
                 }
             }
         });
     </script>
-</center>
-</body>
-<div class="flex">
-    <table id="users">
+    </div>
+
+<div class="flex item4b">
+    <table id="users" class="usertable">
         <script src="https://www.w3schools.com/lib/w3.js"></script>
         <tr>
             <th>Kommentar</th>
-            <th class="w3-dark-grey w3-hover-black" onclick="w3.sortHTML('#users', '.item', 'td:nth-child(2)')" style="cursor:pointer">Anger &#x25B2;&#x25BC;</th>
-            <th class="w3-dark-grey w3-hover-black" onclick="w3.sortHTML('#users', '.item', 'td:nth-child(3)')" style="cursor:pointer">Joy &#x25B2;&#x25BC;</th>
-            <th class="w3-dark-grey w3-hover-black" onclick="w3.sortHTML('#users', '.item', 'td:nth-child(4)')" style="cursor:pointer">Sadness &#x25B2;&#x25BC;</th>
+            <th class="w3-dark-grey w3-hover-black table-head-sort" onclick="w3.sortHTML('#users', '.item', 'td:nth-child(2)')" style="cursor:pointer">Anger &#x25B2;&#x25BC;</th>
+            <th class="w3-dark-grey w3-hover-black table-head-sort" onclick="w3.sortHTML('#users', '.item', 'td:nth-child(3)')" style="cursor:pointer">Joy &#x25B2;&#x25BC;</th>
+            <th class="w3-dark-grey w3-hover-black table-head-sort" onclick="w3.sortHTML('#users', '.item', 'td:nth-child(4)')" style="cursor:pointer">Sadness &#x25B2;&#x25BC;</th>
         </tr>
         <tr class="item" th:each="comment : ${commentList}">
             <td th:text="${comment.get(0)}"></td>
@@ -192,4 +216,6 @@
         </tr>
     </table>
 </div>
+</div>
+</body>
 </html>
