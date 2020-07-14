@@ -139,5 +139,52 @@
     </div>
 
 </div>
+<!-- Trigger/Open The Modal -->
+<button style="position: absolute; right: 3%; top: 3%;"
+        id="myBtn">&#9432;</button>
+
+<!-- The Modal -->
+<div id="articleStartModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <header>
+            <h2 style="color:white"> Hilfe </h2>
+        </header>
+        <span class="close">&times;</span>
+        <p> Auf dieser Seite können sie den Vergleich des Tonfalls aller Kategorien auf einmal sehen.</p>
+        <p> Der von Watson bereitgestellte Tone Analyzer erkennt Emotionen und Tonfälle in geschriebenem Text, verwertet diese
+            und weist den Kommentaren einzelne Werte zwischen 0 und 1 zu. Diese werden dann zu einem Durchschnitt ausgerechnet und für den jeweiligen Artikel eingetragen. </p>
+        <p> Wählen sie links neben der Chart eine Kategorie aus, um sich davon die Analyseergebnisse anzeigen zu lassen. </p>
+    </div>
+</div>
+
+<script>
+    // Get the modal
+    var modal = document.getElementById("articleStartModal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
 </body>
 </html>
