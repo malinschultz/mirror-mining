@@ -213,8 +213,12 @@ td, th{
     border-radius: 2px;
 }
 
-.usertable tr:nth-child(odd) {
-    background-color: lightgrey;
+.articleTable tr:nth-child(odd) td {
+    background-color: #d3d3d3;
+}
+
+.articleTable tr:nth-child(odd) td:first-child {
+    padding-left: 50px;
 }
 
 /** Select Menues **/

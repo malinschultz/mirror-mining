@@ -7,7 +7,7 @@
 </head>
 
 <header>
-    <img src="MM-2.JPG" width="400">
+    <img src="MM-3.png" width="400">
     <ul>
         <li><a style="color: whitesmoke" href="./">MM</a></li>
         <li><a href="./articleStart">Artikel</a></li>
@@ -75,8 +75,7 @@
 <div class="grid-container2">
 
 <div class="item1b">
-    <p class="about">Details zum Artikel</p> <p class="about" th:text="${articleId}"></p>
-    <p class="about">Dieser Artikel gehört zur Kategorie</p> <p class="about" th:text="${articleCategory}"></p><br>
+    <p class="about">Details zum Artikel</p> <p class="about" th:text="${articleId}"></p><p class="about" th:text="'&nbsp(' + ${articleCategory} + ')'"></p><br>
     <p class="about" th:text="${articleTitle}"></p>
 </div>
 </div>
@@ -151,7 +150,7 @@
     </div>
 
 <div class="flex item4b">
-    <table>
+    <table class="articleTable">
         <tr>
             <th>Kommentare</th>
             <th>Ärger</th>
@@ -159,15 +158,12 @@
             <th>Trauer</th>
         </tr>
         <tr th:each="comment : ${commentList}">
-            <td th:text="${comment.get(0)}"></td>
+            <td><p th:text="${comment.get(0)}"></p></td>
             <td><p th:text="${comment.get(1)}"></p></td>
             <td><p th:text="${comment.get(2)}"></p></td>
             <td><p th:text="${comment.get(3)}"></p></td>
         </tr>
     </table>
 </div>
-
-</div>
-
 </body>
 </html>
