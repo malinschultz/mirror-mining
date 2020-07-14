@@ -10,10 +10,10 @@
 <header>
     <img src="MM-2.JPG" width="400">
     <ul>
-        <li><a style="color: whitesmoke" href="./index.html">MM</a></li>
+        <li><a style="color: whitesmoke" href="./">MM</a></li>
         <li><a href="./articleStart">Artikel</a></li>
         <li><a href="./user">Personen</a></li>
-        <li><a href="./index.html">zurück</a></li>
+        <li><a href="./">Zurück</a></li>
     </ul>
 </header>
 <body>
@@ -39,26 +39,37 @@
 
     <div class="item3 chart">
         <div>
-            <canvas id="caChart" style="height: 1500px"></canvas>
+            <canvas id="caChart" style="height: 500px"></canvas>
         </div>
         <script
                 src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js">
         </script>
         <script>
             var ctx = document.getElementById('caChart').getContext('2d');
-            var panCtone = [[${panCtone}]];
-            var polCtone = [[${polCtone}]];
-            var spCtone = [[${spCtone}]];
             var geCtone = [[${geCtone}]];
             var kuCtone = [[${kuCtone}]];
             var neCtone = [[${neCtone}]];
+            var panCtone = [[${panCtone}]];
+            var polCtone = [[${polCtone}]];
+            var spCtone = [[${spCtone}]];
             var wirCtone = [[${wirCtone}]];
             var wisCtone = [[${wisCtone}]];
             var Chart = new Chart(ctx, {
-                type: 'horizontalBar',
+                type: 'bar',
                 data: {
                     labels: ["analytisch", "ärgerlich", "selbstsicher", "ängstlich", "erfreut", "traurig", "zögerlich"],
                     datasets: [{
+                        label: "Gesundheit",
+                        data: Object.keys(geCtone).map(function(key) {
+                            return geCtone[key];}),
+                        backgroundColor: '#cc6600',
+                    }, {
+                        label: "Kultur",
+                        data: Object.keys(kuCtone).map(function (key) {
+                            return kuCtone[key];
+                        }),
+                        backgroundColor: '#ff3300',
+                    }, {
                         label: "Panorama",
                         data: Object.keys(panCtone).map(function(key) {
                             return panCtone[key];}),
@@ -73,17 +84,6 @@
                         data: Object.keys(spCtone).map(function(key) {
                             return spCtone[key];}),
                         backgroundColor: '#ff9900',
-                    }, {
-                        label: "Gesundheit",
-                        data: Object.keys(geCtone).map(function(key) {
-                            return geCtone[key];}),
-                        backgroundColor: '#cc6600',
-                    }, {
-                        label: "Kultur",
-                        data: Object.keys(kuCtone).map(function (key) {
-                            return kuCtone[key];
-                        }),
-                        backgroundColor: '#ff3300',
                     }, {
                         label: "Netzwelt",
                         data: Object.keys(neCtone).map(function (key) {
@@ -139,7 +139,5 @@
     </div>
 
 </div>
-
-
 </body>
 </html>

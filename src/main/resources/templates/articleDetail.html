@@ -9,17 +9,17 @@
 <header>
     <img src="MM-2.JPG" width="400">
     <ul>
-        <li><a style="color: whitesmoke" href="./index.html">MM</a></li>
+        <li><a style="color: whitesmoke" href="./">MM</a></li>
         <li><a href="./articleStart">Artikel</a></li>
         <li><a href="./user">Personen</a></li>
-        <li><a th:href="@{./chooseKatSel(chooseKatSel=${articleCategory})}">zurück</a></li>
+        <li><a th:href="@{./chooseKatSel(chooseKatSel=${articleCategory})}">Zurück</a></li>
     </ul>
 </header>
 
 
 <body>
 <div>
-    <p class="titlesmall">Details zum Artikel </p><br><br><p class="about" th:text="${articleTitle}"></p>
+    <p class="titlesmall">Artikelanalyse zu Artikel&nbsp</p><p class="about" th:text="${articleId}"></p><p class="about" th:text="${articleTitle}"></p>
 </div>
 
 <!-- Trigger/Open The Modal -->
@@ -75,83 +75,47 @@
     }
 </script>
 
-<div class="about">
+<!--<div class="about">
     Dieser Artikel gehört zur Kategorie <p th:text="${articleCategory}"></p><br>
-</div>
+</div>-->
 
-<div class="flex">
-
-</div>
-<center> <div style="display: inline-block;">
-    <canvas id="commentanswertone"></canvas>
-</div>
-    <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js">
-    </script>
-    <script>
-        var ctx = document.getElementById('commentanswertone').getContext('2d');
-        var ctone = [[${ctone}]];
-        var atone = [[${atone}]];
-        var myChart = new Chart(ctx, {
-            type: 'horizontalBar',
-            data: {
-                labels: ["Analytical", "Anger", "Confident", "Fear", "Joy", "Sadness", "Tentative"],
-                datasets: [{
-                    label: "comment_tone",
-                    data: Object.keys(ctone).map(function(key) {
-                        return ctone[key];}),
-                    backgroundColor: 'rgba(255,140,0,1)',
-                    borderColor: 'rgb(255,140,0,1)',
-                    borderWidth: 1
-                }, {
-                    label: "answer_tone",
-                    data: Object.keys(atone).map(function (key) {
-                        return atone[key];}),
-                    backgroundColor: 'rgba(32,189,57,1)',
-                    borderColor: 'rgba(32,189,57,1)',
-                    borderWidth: 1,
-                }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
-            }
-        });
-    </script>
-
-    <div class= "flex-item" style="display: inline-block;">
-        <canvas id="avcommentanswertone"></canvas>
+<div class="item3 chart">
+    <div>
+        <canvas id="caChart"></canvas>
     </div>
     <script
             src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js">
     </script>
     <script>
-        var ctx = document.getElementById('avcommentanswertone').getContext('2d');
-        var av_ctone = [[${av_ctone}]];
-        var av_atone = [[${av_atone}]];
-        var av_cat_Chart = new Chart(ctx, {
-            type: 'horizontalBar',
+        var ctx = document.getElementById('caChart').getContext('2d');
+        var ctone = [[${ctone}]];
+        var avg_ctone = [[${avg_ctone}]];
+        var atone = [[${atone}]];
+        var avg_atone = [[${avg_atone}]];
+        var myChart = new Chart(ctx, {
+            type: 'bar',
             data: {
-                labels: ["Analytical", "Anger", "Confident", "Fear", "Joy", "Sadness", "Tentative"],
+                labels: ["analytisch", "ärgerlich", "selbstsicher", "ängstlich", "erfreut", "traurig", "zögerlich"],
                 datasets: [{
-                    label: "av_comment_tone",
-                    data: Object.keys(av_ctone).map(function(key) {
-                        return av_ctone[key];}),
-                    backgroundColor: 'rgb(255, 51, 153)',
-                    borderColor: 'rgb(255, 51, 153)',
-                    borderWidth: 1
+                    label: "Tonfall der Kommentare",
+                    data: Object.keys(ctone).map(function(key) {
+                        return ctone[key];}),
+                    backgroundColor: '#ff6600',
                 }, {
-                    label: "av_answer_tone",
-                    data: Object.keys(av_atone).map(function (key) {
-                        return av_atone[key];}),
-                    backgroundColor: 'rgb(102, 255, 102)',
-                    borderColor: 'rgb(102, 255, 102)',
-                    borderWidth: 1,
+                    label: "Durchschnitt der Kommentare",
+                    data: Object.keys(avg_ctone).map(function (key) {
+                        return avg_ctone[key];}),
+                    backgroundColor: '#ffa366',
+                }, {
+                    label: "Tonfall der Antworten",
+                    data: Object.keys(atone).map(function(key) {
+                        return atone[key];}),
+                    backgroundColor: '#ffcc00',
+                }, {
+                    label: "Durchschnitt der Antworten",
+                    data: Object.keys(avg_atone).map(function (key) {
+                        return avg_atone[key];}),
+                    backgroundColor: '#ffe066',
                 }]
             },
             options: {
@@ -161,20 +125,25 @@
                             beginAtZero: true
                         }
                     }]
+                },
+                title: {
+                    display: true,
+                    text: 'Tonfall der Kommentare innerhalb dieses Artikels',
+                    fontSize: 24,
                 }
             }
         });
     </script>
-</center>
+</div>
 
 <div class="flex">
     <!--TODO Hier können Kommentare angezeigt werden.-->
     <table>
         <tr>
             <th>Kommentare</th>
-            <th>Anger</th>
-            <th>Joy</th>
-            <th>Sadness</th>
+            <th>Ärger</th>
+            <th>Freude</th>
+            <th>Trauer</th>
         </tr>
         <tr th:each="comment : ${commentList}">
             <td th:text="${comment.get(0)}"></td>

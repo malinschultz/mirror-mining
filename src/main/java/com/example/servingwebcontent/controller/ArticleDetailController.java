@@ -68,30 +68,30 @@ public class ArticleDetailController {
 
 
         List<Map<String, Object>> category = db.executeQuery("select comment_tone, answer_tone from a_categories c where c.name = " + "'" + articleCategory.get(0).get("category").toString() + "'");
-        List<Double> av_ctoneList = new ArrayList<>();
+        List<Double> avg_ctoneList = new ArrayList<>();
 
-        JsonObject av_ctone = new Gson().fromJson(category.get(0).get("comment_tone").toString(), JsonObject.class);
+        JsonObject avg_ctone = new Gson().fromJson(category.get(0).get("comment_tone").toString(), JsonObject.class);
         for (String tone : tones) {
-            if (av_ctone.has(tone)) {
-                Double value = Double.parseDouble(av_ctone.get(tone).toString());
-                av_ctoneList.add(value);
+            if (avg_ctone.has(tone)) {
+                Double value = Double.parseDouble(avg_ctone.get(tone).toString());
+                avg_ctoneList.add(value);
             } else {
-                av_ctoneList.add(0.0);
+                avg_ctoneList.add(0.0);
             }
         }
-        model.addAttribute("av_ctone", av_ctoneList);
+        model.addAttribute("avg_ctone", avg_ctoneList);
 
-        List<Double> av_atoneList = new ArrayList<>();
-        JsonObject av_atone = new Gson().fromJson(category.get(0).get("answer_tone").toString(), JsonObject.class);
+        List<Double> avg_atoneList = new ArrayList<>();
+        JsonObject avg_atone = new Gson().fromJson(category.get(0).get("answer_tone").toString(), JsonObject.class);
         for (String tone : tones) {
-            if (av_atone.has(tone)) {
-                Double value = Double.parseDouble(av_atone.get(tone).toString());
-                av_atoneList.add(value);
+            if (avg_atone.has(tone)) {
+                Double value = Double.parseDouble(avg_atone.get(tone).toString());
+                avg_atoneList.add(value);
             } else {
-                av_atoneList.add(0.0);
+                avg_atoneList.add(0.0);
             }
         }
-        model.addAttribute("av_atone", av_atoneList);
+        model.addAttribute("avg_atone", avg_atoneList);
 
         List<Map<String, Object>> comments = db.executeQuery("select text, tone " +
                 "from a_comments where doc_id = " + id + "order by id asc");
