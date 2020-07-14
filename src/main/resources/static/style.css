@@ -377,10 +377,3 @@ a.btn:hover, a.btn:active{
     text-decoration: none;
     cursor: pointer;
 }
-
-.floatleft {
-    float:left;
-}
-.floatright {
-    float:right;
-}

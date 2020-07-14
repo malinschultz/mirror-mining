@@ -19,7 +19,7 @@
 
 <body>
 <div>
-    <p class="titlesmall">Details zum Artikel </p><br><br><p class="about" th:text="${articleId} + ': ' + ${articleTitle}"></p>
+    <p class="titlesmall">Artikelanalyse zu Artikel&nbsp</p><p class="about" th:text="${articleId}"></p><p class="about" th:text="${articleTitle}"></p>
 </div>
 
 <!-- Trigger/Open The Modal -->
@@ -75,9 +75,9 @@
     }
 </script>
 
-<div class="about">
+<!--<div class="about">
     Dieser Artikel gehört zur Kategorie <p th:text="${articleCategory}"></p><br>
-</div>
+</div>-->
 
 <div class="item3 chart">
     <div>
