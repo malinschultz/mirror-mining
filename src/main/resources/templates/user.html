@@ -35,7 +35,7 @@
             <th class="w3-dark-grey w3-hover-black table-head-sort" onclick="w3.sortHTML('#userTable', '.item', 'td:nth-child(4)')" style="cursor:pointer">Trauer &#x25B2;&#x25BC;</th>
         </tr>
         <tr class="item" th:each="User : ${userlist}">
-            <td><a th:href="@{./userDetail(userDetail=${User.getName()})}"><p th:text="${User.getName()}"></p></a></td>
+            <td class="table-content"><a th:href="@{./userDetail(userDetail=${User.getName()})}"><p th:text="${User.getName()}"></p></a></td>
             <td><p th:text="${User.getAnger()}"></p></td>
             <td><p th:text="${User.getJoy()}"></p></td>
             <td><p th:text="${User.getSadness()}"></p></td>

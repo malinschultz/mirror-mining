@@ -18,9 +18,6 @@
 
 
 <body>
-<div>
-    <p class="titlesmall">Artikelanalyse zu Artikel&nbsp</p><p class="about" th:text="${articleId}"></p><p class="about" th:text="${articleTitle}"></p>
-</div>
 
 <!-- Trigger/Open The Modal -->
 <button style="position: absolute; right: 3%; top: 3%;"
@@ -75,69 +72,85 @@
     }
 </script>
 
-<!--<div class="about">
-    Dieser Artikel gehört zur Kategorie <p th:text="${articleCategory}"></p><br>
-</div>-->
+<div class="grid-container2">
 
-<div class="item3 chart">
-    <div>
-        <canvas id="caChart"></canvas>
-    </div>
-    <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js">
-    </script>
-    <script>
-        var ctx = document.getElementById('caChart').getContext('2d');
-        var ctone = [[${ctone}]];
-        var avg_ctone = [[${avg_ctone}]];
-        var atone = [[${atone}]];
-        var avg_atone = [[${avg_atone}]];
-        var myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ["analytisch", "ärgerlich", "selbstsicher", "ängstlich", "erfreut", "traurig", "zögerlich"],
-                datasets: [{
-                    label: "Tonfall der Kommentare",
-                    data: Object.keys(ctone).map(function(key) {
-                        return ctone[key];}),
-                    backgroundColor: '#ff6600',
-                }, {
-                    label: "Durchschnitt der Kommentare",
-                    data: Object.keys(avg_ctone).map(function (key) {
-                        return avg_ctone[key];}),
-                    backgroundColor: '#ffa366',
-                }, {
-                    label: "Tonfall der Antworten",
-                    data: Object.keys(atone).map(function(key) {
-                        return atone[key];}),
-                    backgroundColor: '#ffcc00',
-                }, {
-                    label: "Durchschnitt der Antworten",
-                    data: Object.keys(avg_atone).map(function (key) {
-                        return avg_atone[key];}),
-                    backgroundColor: '#ffe066',
-                }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                },
-                title: {
-                    display: true,
-                    text: 'Tonfall der Kommentare innerhalb dieses Artikels',
-                    fontSize: 24,
-                }
-            }
-        });
-    </script>
+<div class="item1b">
+    <p class="about">Details zum Artikel</p> <p class="about" th:text="${articleId}"></p>
+    <p class="about">Dieser Artikel gehört zur Kategorie</p> <p class="about" th:text="${articleCategory}"></p><br>
+    <p class="about" th:text="${articleTitle}"></p>
+</div>
 </div>
 
-<div class="flex">
-    <!--TODO Hier können Kommentare angezeigt werden.-->
+    <div class="flex item3bb">
+        <div>
+            <canvas id="caChart" style="width: 80vw"></canvas>
+        </div>
+        <script
+                src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js">
+        </script>
+        <script>
+            var ctx = document.getElementById('caChart').getContext('2d');
+            var ctone = [[${ctone}]];
+            var avg_ctone = [[${avg_ctone}]];
+            var atone = [[${atone}]];
+            var avg_atone = [[${avg_atone}]];
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ["analytisch", "ärgerlich", "selbstsicher", "ängstlich", "erfreut", "traurig", "zögerlich"],
+                    datasets: [{
+                        label: "Tonfall der direkten Kommentare",
+                        data: Object.keys(ctone).map(function(key) {
+                            return ctone[key];}),
+                        backgroundColor: '#ff6600',
+                    }, {
+                        label: "Durchschnitt aller Kommentare aller Artikel dieser Kategorie",
+                        data: Object.keys(avg_ctone).map(function (key) {
+                            return avg_ctone[key];}),
+                        backgroundColor: '#ffa366',
+                    }, {
+                        label: "Tonfall der Antworten",
+                        data: Object.keys(atone).map(function(key) {
+                            return atone[key];}),
+                        backgroundColor: '#ffcc00',
+                    }, {
+                        label: "Durchschnitt aller Antworten aller Artikel dieser Kategorie",
+                        data: Object.keys(avg_atone).map(function (key) {
+                            return avg_atone[key];}),
+                        backgroundColor: '#ffe066',
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    responsive: true,
+                    scales: {
+                        xAxes: [{
+                            ticks: {
+                                fontSize: 18
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                fontSize: 18,
+                                beginAtZero: true
+                            }
+                        }]
+                    },
+                    title: {
+                        display: true,
+                        text: 'Tonfall der Kommentare zu diesem Artikel',
+                        fontSize: 24,
+                    },
+                    legend: {
+                        labels: {
+                            fontSize: 18,
+                        },
+                    }}
+            });
+        </script>
+    </div>
+
+<div class="flex item4b">
     <table>
         <tr>
             <th>Kommentare</th>
@@ -152,6 +165,8 @@
             <td><p th:text="${comment.get(3)}"></p></td>
         </tr>
     </table>
+</div>
+
 </div>
 
 </body>

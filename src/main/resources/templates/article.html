@@ -133,8 +133,14 @@
             },
             options: {
                 scales: {
+                    xAxes: [{
+                        ticks: {
+                            fontSize: 18
+                        }
+                    }],
                     yAxes: [{
                         ticks: {
+                            fontSize: 18,
                             beginAtZero: true
                         }
                     }]
@@ -143,8 +149,12 @@
                     display: true,
                     text: 'Tonfall der Kommentare innerhalb dieser Kategorie',
                     fontSize: 24,
-                }
-            }
+                },
+                legend: {
+                    labels: {
+                        fontSize: 18,
+                    },
+                }}
         });
     </script>
 </div>

@@ -39,7 +39,7 @@
 
     <div class="item3 chart">
         <div>
-            <canvas id="caChart" style="height: 500px"></canvas>
+            <canvas id="caChart" style="height: 1500px"></canvas>
         </div>
         <script
                 src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js">
@@ -55,7 +55,7 @@
             var wirCtone = [[${wirCtone}]];
             var wisCtone = [[${wisCtone}]];
             var Chart = new Chart(ctx, {
-                type: 'bar',
+                type: 'horizontalBar',
                 data: {
                     labels: ["analytisch", "ärgerlich", "selbstsicher", "ängstlich", "erfreut", "traurig", "zögerlich"],
                     datasets: [{

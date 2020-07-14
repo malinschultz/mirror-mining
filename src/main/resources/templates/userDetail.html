@@ -74,12 +74,12 @@
 
 <div class="grid-container2">
     <div class="item1b">
-        <p class="about">Personenanalyse zu Nutzer&nbsp</p><p class="about" th:text="${userid}"></p>
+        <p class="about">Personenanalyse zu</p> <p class="about" th:text="${userid}"></p>
     </div>
 
 <div class="flex item2b">
     <div style="display: inline-block;">
-        <canvas id="caChart" style="width: 50vw;height: 100vh"></canvas>
+        <canvas id="caChart" style="width: 40vw;height: 100vh"></canvas>
     </div>
     <script
             src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js">
@@ -91,16 +91,16 @@
         var atone = [[${atone}]];
         var avg_atone = [[${avg_atone}]];
         var caChart = new Chart(ctx, {
-            type: 'bar',
+            type: 'horizontalBar',
             data: {
                 labels: ["analytisch", "ärgerlich", "selbstsicher", "ängstlich", "erfreut", "traurig", "zögerlich"],
                 datasets: [{
-                    label: "Tonfall der Kommentare",
+                    label: "Tonfall der direkten Kommentare",
                     data: Object.keys(ctone).map(function(key) {
                         return ctone[key];}),
                     backgroundColor: '#ff6600'
                 }, {
-                    label: "Durchschnitt aller Nutzerkommentare",
+                    label: "Durchschnitt aller Kommentare aller Kategorien",
                     data: Object.keys(avg_ctone).map(function (key) {
                         return avg_ctone[key];}),
                     backgroundColor: '#ffa366'
@@ -110,7 +110,7 @@
                         return atone[key];}),
                     backgroundColor: '#ffcc00'
                 }, {
-                    label: "Durchschnitt aller Nutzerantworten",
+                    label: "Durchschnitt aller Antworten aller Kategorien",
                     data: Object.keys(avg_atone).map(function (key) {
                         return avg_atone[key];}),
                     backgroundColor: '#ffe066'
@@ -122,6 +122,7 @@
                 scales: {
                     xAxes: [{
                         ticks: {
+                            position: 'top',
                             fontSize: 18
                         }
                     }],
@@ -134,11 +135,14 @@
                 },
                 title: {
                     display: true,
-                    text: 'Tonfall der Kommentare des Nutzers',
+                    text: 'Tonfall der Kommentare innerhalb dieser Kategorie',
                     fontSize: 24,
                 },
                 legend: {
-                    fontSize: 18
+                    position: 'top',
+                    labels:{
+                        fontSize: 18,
+                    },
                 }
             }
         });
@@ -157,15 +161,15 @@
         var pi = [[${pi}]];
         var avg_pi = [[${avg_pi}]];
         var piChart = new Chart(ctx, {
-            type: 'bar',
+            type: 'horizontalBar',
             data: {
-                labels: ["Offenheit", " Gewissenhaftigkeit", "Extraversion", "Verträglichkeit", " Neurotizismus"],
+                labels: ["Aufgeschlossenheit", "Pflichtbewusstsein", "Weltoffenheit", "Verträglichkeit", "Neurotizismus"],
                 datasets: [{
-                    label: "Persönlichkeit",
+                    label: "Werte der Person",
                     data: Object.keys(pi).map(function(key) {return pi[key];}),
                     backgroundColor: '#993333'
                 }, {
-                    label: "Durchschnitt Persönlichkeit",
+                    label: "Durchschnittswerte aller analysierten Personen",
                     data: Object.keys(avg_pi).map(function(key) {return avg_pi[key];}),
                     backgroundColor: '#cc6666'
                 }]
@@ -176,6 +180,7 @@
                 scales: {
                     xAxes: [{
                         ticks: {
+                            position: 'top',
                             fontSize: 18
                         }
                     }],
@@ -192,9 +197,10 @@
                     fontSize: 24,
                 },
                 legend: {
-                    fontSize: 18
-                }
-            }
+                    labels:{
+                        fontSize: 18,
+                },
+            }}
         });
     </script>
     </div>
