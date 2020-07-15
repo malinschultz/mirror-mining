@@ -163,13 +163,13 @@
         var piChart = new Chart(ctx, {
             type: 'horizontalBar',
             data: {
-                labels: ["Aufgeschlossenheit", "Pflichtbewusstsein", "Weltoffenheit", "Verträglichkeit", "Neurotizismus"],
+                labels: ["Offenheit", "Gewissenhaftigkeit", "Extraversion", "Verträglichkeit", "Neurotizismus"],
                 datasets: [{
-                    label: "Werte der Person",
+                    label: "Persönlichkeit (Big Five)",
                     data: Object.keys(pi).map(function(key) {return pi[key];}),
                     backgroundColor: '#993333'
                 }, {
-                    label: "Durchschnittswerte aller analysierten Personen",
+                    label: "Durchschnittliche Persönlichkeit",
                     data: Object.keys(avg_pi).map(function(key) {return avg_pi[key];}),
                     backgroundColor: '#cc6666'
                 }]
