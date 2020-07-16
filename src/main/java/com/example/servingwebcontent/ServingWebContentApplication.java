@@ -6,7 +6,6 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 
 
 @SpringBootApplication
-
 public class ServingWebContentApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
