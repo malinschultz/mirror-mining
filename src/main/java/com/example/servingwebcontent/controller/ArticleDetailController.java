@@ -26,7 +26,8 @@ public class ArticleDetailController {
         model.addAttribute("articleId", id);
 
 
-        // Get user from the DB and create lists from JSON columns.
+        /* Get article from the DB, create lists of comment/answer tones from JSON columns
+        and add them to the model for chart display */
         DatabaseConnection db = new DatabaseConnection();
         List<Map<String, Object>> article = db.executeQuery("select * from a_documents where id = " + id);
 
@@ -66,7 +67,8 @@ public class ArticleDetailController {
         List<Map<String, Object>> articleCategory = db.executeQuery("select category from a_documents where id = " + id);
         model.addAttribute("articleCategory", articleCategory.get(0).get("category").toString());
 
-
+        /* Get category from the DB, create lists of average comment/answer tones from JSON columns
+        and add them to the model for chart display */
         List<Map<String, Object>> category = db.executeQuery("select comment_tone, answer_tone from a_categories c where c.name = " + "'" + articleCategory.get(0).get("category").toString() + "'");
         List<Double> avg_ctoneList = new ArrayList<>();
 

@@ -1,3 +1,9 @@
+/*
+This class handles connections to the DB
+using ssh tunnel forwarding in order to execute queries on the DB.
+
+Jan Willruth
+**/
 package com.example.servingwebcontent;
 
 import java.io.IOException;
@@ -11,9 +17,10 @@ import com.jcraft.jsch.Session;
 import java.sql.*;
 
 public class DatabaseConnection {
+    // Example to test DB connection.
     public static void main(String[] args) throws IOException, JSchException, SQLException {
         DatabaseConnection db = new DatabaseConnection();
-        List<Map<String, Object>> data = db.executeQuery("select * from a_documents");
+        List<Map<String, Object>> data = db.executeQuery("select * from a_categories");
 
         // Print returned data.
         for (Map<String, Object> row : data) {
@@ -63,7 +70,7 @@ public class DatabaseConnection {
             Class.forName(driver).getDeclaredConstructor().newInstance();
             connection = DriverManager.getConnection(url, dbuser, dbpassword);
 
-            // Execute specified query, save ResultSet in ArrayList and return.
+            // Execute specified query, add ResultSet objects to ArrayList and return.
             Statement st = connection.createStatement();
             ResultSet rs = st.executeQuery(query);
             ResultSetMetaData md = rs.getMetaData();

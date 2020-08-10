@@ -33,28 +33,8 @@ public class KategorieService {
     }
 
     private static void initData() throws JSchException, SQLException, IOException {
-
-       /* Article artA1 = new Article(1, "https://www.spiegel.de/", "Atitle", "Acategory", 0.1, 0.1, 0.1);
-        Article artA2 = new Article(2, "https://www.spiegel.de/", "Atitle", "Acategory", 0.2, 0.2, 0.2);
-        Article artB1 = new Article(1, "https://www.spiegel.de/", "Btitle", "Bcategory", 0.1, 0.1, 0.1);
-        Article artB2 = new Article(2, "https://www.spiegel.de/", "Btitle", "Bcategory", 0.2, 0.2, 0.2);
-
-        List<Article> katA = new ArrayList<Article>();
-        katA.add(artA1);
-        katA.add(artA2);
-
-        List<Article> katB = new ArrayList<Article>();
-        katB.add(artB1);
-        katB.add(artB2);
-
-        Kategorie A = new Kategorie(katA, "Acategory");
-        Kategorie B = new Kategorie(katB, "Bcategory");
-
-        kat.add(A);
-        kat.add(B);*/
-
-
-        // Get categories and documents from the DB.
+        /* Get categories and documents from the DB, create lists of articles
+        and add categories to matching categories */
         DatabaseConnection db = new DatabaseConnection();
         List<Map<String, Object>> categories = db.executeQuery("select * from a_categories");
         List<Map<String, Object>> documents = db.executeQuery("select * from a_documents");
@@ -155,5 +135,4 @@ public class KategorieService {
         }
         return atoneList;
     }
-
 }

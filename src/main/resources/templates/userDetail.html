@@ -95,12 +95,12 @@
             data: {
                 labels: ["analytisch", "ärgerlich", "selbstsicher", "ängstlich", "erfreut", "traurig", "zögerlich"],
                 datasets: [{
-                    label: "Tonfall der direkten Kommentare",
+                    label: "Tonfall der Kommentare",
                     data: Object.keys(ctone).map(function(key) {
                         return ctone[key];}),
                     backgroundColor: '#ff6600'
                 }, {
-                    label: "Durchschnitt aller Kommentare aller Kategorien",
+                    label: "Durchschnitt aller Nutzerkommentare",
                     data: Object.keys(avg_ctone).map(function (key) {
                         return avg_ctone[key];}),
                     backgroundColor: '#ffa366'
@@ -110,7 +110,7 @@
                         return atone[key];}),
                     backgroundColor: '#ffcc00'
                 }, {
-                    label: "Durchschnitt aller Antworten aller Kategorien",
+                    label: "Durchschnitt aller Nutzerantworten",
                     data: Object.keys(avg_atone).map(function (key) {
                         return avg_atone[key];}),
                     backgroundColor: '#ffe066'
@@ -135,7 +135,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Tonfall der Kommentare innerhalb dieser Kategorie',
+                    text: 'Tonfall der Kommentare des Nutzers',
                     fontSize: 24,
                 },
                 legend: {
