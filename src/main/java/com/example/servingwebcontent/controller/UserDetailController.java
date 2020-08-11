@@ -1,6 +1,6 @@
 package com.example.servingwebcontent.controller;
 
-import com.example.servingwebcontent.DatabaseConnection_local;
+import com.example.servingwebcontent.DatabaseConnection;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.jcraft.jsch.JSchException;
@@ -25,7 +25,7 @@ public class UserDetailController {
 
         /* Get user from the DB, create lists of (average) comment/answer tones and personality insights
         from JSON columns, get their comments and add them to the model for chart display */
-        DatabaseConnection_local db = new DatabaseConnection_local();
+        DatabaseConnection db = new DatabaseConnection();
         List<Map<String, Object>> user = db.executeQuery("select * from a_users where id = " + id);
         List<Map<String, Object>> user_avg = db.executeQuery("select * from a_averages where name = 'Average TP Users'");
 

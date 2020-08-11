@@ -1,7 +1,7 @@
 package com.example.servingwebcontent.controller;
 
 import com.example.servingwebcontent.Article;
-import com.example.servingwebcontent.DatabaseConnection_local;
+import com.example.servingwebcontent.DatabaseConnection;
 import com.example.servingwebcontent.Kategorie;
 import com.example.servingwebcontent.KategorieService;
 import com.google.gson.Gson;
@@ -35,7 +35,7 @@ public class ArticleController {
 
         /* Get category from the DB, create lists of comment/answer tones from JSON columns
         and add them to the model for chart display */
-        DatabaseConnection_local db = new DatabaseConnection_local();
+        DatabaseConnection db = new DatabaseConnection();
         List<Map<String, Object>> category = db.executeQuery("select comment_tone, answer_tone from a_categories c where c.name = " + "'" + katName + "'");
         List<Map<String, Object>> cat_avg = db.executeQuery("select * from a_averages where name = 'Average Tone Overall'");
 

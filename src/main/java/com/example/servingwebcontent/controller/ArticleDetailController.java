@@ -1,6 +1,6 @@
 package com.example.servingwebcontent.controller;
 
-import com.example.servingwebcontent.DatabaseConnection_local;
+import com.example.servingwebcontent.DatabaseConnection;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.jcraft.jsch.JSchException;
@@ -25,7 +25,7 @@ public class ArticleDetailController {
 
         /* Get article from the DB, create lists of comment/answer tones from JSON columns
         and add them to the model for chart display */
-        DatabaseConnection_local db = new DatabaseConnection_local();
+        DatabaseConnection db = new DatabaseConnection();
         List<Map<String, Object>> article = db.executeQuery("select * from a_documents where id = " + id);
 
         List<Double> ctoneList = new ArrayList<>();

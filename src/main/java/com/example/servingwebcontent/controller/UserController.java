@@ -1,6 +1,6 @@
 package com.example.servingwebcontent.controller;
 
-import com.example.servingwebcontent.DatabaseConnection_local;
+import com.example.servingwebcontent.DatabaseConnection;
 import com.example.servingwebcontent.User;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -20,7 +20,7 @@ public class UserController {
 
 
         /* Get users from the DB, create user objects from data, add them to a list and pass them to the model */
-        DatabaseConnection_local db = new DatabaseConnection_local();
+        DatabaseConnection db = new DatabaseConnection();
         List<Map<String, Object>> users = db.executeQuery("select id, comment_tone, answer_tone from a_users");
         List<String> tones = Arrays.asList("Anger", "Joy", "Sadness");
         List<User> userList = new ArrayList<>();
