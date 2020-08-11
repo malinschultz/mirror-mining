@@ -16,10 +16,10 @@ import com.jcraft.jsch.Session;
 
 import java.sql.*;
 
-public class DatabaseConnection {
+public class DatabaseConnection_local {
     // Example to test DB connection.
     public static void main(String[] args) throws IOException, JSchException, SQLException {
-        DatabaseConnection db = new DatabaseConnection();
+        DatabaseConnection_local db = new DatabaseConnection_local();
         List<Map<String, Object>> data = db.executeQuery("select * from a_categories");
 
         // Print returned data.

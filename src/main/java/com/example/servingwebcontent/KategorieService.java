@@ -22,7 +22,7 @@ import java.lang.Math;
 @Repository
 public class KategorieService {
     private static final List<Kategorie> kat= new ArrayList<>();
-    private static final DatabaseConnection db = new DatabaseConnection();
+    private static final DatabaseConnection_local db = new DatabaseConnection_local();
 
     static {
         try {
@@ -35,7 +35,7 @@ public class KategorieService {
     private static void initData() throws JSchException, SQLException, IOException {
         /* Get categories and documents from the DB, create lists of articles
         and add categories to matching categories */
-        DatabaseConnection db = new DatabaseConnection();
+        DatabaseConnection_local db = new DatabaseConnection_local();
         List<Map<String, Object>> categories = db.executeQuery("select * from a_categories");
         List<Map<String, Object>> documents = db.executeQuery("select * from a_documents");
         List<String> tones = Arrays.asList("Anger", "Joy", "Sadness");
@@ -119,7 +119,7 @@ public class KategorieService {
     }
 
     public static List<Double> getKatAtone(String katName) throws JSchException, SQLException, IOException {
-        DatabaseConnection db = new DatabaseConnection();
+        DatabaseConnection_local db = new DatabaseConnection_local();
         List<Map<String, Object>> category = db.executeQuery("select comment_tone, answer_tone from a_categories c where c.name = " + "'" + katName + "'");
         List<String> tones = Arrays.asList("Analytical", "Anger", "Confident", "Fear", "Joy", "Sadness", "Tentative");
 

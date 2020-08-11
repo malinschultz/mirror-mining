@@ -23,7 +23,7 @@ public class UserService {
 
     private static void initData() throws JSchException, SQLException, IOException {
         // Get users from the DB and add them to a list of users.
-        DatabaseConnection db = new DatabaseConnection();
+        DatabaseConnection_local db = new DatabaseConnection_local();
         List<Map<String, Object>> users = db.executeQuery("select id from a_users");
         List<Integer> userList = new ArrayList<>();
         for (Map<String, Object> user : users) {
