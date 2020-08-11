@@ -1,9 +1,6 @@
 package com.example.servingwebcontent.controller;
 
-import com.example.servingwebcontent.Article;
 import com.example.servingwebcontent.DatabaseConnection;
-import com.example.servingwebcontent.Kategorie;
-import com.example.servingwebcontent.KategorieService;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.jcraft.jsch.JSchException;
