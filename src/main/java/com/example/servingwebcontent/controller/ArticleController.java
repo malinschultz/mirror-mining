@@ -33,7 +33,8 @@ public class ArticleController {
 
 
 
-        // Get category from the DB and create lists from JSON columns.
+        /* Get category from the DB, create lists of comment/answer tones from JSON columns
+        and add them to the model for chart display */
         DatabaseConnection db = new DatabaseConnection();
         List<Map<String, Object>> category = db.executeQuery("select comment_tone, answer_tone from a_categories c where c.name = " + "'" + katName + "'");
         List<Map<String, Object>> cat_avg = db.executeQuery("select * from a_averages where name = 'Average Tone Overall'");

@@ -14,6 +14,7 @@ import java.util.List;
 @Controller
 public class ArticleStartController {
     @GetMapping("/articleStart")
+    // Gets the average comment tone of all categories for display in a chart.
     public String articleStart(Model model) throws JSchException, SQLException, IOException {
         List<Kategorie> katList = KategorieService.getKat();
         List<Double> geCtone = KategorieService.getKatCtone("Gesundheit");

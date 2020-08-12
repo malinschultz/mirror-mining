@@ -19,12 +19,10 @@ public class UserController {
     public String user(Model model) throws JSchException, SQLException, IOException {
 
 
-        // Get users from the DB.
+        /* Get users from the DB, create user objects from data, add them to a list and pass them to the model */
         DatabaseConnection db = new DatabaseConnection();
         List<Map<String, Object>> users = db.executeQuery("select id, comment_tone, answer_tone from a_users");
         List<String> tones = Arrays.asList("Anger", "Joy", "Sadness");
-
-
         List<User> userList = new ArrayList<>();
         for (Map<String, Object> user : users) {
             List<Double> ctoneList = new ArrayList<>();
@@ -47,6 +45,7 @@ public class UserController {
                     atoneList.add(0.0);
                 }
             }
+            // Calculate average anger, joy and sadness for user for sorting in the table.
             List<Double> avgtoneList = new ArrayList<>();
             for (int i = 0; i < 3; i++) {
                 avgtoneList.add((double) Math.round(((ctoneList.get(i) + atoneList.get(i)) / 2) * 100d) / 100d);
