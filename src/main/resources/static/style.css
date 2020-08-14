@@ -138,12 +138,12 @@ canvas + canvas {
 
 /*** Navigationbar **/
 ul {
-    border: 3px solid #ff3300;
+    border: 3px solid #f05225;
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #ff3300;
+    background-color: #f05225;
     font-family: Arial;
     color: white;
     font-weight: bold;
@@ -154,7 +154,7 @@ li {
 }
 
 li a {
-    border: 3px solid #ff3300;
+    border: 3px solid #f05225;
     border-radius: 2px;
     display: block;
     color: black;
@@ -191,17 +191,17 @@ td, th{
 }
 
 .table-head-sort{
-    background-color: #ff3300;
+    background-color: #f05225;
 }
 
 .table-content{
-    background-color: #ff3300;
+    background-color: #f05225;
     font-weight: bold;
     color: white;
 }
 
 .table-content a {
-    border: 3px solid #ff3300;
+    border: 3px solid #f05225;
     float: left;
     color: black;
     text-decoration: none;
@@ -232,7 +232,7 @@ select{
 /***** Links, die aussehen wie Buttons ***/
 
 a.btn:link, a.btn:visited{
-    background-color: #ff3300;
+    background-color: #f05225;
     color: black;
     border: none;
     width: 100px;
@@ -270,7 +270,7 @@ a.btn:hover, a.btn:active{
 }
 
 .buttonblack {
-    background-color: #ff3300;
+    background-color: #f05225;
     color: black;
     border: 3px solid black;
     border-radius: 2px;
@@ -305,7 +305,7 @@ a.btn:hover, a.btn:active{
     border: none;
     font-size: 16px;
     font-weight: bold;
-    background-color: #ff3300;
+    background-color: #f05225;
     color: black;
     padding: 14px 16px;
     font-family: inherit;
@@ -318,17 +318,17 @@ a.btn:hover, a.btn:active{
 }
 
 .dropdown-content {
-    border: 3px solid #ff3300;
+    border: 3px solid #f05225;
     font-weight: bold;
     display: none;
     position: absolute;
-    background-color: #ff3300;
+    background-color: #f05225;
     min-width: 160px;
     z-index: 1;
 }
 
 .dropdown-content a {
-    border: 3px solid #ff3300;
+    border: 3px solid #f05225;
     float: none;
     color: black;
     padding: 12px 16px;

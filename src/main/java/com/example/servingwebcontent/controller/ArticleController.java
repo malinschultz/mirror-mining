@@ -31,8 +31,6 @@ public class ArticleController {
         model.addAttribute("katName", katName);
         model.addAttribute("katArt", katArt);
 
-
-
         /* Get category from the DB, create lists of comment/answer tones from JSON columns
         and add them to the model for chart display */
         DatabaseConnection db = new DatabaseConnection();
