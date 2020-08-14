@@ -31,4 +31,5 @@ build/
 .vscode/
 /src/main/resources/application.properties
 /src/main/resources/database.properties
+/node_modules/
 /src/main/resources/database_deploy.properties

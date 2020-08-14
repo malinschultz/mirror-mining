@@ -1,0 +1,8 @@
+{
+  "name": "mirror-mining",
+  "version": "1.0.0",
+  "dependencies": {
+    "@d3/zoomable-sunburst": "https://api.observablehq.com/@d3/zoomable-sunburst.tgz?v=3",
+    "@observablehq/runtime": "^4.7.2"
+  }
+}

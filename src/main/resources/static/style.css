@@ -254,6 +254,20 @@ a.btn:hover, a.btn:active{
 }
 
 /******* Buttons ****************************/
+button {
+    color: whitesmoke;
+    font-weight: bold;
+    background-color: #f05225;
+    border: 3px solid #f05225;
+    border-radius: 2px;
+}
+
+button:hover, button:active{
+    background-color: black;
+    color: whitesmoke;
+    border: 3px solid black;
+}
+
 .button {
     border: none;
     color: whitesmoke;
