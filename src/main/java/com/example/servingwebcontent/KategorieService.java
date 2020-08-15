@@ -17,7 +17,9 @@ import java.lang.Math;
 *
 *Diese Klasse stellt eine Liste mit Artikeln zur Verfügung.
 *Die Artikel gehören einer Kategorie an.
-* Malin Schultz*/
+* Malin Schultz
+* angebunden von Jan
+* ergänzt von Malin*/
 
 @Repository
 public class KategorieService {
@@ -32,6 +34,7 @@ public class KategorieService {
         }
     }
 
+//Anbindungen an die Datenbank von Jan
     private static void initData() throws JSchException, SQLException, IOException {
         /* Get categories and documents from the DB, create lists of articles
         and add categories to matching categories */
@@ -86,6 +89,8 @@ public class KategorieService {
         }
     }
 
+
+//get-Funktionen zum leichteren Handling von Malin
     public static List<Kategorie> getKat() {
         return kat;
     }

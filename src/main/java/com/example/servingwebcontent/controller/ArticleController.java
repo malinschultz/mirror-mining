@@ -17,10 +17,14 @@ import java.util.*;
 
 /*Diese Klasse setzt die html Artikel Seite.
 *
-* Malin Schultz*/
+* Malin Schultz
+*
+* angebunden von Jan*/
 
 @Controller
 public class ArticleController {
+
+    //request bei Auswahl einer Kategorie, von Malin
     @GetMapping(value = "/chooseKatSel")
     public String article(@RequestParam(name = "chooseKatSel") String katName, Model model) throws JSchException, SQLException, IOException {
         List<Kategorie> katList = KategorieService.getKat();
@@ -31,6 +35,7 @@ public class ArticleController {
         model.addAttribute("katName", katName);
         model.addAttribute("katArt", katArt);
 
+//Anbindung an die DB von Jan
         /* Get category from the DB, create lists of comment/answer tones from JSON columns
         and add them to the model for chart display */
         DatabaseConnection db = new DatabaseConnection();

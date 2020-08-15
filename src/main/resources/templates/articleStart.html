@@ -1,5 +1,6 @@
 <!--Das ist die Seite, die die Artikel anzeigt.
- Malin Schultz-->
+Die erste Artikelseite, auf der alle Kategorien miteinander verglichen  werden.
+ angelegt von Malin Schultz, ergänzt und erweitert von Jan und Oliver-->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -7,6 +8,8 @@
     <title>base.camp: mirror mining</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
+
+<!--Header der Seite mit Logo und Navigationsleiste -->
 <header>
     <img src="MM-2.jpg" width="400">
     <ul>
@@ -18,10 +21,13 @@
 </header>
 <body>
 
+<!--Beginn des Grid-Layouts -->
 <div class="grid-container">
     <div class="item1">
         <p class="about">Artikelanalyse</p><br><p class="about">Wähle hier eine Kategorie aus, um sie zu analysieren.</p>
     </div>
+
+    <!--Drop-down-Menü zur Auswahl der Kategorien -->
     <div class="item2">
         <div class="navbar">
             <div class="dropdown">
@@ -37,6 +43,7 @@
         </div>
     </div>
 
+    <!--Grafik über alle Kategorien -->
     <div class="item3 chart">
         <div>
             <canvas id="caChart" style="height: 1500px"></canvas>
@@ -137,7 +144,10 @@
             });
         </script>
     </div>
+<!--Ende des Grid-Layouts -->
 
+
+<!--Beginn des Hilfe Fensters, von Oliver -->
 </div>
 <!-- Trigger/Open The Modal -->
 <button style="position: absolute; right: 3%; top: 3%;"
@@ -186,5 +196,6 @@
         }
     }
 </script>
+<!--Ende des Hilfe Fensters -->
 </body>
 </html>

@@ -1,3 +1,5 @@
+<!--Das ist die Seite, die die Ergebnisse der Analyse eines Artikels anzeigt.
+ angelegt von Malin Schultz, ergänzt und erweitert von Jan und Oliver-->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -6,6 +8,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 
+<!--Header mit Logo und Navigationsleiste -->
 <header>
     <img src="MM-2.jpg" width="400">
     <ul>
@@ -19,6 +22,7 @@
 
 <body>
 
+<!--Beginn des Hilfe-Fensters, von Oliver -->
 <!-- Trigger/Open The Modal -->
 <button style="position: absolute; right: 3%; top: 3%;"
         id="myBtn">Hilfe</button>
@@ -71,14 +75,18 @@
         }
     }
 </script>
+<!--Ende des Hilfe-Fensters -->
 
+
+<!-- Beginn des Grid-Layouts -->
 <div class="grid-container2">
 
 <div class="item1b">
     <p class="about">Details zum Artikel</p> <p class="about">"</p><p class="about" th:text="${articleTitle}" ></p><p class="about">"</p> <p class="about"> aus der Kategorie </p> <p class="about" th:text="${articleCategory}"></p><br>
 </div>
-</div>
 
+
+<!--Grafik angelegt von Oliver -->
     <div class="flex item3bb">
         <div>
             <canvas id="caChart" style="width: 80vw"></canvas>
@@ -148,6 +156,7 @@
         </script>
     </div>
 
+<!--Tabelle mit Werten gefüllt von Jan -->
 <div class="flex item4b">
     <table class="articleTable">
         <tr>
@@ -164,5 +173,7 @@
         </tr>
     </table>
 </div>
+</div>
+<!--Ende des Gird-Layouts -->
 </body>
 </html>

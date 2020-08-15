@@ -1,5 +1,11 @@
 package com.example.servingwebcontent;
 
+/*
+Diese Klasse definiert, was eine Kategorie ist.
+
+Malin Schultz
+ */
+
 import java.util.List;
 
 public class Kategorie {

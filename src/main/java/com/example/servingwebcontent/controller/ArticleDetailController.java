@@ -15,7 +15,9 @@ import java.util.*;
 
 /*Diese Klasse setzt die articleDetail.html Seite
  *
- * Malin Schultz*/
+ * Malin Schultz
+ *
+ * angebunden an die DB von Jan*/
 
 @Controller
 public class ArticleDetailController {
@@ -23,7 +25,7 @@ public class ArticleDetailController {
     public String articleDetail(@RequestParam(name = "articleDetail") String id, Model model) throws JSchException, SQLException, IOException {
         model.addAttribute("articleId", id);
 
-
+//Anbindung von Jan
         /* Get article from the DB, create lists of comment/answer tones from JSON columns
         and add them to the model for chart display */
         DatabaseConnection db = new DatabaseConnection();

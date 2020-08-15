@@ -1,5 +1,5 @@
-<!--Das ist die Seite, die die Personen anzeigt.
- Malin Schultz-->
+<!--Das ist die Seite, die die Auflistung der Personen anzeigt.
+ angelegt von Malin Schultz, ergänzt und erweitert von Jan und Oliver-->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -8,6 +8,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 
+<!--Header der Seite mit Logo und Navigationsleiste -->
 <header>
     <img src="MM-2.jpg" width="400">
     <ul>
@@ -24,6 +25,9 @@
 <div class="flex">
     <p class="about">Wähle hier eine Person aus, um ihr Diskussionsverhalten zu untersuchen:</p>
 </div>
+
+<!--Tabelle mit Auflistung der Personen -->
+    <!--Sortierfunktion der Tabelle über https://www.w3schools.com/lib/w3.js, von Oliver-->
 <div class="flex">
     <table id="userTable">
         <script src="https://www.w3schools.com/lib/w3.js"></script>
@@ -42,6 +46,8 @@
         </tr>
     </table>
 </div>
+
+<!--Beginn des Hilfe Fensters eingefügt von Oliver-->
 <!-- Trigger/Open The Modal -->
 <button style="position: absolute; right: 3%; top: 3%;"
         id="myBtn">Hilfe</button>
@@ -87,5 +93,6 @@
         }
     }
 </script>
+<!--Ende des Hilfe Fensters-->
 </body>
 </html>
